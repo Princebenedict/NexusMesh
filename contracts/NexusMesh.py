@@ -1,9 +1,5 @@
 # {"Depends": "py-genlayer:15qfivjvy80800rh998pcxmd2m8va1wq2qzqhz850n8ggcr4i9q0"}
 # NexusMesh — Agentic Economy Infrastructure
-# GenLayer Bradbury Network | Hackathon 2024
-# A decentralized marketplace where AI agents and humans
-# post tasks, bid, deliver work, and get paid on-chain.
-# All key decisions made by on-chain AI via gl.exec_prompt().
 
 from genlayer.py import public
 import genlayer.py.gl as gl
@@ -11,23 +7,9 @@ import json
 
 
 class NexusMesh(gl.Contract):
-    """
-    NexusMesh: The nervous system for the Agentic Economy.
-
-    Agents register, discover tasks, bid, deliver work, and get
-    paid — governed entirely by on-chain AI intelligence.
-
-    GenLayer enables:
-    - gl.exec_prompt() for trustless AI decisions on-chain
-    - All AI reasoning stored on-chain and auditable
-    - No centralized AI server — fully decentralized
-    - Privacy: data evaluated by AI without leaving chain
-    """
-
-    # ── State Variables ────────────────────────────────────────
     task_count: int
     contract_count: int
-    platform_fee_bps: int   # 250 = 2.5%
+    platform_fee_bps: int
     owner: str
 
     def __init__(self, platform_fee_bps: int) -> None:
@@ -36,24 +18,18 @@ class NexusMesh(gl.Contract):
         self.platform_fee_bps = platform_fee_bps
         self.owner = gl.message.sender_address.as_hex
 
-    # ════════════════════════════════════════════════════════════
-    #  1. AGENT REGISTRATION — AI validates profile on-chain
-    # ════════════════════════════════════════════════════════════
-
     @public
     def register_agent(
         self,
         display_name: str,
-        agent_type: str,       # "human" | "ai_agent" | "hybrid"
-        skills: str,           # JSON array: ["python","solidity"]
+        agent_type: str,
+        skills: str,
         description: str,
-        hourly_rate: int,       # wei per hour
-        availability: str,      # "immediate"|"scheduled"|"project_only"
+        hourly_rate: int,
+        availability: str,
     ) -> None:
-        """Register agent profile. AI validates quality & normalizes skills."""
         addr = gl.message.sender_address.as_hex
 
-        # ── ON-CHAIN AI CALL #1: Validate agent profile ───────────
         prompt = f"""You are validating an agent profile for NexusMesh,
 a decentralized AI-agent economy marketplace on GenLayer.
 
@@ -62,7 +38,7 @@ Agent Profile:
 - Type: {agent_type}
 - Skills: {skills}
 - Description: {description}
-- Hourly Rate (wei): {hourly_rate}
+- Hourly Rate (base units): {hourly_rate}
 - Availability: {availability}
 
 Evaluate this profile. Return ONLY valid JSON, no markdown, no extra text:
@@ -83,37 +59,34 @@ Rules:
         result_str = gl.exec_prompt(prompt)
         result = json.loads(result_str)
 
-        # Log registration event on-chain
         gl.log(
             f"NexusMesh:AgentRegistered:{addr}:{display_name}:"
             f"{result.get('category','other')}:{result.get('quality_score',50)}"
         )
 
-    # ════════════════════════════════════════════════════════════
-    #  2. POST TASK — AI enriches listing on-chain
-    # ════════════════════════════════════════════════════════════
-
-    @public
+    @gl.public.write.payable
     def post_task(
         self,
         title: str,
         description: str,
-        required_skills: str,     # JSON array
-        budget: int,               # in wei
-        deadline_blocks: int,
-        task_type: str,             # "fixed"|"hourly"|"milestone"
+        required_skills: str,
+        delivery_timeline_hours: int,
+        task_type: str,
     ) -> int:
-        """Post a task. AI enriches with complexity & risk scores."""
         task_id = self.task_count
+        budget = gl.message.value
 
-        # ── ON-CHAIN AI CALL #2: Enrich task metadata ────────────
+        if budget <= 0:
+            raise Exception("Task funding is required. Attach native GEN value to this transaction.")
+
         prompt = f"""Analyze this task posted to NexusMesh agent marketplace.
 
 Task Details:
 - Title: {title}
 - Description: {description}
 - Required Skills: {required_skills}
-- Budget: {budget} wei
+- Budget: {budget} base units of GEN
+- Delivery Timeline: {delivery_timeline_hours} hours
 - Type: {task_type}
 
 Return ONLY valid JSON:
@@ -134,16 +107,14 @@ risk_level options: low|medium|high"""
 
         gl.log(
             f"NexusMesh:TaskPosted:{task_id}:{title}:"
+            f"{budget}:"
+            f"{delivery_timeline_hours}:"
             f"{enrichment.get('complexity','moderate')}:"
             f"{enrichment.get('risk_level','medium')}"
         )
 
         self.task_count = task_id + 1
         return task_id
-
-    # ════════════════════════════════════════════════════════════
-    #  3. SUBMIT BID — AI scores match compatibility
-    # ════════════════════════════════════════════════════════════
 
     @public
     def submit_bid(
@@ -154,16 +125,14 @@ risk_level options: low|medium|high"""
         required_skills: str,
         agent_name: str,
         agent_skills: str,
-        agent_reputation: int,    # 0-100
-        proposed_price: int,       # in wei
+        agent_reputation: int,
+        proposed_price: int,
         delivery_blocks: int,
         pitch: str,
         approach: str,
     ) -> int:
-        """Submit bid. AI scores match 0-100 on-chain."""
         bidder = gl.message.sender_address.as_hex
 
-        # ── ON-CHAIN AI CALL #3: Score bid compatibility ─────────
         prompt = f"""You are scoring a bid for a task on NexusMesh marketplace.
 
 TASK:
@@ -175,8 +144,8 @@ BID:
 - Agent: {agent_name}
 - Agent Skills: {agent_skills}
 - Reputation Score: {agent_reputation}/100
-- Proposed Price: {proposed_price} wei
-- Delivery Time: {delivery_blocks} blocks
+- Proposed Price: {proposed_price} base units of GEN
+- Delivery Time: {delivery_blocks} hours
 - Pitch: {pitch}
 - Approach: {approach}
 
@@ -203,10 +172,6 @@ recommendation options: strong_accept|accept|consider|reject"""
         )
         return score
 
-    # ════════════════════════════════════════════════════════════
-    #  4. EVALUATE DELIVERY — AI reviews submitted work
-    # ════════════════════════════════════════════════════════════
-
     @public
     def evaluate_delivery(
         self,
@@ -217,9 +182,6 @@ recommendation options: strong_accept|accept|consider|reject"""
         submission_url: str,
         submission_notes: str,
     ) -> str:
-        """AI fetches delivery URL, evaluates quality, approves/rejects payment."""
-
-        # ── ON-CHAIN AI CALL #4: Evaluate work delivery ──────────
         prompt = f"""You are an impartial AI evaluator for NexusMesh work contracts.
 
 CONTRACT DETAILS:
@@ -245,7 +207,7 @@ Return ONLY valid JSON:
   "revision_instructions": ""
 }}
 
-payment_percentage: 0-100, what percentage of agreed price agent deserves
+payment_percentage: 0-100
 approved: true if quality_score >= 60 and work is acceptable"""
 
         result_str = gl.exec_prompt(prompt)
@@ -259,10 +221,6 @@ approved: true if quality_score >= 60 and work is acceptable"""
         )
         return json.dumps(result)
 
-    # ════════════════════════════════════════════════════════════
-    #  5. RESOLVE DISPUTE — AI arbitrates with evidence review
-    # ════════════════════════════════════════════════════════════
-
     @public
     def resolve_dispute(
         self,
@@ -274,9 +232,6 @@ approved: true if quality_score >= 60 and work is acceptable"""
         respondent_statement: str,
         respondent_evidence_url: str,
     ) -> str:
-        """AI arbitrates dispute by fetching and reviewing all evidence URLs."""
-
-        # ── ON-CHAIN AI CALL #5: Arbitrate dispute ────────────────
         prompt = f"""You are the NexusMesh AI Arbitrator — an impartial judge.
 
 CONTRACT:
@@ -313,26 +268,18 @@ All percentages must sum to 100."""
         )
         return json.dumps(result)
 
-    # ════════════════════════════════════════════════════════════
-    #  READ-ONLY METHODS
-    # ════════════════════════════════════════════════════════════
-
     @public
     def get_platform_fee(self) -> int:
-        """Return platform fee in basis points (250 = 2.5%)"""
         return self.platform_fee_bps
 
     @public
     def get_task_count(self) -> int:
-        """Return total number of tasks posted."""
         return self.task_count
 
     @public
     def get_contract_count(self) -> int:
-        """Return total number of contracts created."""
         return self.contract_count
 
     @public
     def get_owner(self) -> str:
-        """Return the contract deployer address."""
         return self.owner
