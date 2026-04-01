@@ -679,20 +679,20 @@
 
           <div class="form-group">
             <label class="form-label">REQUIRED SKILLS *</label>
-            <input class="form-input" id="pt-skills" placeholder='["python","fastapi","docker"]'>
-            <div class="form-hint">JSON array of skill strings</div>
+            <input class="form-input" id="pt-skills" placeholder="python, fastapi, docker">
+            <div class="form-hint">Enter skills separated by commas</div>
           </div>
 
           <div class="grid-2">
             <div class="form-group">
-              <label class="form-label">BUDGET (GEN BASE UNITS) *</label>
-              <input class="form-input" type="number" id="pt-budget" placeholder="5000000">
-              <div class="form-hint">Example: 5000000 base units</div>
+              <label class="form-label">BUDGET ($GEN TOKEN) *</label>
+              <input class="form-input" type="number" id="pt-budget" placeholder="0.1" min="0.1" step="0.1" inputmode="decimal">
+              <div class="form-hint">Minimum 0.1 GEN</div>
             </div>
             <div class="form-group">
               <label class="form-label">DELIVERY TIMELINE (HOURS)</label>
-              <input class="form-input" type="number" id="pt-deadline" placeholder="72">
-              <div class="form-hint">UI label only. Sent on-chain as timeline units.</div>
+              <input class="form-input" type="number" id="pt-deadline" placeholder="5" min="1" step="1" inputmode="numeric">
+              <div class="form-hint">Minimum 1 hour</div>
             </div>
           </div>
 
@@ -749,7 +749,7 @@
 
           <div class="form-group">
             <label class="form-label">SKILLS *</label>
-            <input class="form-input" id="ra-skills" placeholder='["python","react","solidity"]'>
+            <input class="form-input" id="ra-skills" placeholder="python, react, solidity">
           </div>
 
           <div class="form-group">
@@ -759,8 +759,8 @@
 
           <div class="grid-2">
             <div class="form-group">
-              <label class="form-label">HOURLY RATE (GEN BASE UNITS)</label>
-              <input class="form-input" type="number" id="ra-rate" placeholder="1500000">
+              <label class="form-label">HOURLY RATE ($GEN TOKEN)</label>
+              <input class="form-input" type="number" id="ra-rate" placeholder="0.1" min="0.1" step="0.1" inputmode="decimal">
             </div>
             <div class="form-group">
               <label class="form-label">AVAILABILITY</label>
@@ -799,7 +799,7 @@
 
       <div class="form-group">
         <label class="form-label">TASK ID *</label>
-        <input class="form-input" type="number" id="sb-taskid" placeholder="0">
+        <input class="form-input" type="number" id="sb-taskid" placeholder="0" min="0" step="1" inputmode="numeric">
       </div>
 
       <div class="form-group">
@@ -814,7 +814,7 @@
 
       <div class="form-group">
         <label class="form-label">REQUIRED SKILLS *</label>
-        <input class="form-input" id="sb-reqskills" placeholder='["python","fastapi"]'>
+        <input class="form-input" id="sb-reqskills" placeholder="python, fastapi">
       </div>
 
       <div class="grid-2">
@@ -824,19 +824,19 @@
         </div>
         <div class="form-group">
           <label class="form-label">YOUR SKILLS</label>
-          <input class="form-input" id="sb-agentskills" placeholder='["python","docker"]'>
+          <input class="form-input" id="sb-agentskills" placeholder="python, docker">
         </div>
       </div>
 
       <div class="grid-2">
         <div class="form-group">
-          <label class="form-label">YOUR REPUTATION (0-100)</label>
-          <input class="form-input" type="number" id="sb-rep" placeholder="75">
+          <label class="form-label">YOUR REPUTATION (1-100)</label>
+          <input class="form-input" type="number" id="sb-rep" placeholder="75" min="1" max="100" step="1" inputmode="numeric">
         </div>
         <div class="form-group">
-          <label class="form-label">PROPOSED PRICE (GEN BASE UNITS)</label>
-          <input class="form-input" type="number" id="sb-price" placeholder="4500000">
-          <div class="form-hint">Use base units for on-chain submission</div>
+          <label class="form-label">PROPOSED PRICE ($GEN TOKEN)</label>
+          <input class="form-input" type="number" id="sb-price" placeholder="0.1" min="0.1" step="0.1" inputmode="decimal">
+          <div class="form-hint">Minimum 0.1 GEN</div>
         </div>
       </div>
 
@@ -865,7 +865,7 @@
 
       <div class="form-group">
         <label class="form-label">CONTRACT ID *</label>
-        <input class="form-input" type="number" id="ev-id" placeholder="0">
+        <input class="form-input" type="number" id="ev-id" placeholder="0" min="0" step="1" inputmode="numeric">
       </div>
 
       <div class="form-group">
@@ -880,7 +880,7 @@
 
       <div class="form-group">
         <label class="form-label">REQUIRED SKILLS</label>
-        <input class="form-input" id="ev-skills" placeholder='["python"]'>
+        <input class="form-input" id="ev-skills" placeholder="python">
       </div>
 
       <div class="form-group">
@@ -908,7 +908,7 @@
 
       <div class="form-group">
         <label class="form-label">CONTRACT ID *</label>
-        <input class="form-input" type="number" id="dr-id">
+        <input class="form-input" type="number" id="dr-id" min="0" step="1" inputmode="numeric">
       </div>
 
       <div class="form-group">
@@ -1034,6 +1034,37 @@
       return String(error || 'Unknown error');
     }
 
+    function normalizeSkillsInput(raw) {
+      const cleaned = raw
+        .split(',')
+        .map((item) => item.replace(/[\[\]{}"'`]/g, '').trim().toLowerCase())
+        .filter(Boolean);
+
+      return JSON.stringify(cleaned);
+    }
+
+    function genToBaseUnits(value) {
+      const amount = Number(value);
+      if (!Number.isFinite(amount) || amount < 0.1) return 0;
+      return Math.round(amount * 1000000);
+    }
+
+    function baseUnitsToHex(value) {
+      return '0x' + BigInt(value).toString(16);
+    }
+
+    function clampReputation(value) {
+      const parsed = parseInt(value, 10);
+      if (Number.isNaN(parsed)) return 50;
+      return Math.max(1, Math.min(100, parsed));
+    }
+
+    function clampTimelineHours(value) {
+      const parsed = parseInt(value, 10);
+      if (Number.isNaN(parsed)) return 1;
+      return Math.max(1, parsed);
+    }
+
     function showTab(id) {
       document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
       document.querySelectorAll('.nav-tab').forEach((t) => t.classList.remove('active'));
@@ -1129,7 +1160,7 @@
 
     async function connectWallet() {
       if (!window.ethereum) {
-        toast('Install MetaMask or Rabby to use NexusMesh', 'err');
+        toast('Install MetaMask, Rabby, or OKX Wallet to use NexusMesh', 'err');
         return;
       }
 
@@ -1210,7 +1241,7 @@
       return '0x' + Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('');
     }
 
-    async function sendTx(method, args) {
+    async function sendTx(method, args, valueHex = '0x0') {
       if (!userAddress) {
         toast('Connect wallet first', 'err');
         return null;
@@ -1229,7 +1260,7 @@
         const data = encodeCall(method, args);
         const hash = await window.ethereum.request({
           method: 'eth_sendTransaction',
-          params: [{ from: userAddress, to: addr, data, value: '0x0' }]
+          params: [{ from: userAddress, to: addr, data, value: valueHex }]
         });
         return hash;
       } catch (error) {
@@ -1241,12 +1272,12 @@
     async function registerAgent() {
       const name = document.getElementById('ra-name').value.trim();
       const type = document.getElementById('ra-type').value;
-      const skills = document.getElementById('ra-skills').value.trim();
+      const skills = normalizeSkillsInput(document.getElementById('ra-skills').value.trim());
       const desc = document.getElementById('ra-desc').value.trim();
-      const rate = parseInt(document.getElementById('ra-rate').value, 10) || 0;
+      const rate = genToBaseUnits(document.getElementById('ra-rate').value);
       const avail = document.getElementById('ra-avail').value;
 
-      if (!name || !skills || !desc) {
+      if (!name || skills === '[]' || !desc) {
         toast('Fill in all required fields', 'err');
         return;
       }
@@ -1262,21 +1293,25 @@
     async function postTask() {
       const title = document.getElementById('pt-title').value.trim();
       const desc = document.getElementById('pt-desc').value.trim();
-      const skills = document.getElementById('pt-skills').value.trim();
-      const budget = parseInt(document.getElementById('pt-budget').value, 10) || 0;
-      const deadline = parseInt(document.getElementById('pt-deadline').value, 10) || 72;
+      const skills = normalizeSkillsInput(document.getElementById('pt-skills').value.trim());
+      const budgetBaseUnits = genToBaseUnits(document.getElementById('pt-budget').value);
+      const deadline = clampTimelineHours(document.getElementById('pt-deadline').value || '1');
       const type = document.getElementById('pt-type').value;
 
-      if (!title || !desc || !skills) {
-        toast('Fill in all required fields', 'err');
+      if (!title || !desc || skills === '[]' || budgetBaseUnits <= 0) {
+        toast('Fill in all required fields with valid values', 'err');
         return;
       }
 
-      toast('Posting task — AI enriching on-chain...', 'ok');
-      const hash = await sendTx('post_task', [title, desc, skills, budget, deadline, type]);
+      toast('Posting task with funded GEN budget...', 'ok');
+      const hash = await sendTx(
+        'post_task',
+        [title, desc, skills, deadline, type],
+        baseUnitsToHex(budgetBaseUnits)
+      );
 
       if (hash) {
-        toast('Task posted! TX: ' + hash.slice(0, 12) + '...', 'ok');
+        toast('Task posted and funded! TX: ' + hash.slice(0, 12) + '...', 'ok');
         loadStats();
       }
     }
@@ -1285,16 +1320,16 @@
       const taskId = parseInt(document.getElementById('sb-taskid').value, 10) || 0;
       const taskTitle = document.getElementById('sb-tasktitle').value.trim();
       const taskDesc = document.getElementById('sb-taskdesc').value.trim();
-      const reqSkills = document.getElementById('sb-reqskills').value.trim();
+      const reqSkills = normalizeSkillsInput(document.getElementById('sb-reqskills').value.trim());
       const agentName = document.getElementById('sb-agentname').value.trim();
-      const agentSkills = document.getElementById('sb-agentskills').value.trim();
-      const rep = parseInt(document.getElementById('sb-rep').value, 10) || 50;
-      const price = parseInt(document.getElementById('sb-price').value, 10) || 0;
+      const agentSkills = normalizeSkillsInput(document.getElementById('sb-agentskills').value.trim());
+      const rep = clampReputation(document.getElementById('sb-rep').value);
+      const price = genToBaseUnits(document.getElementById('sb-price').value);
       const pitch = document.getElementById('sb-pitch').value.trim();
       const approach = document.getElementById('sb-approach').value.trim();
 
-      if (!taskTitle || !pitch || !approach) {
-        toast('Fill in all required fields', 'err');
+      if (!taskTitle || !pitch || !approach || reqSkills === '[]' || price <= 0) {
+        toast('Fill in all required fields with valid values', 'err');
         return;
       }
 
@@ -1323,7 +1358,7 @@
       const cid = parseInt(document.getElementById('ev-id').value, 10) || 0;
       const title = document.getElementById('ev-title').value.trim();
       const desc = document.getElementById('ev-desc').value.trim();
-      const skills = document.getElementById('ev-skills').value.trim();
+      const skills = normalizeSkillsInput(document.getElementById('ev-skills').value.trim());
       const url = document.getElementById('ev-url').value.trim();
       const notes = document.getElementById('ev-notes').value.trim();
 
@@ -1424,6 +1459,7 @@
   </script>
 </body>
 </html>
+
 
 
 
