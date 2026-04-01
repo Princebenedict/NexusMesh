@@ -19,7 +19,6 @@
       --amber: #f7b84b;
       --red: #ef5f67;
       --shadow: 0 18px 55px rgba(0,0,0,0.28);
-      --r: 14px;
       --rl: 22px;
     }
 
@@ -36,7 +35,10 @@
       min-height: 100vh;
     }
 
-    .header, .nav, .main { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; }
+    .header, .nav, .main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+    }
 
     .header {
       padding: 28px 0 18px;
@@ -47,7 +49,11 @@
       flex-wrap: wrap;
     }
 
-    .logo { display: flex; gap: 12px; align-items: center; }
+    .logo {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
     .logo-mark {
       width: 44px;
@@ -62,8 +68,17 @@
       box-shadow: var(--shadow);
     }
 
-    .logo-name { font-size: 21px; font-weight: 800; color: #fff; }
-    .logo-sub { font-size: 11px; color: var(--green-2); letter-spacing: 0.18em; }
+    .logo-name {
+      font-size: 21px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--green-2);
+      letter-spacing: 0.18em;
+    }
 
     .wallet-bar {
       display: flex;
@@ -123,7 +138,12 @@
     }
 
     .btn-block { width: 100%; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
 
     .nav {
       display: flex;
@@ -180,7 +200,11 @@
       margin-bottom: 12px;
     }
 
-    .hero-copy p { color: var(--muted); line-height: 1.7; max-width: 60ch; }
+    .hero-copy p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 60ch;
+    }
 
     .hero-kicker {
       color: var(--cyan);
@@ -190,10 +214,31 @@
       text-transform: uppercase;
     }
 
-    .hero-side { padding: 24px; display: grid; gap: 12px; }
-    .hero-metric { padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
-    .hero-metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
-    .hero-metric strong { color: #fff; font-size: 15px; word-break: break-word; }
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-metric {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+    }
+
+    .hero-metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .hero-metric strong {
+      color: #fff;
+      font-size: 15px;
+      word-break: break-word;
+    }
 
     .config-note, .alert {
       padding: 13px 15px;
@@ -208,8 +253,17 @@
       color: var(--amber);
     }
 
-    .alert-ok { background: rgba(25,195,125,0.14); color: var(--green-2); border: 1px solid rgba(25,195,125,0.24); }
-    .alert-err { background: rgba(239,95,103,0.14); color: #ffb4ba; border: 1px solid rgba(239,95,103,0.24); }
+    .alert-ok {
+      background: rgba(25,195,125,0.14);
+      color: var(--green-2);
+      border: 1px solid rgba(25,195,125,0.24);
+    }
+
+    .alert-err {
+      background: rgba(239,95,103,0.14);
+      color: #ffb4ba;
+      border: 1px solid rgba(239,95,103,0.24);
+    }
 
     .section-head {
       display: flex;
@@ -220,37 +274,83 @@
       flex-wrap: wrap;
     }
 
-    .section-title { font-size: 24px; color: #fff; font-weight: 800; }
-    .section-sub { margin-top: 4px; color: var(--muted); line-height: 1.6; }
+    .section-title {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .section-sub {
+      margin-top: 4px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     .grid-4, .grid-3, .grid-2 {
       display: grid;
       gap: 16px;
     }
 
-    .grid-4 { grid-template-columns: repeat(4, 1fr); margin-bottom: 18px; }
-    .grid-3 { grid-template-columns: repeat(3, 1fr); margin-bottom: 24px; }
-    .grid-2 { grid-template-columns: repeat(2, 1fr); }
-
-    .grid-gap-top {
-      margin-top: 16px;
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+      margin-bottom: 18px;
     }
 
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 24px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-gap-top { margin-top: 16px; }
+
     .stat-card, .feature-card, .dash-card { padding: 18px; }
-    .stat-num { font-size: 29px; font-weight: 800; color: var(--green-2); font-family: monospace; }
-    .stat-lbl { margin-top: 6px; color: var(--muted); font-size: 12px; }
 
-    .feature-card h3, .card-title, .dash-title { color: #fff; font-size: 16px; margin-bottom: 8px; }
-    .feature-card p, .card-desc, .dash-copy, .info-panel-text, .about-copy { color: var(--muted); line-height: 1.7; }
-    .feature-card .price, .card .price { margin-top: 14px; display: inline-block; }
+    .stat-num {
+      font-size: 29px;
+      font-weight: 800;
+      color: var(--green-2);
+      font-family: monospace;
+    }
 
-    .featured-grid, .task-list, .dash-list { display: grid; gap: 14px; }
+    .stat-lbl {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .feature-card h3, .card-title, .dash-title {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p, .card-desc, .dash-copy, .info-panel-text, .about-copy {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-card .price, .card .price {
+      margin-top: 14px;
+      display: inline-block;
+    }
+
+    .featured-grid, .task-list, .dash-list {
+      display: grid;
+      gap: 14px;
+    }
+
     .task-list { margin-top: 14px; }
     .dash-gap { margin-top: 14px; }
     .copy-gap { margin-bottom: 14px; }
 
     .card { overflow: hidden; }
+
     .card-top { padding: 18px 20px 0; }
+
     .card-footer {
       padding: 14px 20px;
       margin-top: 16px;
@@ -263,7 +363,11 @@
       background: rgba(255,255,255,0.02);
     }
 
-    .chip-row, .meta-row, .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip-row, .meta-row, .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
     .chip {
       font-size: 11px;
@@ -273,15 +377,41 @@
       border: 1px solid transparent;
     }
 
-    .chip-green { background: rgba(25,195,125,0.1); color: var(--green-2); border-color: rgba(25,195,125,0.22); }
-    .chip-amber { background: rgba(247,184,75,0.1); color: var(--amber); border-color: rgba(247,184,75,0.22); }
-    .chip-cyan { background: rgba(94,211,255,0.1); color: var(--cyan); border-color: rgba(94,211,255,0.22); }
+    .chip-green {
+      background: rgba(25,195,125,0.1);
+      color: var(--green-2);
+      border-color: rgba(25,195,125,0.22);
+    }
 
-    .price { color: var(--green-2); font-weight: 700; font-family: monospace; }
-    .meta { color: var(--muted); font-size: 12px; }
+    .chip-amber {
+      background: rgba(247,184,75,0.1);
+      color: var(--amber);
+      border-color: rgba(247,184,75,0.22);
+    }
 
-    .form-shell, .info-panel, .dash-card, .about-card { padding: 22px; }
+    .chip-cyan {
+      background: rgba(94,211,255,0.1);
+      color: var(--cyan);
+      border-color: rgba(94,211,255,0.22);
+    }
+
+    .price {
+      color: var(--green-2);
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .form-shell, .info-panel, .dash-card, .about-card {
+      padding: 22px;
+    }
+
     .form-group { margin-bottom: 16px; }
+
     .form-label {
       display: block;
       margin-bottom: 7px;
@@ -308,12 +438,61 @@
       box-shadow: 0 0 0 3px rgba(25,195,125,0.12);
     }
 
-    .form-textarea { resize: vertical; min-height: 94px; }
-    .form-hint { color: var(--muted); font-size: 11px; margin-top: 5px; }
-    .result-block { margin-top: 14px; min-height: 56px; }
+    .form-textarea {
+      resize: vertical;
+      min-height: 94px;
+    }
 
-    .empty-state { padding: 18px; color: var(--muted); text-align: center; }
+    .form-hint {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .result-block {
+      margin-top: 14px;
+      min-height: 56px;
+    }
+
+    .empty-state {
+      padding: 18px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     .dash-list .card { margin-bottom: 0; }
+
+    .address-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .address-short {
+      font-family: monospace;
+      color: #fff;
+    }
+
+    .copy-btn {
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: inline-block;
+    }
 
     .toast {
       position: fixed;
@@ -332,7 +511,10 @@
     .toast.ok { background: linear-gradient(135deg, #10b981, #059669); }
     .toast.err { background: linear-gradient(135deg, #ef5f67, #dc2626); }
 
-    .tx-link { color: var(--cyan); word-break: break-all; }
+    .tx-link {
+      color: var(--cyan);
+      word-break: break-all;
+    }
 
     .modal {
       position: fixed;
@@ -346,6 +528,7 @@
     }
 
     .modal.open { display: flex; }
+
     .modal-card {
       width: min(520px, 100%);
       padding: 24px;
@@ -355,17 +538,35 @@
       box-shadow: var(--shadow);
     }
 
-    .modal-title { font-size: 17px; font-weight: 800; margin-bottom: 14px; }
-    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     @media (max-width: 980px) {
-      .hero, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .hero-copy h1 { font-size: 30px; }
+      .hero, .grid-4, .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy h1 {
+        font-size: 30px;
+      }
     }
   </style>
 </head>
@@ -404,8 +605,8 @@
       <section class="hero">
         <div class="hero-card hero-copy">
           <div class="hero-kicker">Autonomous Work Marketplace</div>
-          <h1>Post tasks, collect applications, review delivery, and keep the trail on-chain.</h1>
-          <p>NexusMesh now surfaces real on-chain tasks on the front page, shows who applied, tracks founder feedback, and refreshes after confirmed transactions so posted work stops disappearing from the UI.</p>
+          <h1>Post tasks, collect applications, review delivery, and keep a record on-chain.</h1>
+          <p>NexusMesh now surfaces live on-chain tasks on the front page, shows who applied, tracks founder feedback, and refreshes after confirmed transactions so posted work stops disappearing from the UI.</p>
         </div>
         <div class="hero-card hero-side">
           <div class="hero-metric">
@@ -414,7 +615,10 @@
           </div>
           <div class="hero-metric">
             <span>Contract address</span>
-            <strong id="hero-contract">Waiting for config</strong>
+            <div class="address-row">
+              <strong id="hero-contract" class="address-short">Waiting for config</strong>
+              <button class="copy-btn" type="button" onclick="copyContractAddress()">Copy</button>
+            </div>
           </div>
           <div class="hero-metric">
             <span>Last transaction</span>
@@ -426,9 +630,9 @@
       <div class="section-head">
         <div>
           <div class="section-title">Marketplace</div>
-          <div class="section-sub">Featured opportunities plus live tasks loaded from the contract.</div>
+          <div class="section-sub">Featured opportunities plus live tasks loaded from the blockchain.</div>
         </div>
-        <button class="btn btn-ghost" onclick="refreshAll()">Refresh everything</button>
+        <button class="btn btn-ghost" id="refresh-btn" onclick="refreshAll()">Refresh everything</button>
       </div>
 
       <div class="grid-4">
@@ -503,7 +707,7 @@
       <div class="section-head">
         <div>
           <div class="section-title">Live On-Chain Tasks</div>
-          <div class="section-sub">These cards are populated from `get_marketplace_snapshot()` instead of being hard-coded.</div>
+          <div class="section-sub">These cards are loaded live from the blockchain instead of being hard-coded.</div>
         </div>
       </div>
       <div id="marketplace-tasks" class="task-list"></div>
@@ -518,7 +722,7 @@
       </div>
 
       <div class="grid-2">
-        <div class="form-shell">
+        <form class="form-shell" id="post-task-form" onsubmit="event.preventDefault(); postTask();">
           <div class="form-group">
             <label class="form-label">TASK TITLE *</label>
             <input class="form-input" id="pt-title" placeholder="Build REST API for analytics">
@@ -550,14 +754,14 @@
               <option value="milestone">Milestone Based</option>
             </select>
           </div>
-          <button class="btn btn-primary btn-block" onclick="postTask()">Post Task</button>
+          <button class="btn btn-primary btn-block" type="submit">Post Task</button>
           <div id="post-result" class="result-block"></div>
-        </div>
+        </form>
 
         <div class="info-panel">
           <div class="dash-title">What changed here</div>
           <div class="info-panel-text">
-            The old version only sent the transaction and refreshed counts. This version waits for a receipt, reloads the full marketplace snapshot, resets the form, and shows the transaction hash with a direct explorer link.
+            This version waits for a receipt, reloads the full marketplace snapshot, resets the form, and shows the transaction hash with a direct explorer link.
           </div>
         </div>
       </div>
@@ -572,7 +776,7 @@
       </div>
 
       <div class="grid-2">
-        <div class="form-shell">
+        <form class="form-shell" id="register-form" onsubmit="event.preventDefault(); registerAgent();">
           <div class="form-group">
             <label class="form-label">DISPLAY NAME *</label>
             <input class="form-input" id="ra-name" placeholder="Maya Chen or CodeForge-7">
@@ -607,14 +811,14 @@
               </select>
             </div>
           </div>
-          <button class="btn btn-primary btn-block" onclick="registerAgent()">Register</button>
+          <button class="btn btn-primary btn-block" type="submit">Register</button>
           <div id="register-result" class="result-block"></div>
-        </div>
+        </form>
 
         <div class="info-panel">
           <div class="dash-title">Registration note</div>
           <div class="info-panel-text">
-            Successful registration now returns a stored profile object, not just a log entry, so you can build later profile views if you want.
+            Successful registration now returns a stored profile object, not just a log entry.
           </div>
         </div>
       </div>
@@ -628,7 +832,7 @@
         </div>
       </div>
 
-      <div class="form-shell">
+      <form class="form-shell" id="bid-form" onsubmit="event.preventDefault(); submitBid();">
         <div class="grid-2">
           <div class="form-group">
             <label class="form-label">TASK ID *</label>
@@ -675,9 +879,9 @@
           <label class="form-label">YOUR APPROACH *</label>
           <textarea class="form-textarea" id="sb-approach" placeholder="How would you execute the work?"></textarea>
         </div>
-        <button class="btn btn-primary" onclick="submitBid()">Submit Application</button>
+        <button class="btn btn-primary" type="submit">Submit Application</button>
         <div id="bid-result" class="result-block"></div>
-      </div>
+      </form>
     </div>
 
     <div class="page" id="page-activity">
@@ -703,7 +907,7 @@
       </div>
 
       <div class="grid-2 grid-gap-top">
-        <div class="form-shell">
+        <form class="form-shell" id="feedback-form" onsubmit="event.preventDefault(); submitFounderFeedback();">
           <div class="dash-title">Founder feedback</div>
           <div class="dash-copy copy-gap">Use this to shortlist, accept, or reject an application and make the result visible in dashboards.</div>
           <div class="grid-2">
@@ -728,14 +932,14 @@
             <label class="form-label">FEEDBACK *</label>
             <textarea class="form-textarea" id="fb-feedback" placeholder="Tell the applicant why they were shortlisted, accepted, or rejected."></textarea>
           </div>
-          <button class="btn btn-primary btn-block" onclick="submitFounderFeedback()">Submit Feedback</button>
+          <button class="btn btn-primary btn-block" type="submit">Submit Feedback</button>
           <div id="feedback-result" class="result-block"></div>
-        </div>
+        </form>
 
         <div class="info-panel">
           <div class="dash-title">Why this tab matters</div>
           <div class="info-panel-text">
-            This is the missing piece from the earlier build. A task post or application can now be followed through the whole lifecycle instead of disappearing after a transaction succeeds.
+            A task post or application can now be followed through the whole lifecycle instead of disappearing after a transaction succeeds.
           </div>
         </div>
       </div>
@@ -749,7 +953,7 @@
         </div>
       </div>
 
-      <div class="form-shell">
+      <form class="form-shell" id="evaluate-form" onsubmit="event.preventDefault(); evaluateDelivery();">
         <div class="grid-2">
           <div class="form-group">
             <label class="form-label">APPLICATION / CONTRACT ID *</label>
@@ -776,9 +980,9 @@
           <label class="form-label">SUBMISSION NOTES</label>
           <textarea class="form-textarea" id="ev-notes" placeholder="What was delivered and how to review it"></textarea>
         </div>
-        <button class="btn btn-primary" onclick="evaluateDelivery()">Run Evaluation</button>
+        <button class="btn btn-primary" type="submit">Run Evaluation</button>
         <div id="eval-result" class="result-block"></div>
-      </div>
+      </form>
     </div>
 
     <div class="page" id="page-dispute">
@@ -789,7 +993,7 @@
         </div>
       </div>
 
-      <div class="form-shell">
+      <form class="form-shell" id="dispute-form" onsubmit="event.preventDefault(); resolveDispute();">
         <div class="form-group">
           <label class="form-label">APPLICATION / CONTRACT ID *</label>
           <input class="form-input" type="number" id="dr-id" min="0" step="1" placeholder="0">
@@ -824,9 +1028,9 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-primary" onclick="resolveDispute()">Submit Dispute</button>
+        <button class="btn btn-primary" type="submit">Submit Dispute</button>
         <div id="dispute-result" class="result-block"></div>
-      </div>
+      </form>
     </div>
 
     <div class="page" id="page-about">
@@ -861,8 +1065,8 @@
         <input class="form-input" id="cfg-addr" placeholder="0x...">
       </div>
       <div class="modal-actions">
-        <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="saveConfig()">Save</button>
+        <button class="btn btn-ghost" type="button" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" type="button" onclick="saveConfig()">Save</button>
       </div>
     </div>
   </div>
@@ -870,13 +1074,14 @@
   <script>
     const DEFAULT_CONTRACT_ADDRESS = '0xBF221fF4b2f409e8E359DB8689941527d967C369';
     const CONTRACT_STORAGE_KEY = 'nm_contract';
+    const LAST_TX_KEY = 'nm_last_tx';
     const CHAIN_ID = 4221;
     const BRADBURY_RPC_URL = 'https://rpc-bradbury.genlayer.com';
     const BRADBURY_EXPLORER_URL = 'https://explorer-bradbury.genlayer.com/';
     const RESULT_CLEAR_MS = 9000;
 
     let userAddress = '';
-    let lastTxHash = '';
+    let lastTxHash = localStorage.getItem(LAST_TX_KEY) || '';
 
     function getConfiguredContractAddress() {
       return localStorage.getItem(CONTRACT_STORAGE_KEY) || DEFAULT_CONTRACT_ADDRESS;
@@ -921,10 +1126,25 @@
       return Math.max(1, parsed);
     }
 
+    function truncateAddress(value, start = 8, end = 4) {
+      if (!value || value.length <= start + end) return value || '';
+      return `${value.slice(0, start)}...${value.slice(-end)}`;
+    }
+
     function updateHeroState() {
       document.getElementById('hero-account').textContent = userAddress || 'Not connected';
-      document.getElementById('hero-contract').textContent = getConfiguredContractAddress();
-      document.getElementById('hero-last-tx').textContent = lastTxHash ? `${lastTxHash.slice(0, 18)}...` : 'No transaction yet';
+      document.getElementById('hero-contract').textContent = truncateAddress(getConfiguredContractAddress(), 10, 6) || 'Waiting for config';
+      document.getElementById('hero-last-tx').textContent = lastTxHash ? truncateAddress(lastTxHash, 12, 8) : 'No transaction yet';
+    }
+
+    async function copyContractAddress() {
+      const address = getConfiguredContractAddress();
+      if (!isValidAddress(address)) {
+        toast('No valid contract address to copy', 'err');
+        return;
+      }
+      await navigator.clipboard.writeText(address);
+      toast('Contract address copied', 'ok');
     }
 
     function showTab(id) {
@@ -1068,6 +1288,7 @@
 
     function decodeJsonResult(value, fallback) {
       if (value == null || value === '') return fallback;
+
       if (typeof value === 'string' && value.startsWith('0x')) {
         const decoded = hexToUtf8(value);
         if (!decoded) return fallback;
@@ -1077,6 +1298,7 @@
           return fallback;
         }
       }
+
       if (typeof value === 'string') {
         try {
           return JSON.parse(value);
@@ -1084,18 +1306,32 @@
           return fallback;
         }
       }
+
       return value;
     }
 
     async function callView(method, args) {
       const addr = getConfiguredContractAddress();
-      if (!window.ethereum || !isValidAddress(addr)) return null;
+      if (!isValidAddress(addr)) return null;
+
       try {
-        return await window.ethereum.request({
-          method: 'eth_call',
-          params: [{ to: addr, data: encodeCall(method, args) }, 'latest']
+        const response = await fetch(BRADBURY_RPC_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: Date.now(),
+            method: 'eth_call',
+            params: [{ to: addr, data: encodeCall(method, args) }, 'latest']
+          })
         });
-      } catch (_) {
+
+        const payload = await response.json();
+        if (payload.error) throw new Error(payload.error.message || 'RPC read failed');
+        return payload.result;
+      } catch (error) {
+        console.error('callView failed:', error);
+        toast('Could not load marketplace data', 'err');
         return null;
       }
     }
@@ -1188,6 +1424,11 @@
         .replace(/'/g, '&#39;');
     }
 
+    function setMarketplaceLoading() {
+      document.getElementById('marketplace-tasks').innerHTML =
+        '<div class="empty-state"><span class="spinner"></span> Loading tasks from chain...</div>';
+    }
+
     function renderTaskCard(task) {
       const budget = Number(task.budget || 0) / 1000000;
       const skills = safeJsonArray(task.required_skills);
@@ -1210,7 +1451,7 @@
           <div class="card-footer">
             <span class="price">${budget.toFixed(3)} GEN</span>
             <div class="actions">
-              <button class="btn btn-ghost" onclick="prefillBid(${task.task_id})">Apply</button>
+              <button class="btn btn-ghost" type="button" onclick="prefillBid(${task.task_id})">Apply</button>
             </div>
           </div>
         </div>
@@ -1220,7 +1461,7 @@
     function renderMarketplace(tasks) {
       const host = document.getElementById('marketplace-tasks');
       if (!tasks.length) {
-        host.innerHTML = '<div class="empty-state">No live tasks yet. Post the first one and it will appear here after confirmation.</div>';
+        host.innerHTML = '<div class="empty-state">No live tasks found yet. Post the first one and it should appear here after confirmation.</div>';
         return;
       }
       host.innerHTML = tasks.slice().reverse().map(renderTaskCard).join('');
@@ -1256,6 +1497,7 @@
           </div>
         </div>
       `).join('');
+
       const feedbackCards = feedback.slice().reverse().map((item) => `
         <div class="card">
           <div class="card-top">
@@ -1316,19 +1558,27 @@
     }
 
     async function loadMarketplace() {
+      setMarketplaceLoading();
+
       const snapshotRaw = await callView('get_marketplace_snapshot', []);
-      const snapshot = decodeJsonResult(snapshotRaw, {
-        task_count: 0,
-        application_count: 0,
-        contract_count: 0,
-        platform_fee_bps: 250,
-        tasks: []
-      });
+      const snapshot = decodeJsonResult(snapshotRaw, null);
+
+      if (!snapshot || !Array.isArray(snapshot.tasks)) {
+        document.getElementById('st-tasks').textContent = '0';
+        document.getElementById('st-applications').textContent = '0';
+        document.getElementById('st-contracts').textContent = '0';
+        document.getElementById('st-fee').textContent = '2.5%';
+        document.getElementById('marketplace-tasks').innerHTML =
+          '<div class="empty-state">No tasks could be loaded right now. Check contract address and network.</div>';
+        return;
+      }
 
       document.getElementById('st-tasks').textContent = String(snapshot.task_count || 0);
       document.getElementById('st-applications').textContent = String(snapshot.application_count || 0);
       document.getElementById('st-contracts').textContent = String(snapshot.contract_count || 0);
-      document.getElementById('st-fee').textContent = ((Number(snapshot.platform_fee_bps || 250) / 100).toFixed(1)) + '%';
+      document.getElementById('st-fee').textContent =
+        ((Number(snapshot.platform_fee_bps || 250) / 100).toFixed(1)) + '%';
+
       renderMarketplace(snapshot.tasks || []);
       updateHeroState();
     }
@@ -1347,9 +1597,20 @@
     }
 
     async function refreshAll() {
+      const refreshBtn = document.getElementById('refresh-btn');
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.innerHTML = '<span class="spinner"></span> Refreshing...';
+      }
+
       checkConfig();
       await loadMarketplace();
       await loadDashboard();
+
+      if (refreshBtn) {
+        refreshBtn.disabled = false;
+        refreshBtn.textContent = 'Refresh everything';
+      }
     }
 
     async function runWriteAction({ method, args, valueHex = '0x0', resultId, successLabel, onSuccess }) {
@@ -1358,13 +1619,16 @@
       if (!hash) return;
 
       lastTxHash = hash;
+      localStorage.setItem(LAST_TX_KEY, hash);
       updateHeroState();
+
       setResult(
         resultId,
         'ok',
         `${successLabel}<br><a class="tx-link" href="${explorerLink(hash)}" target="_blank" rel="noopener noreferrer">${hash}</a>`,
         false
       );
+
       toast('Transaction submitted', 'ok');
 
       const receipt = await waitForReceipt(hash);
@@ -1398,7 +1662,7 @@
         resultId: 'register-result',
         successLabel: 'Agent registration submitted.',
         onSuccess: () => {
-          ['ra-name', 'ra-skills', 'ra-desc', 'ra-rate'].forEach((id) => { document.getElementById(id).value = ''; });
+          document.getElementById('register-form').reset();
           document.getElementById('ra-type').value = 'ai_agent';
           document.getElementById('ra-avail').value = 'immediate';
         }
@@ -1425,7 +1689,7 @@
         resultId: 'post-result',
         successLabel: 'Task posting submitted.',
         onSuccess: () => {
-          ['pt-title', 'pt-desc', 'pt-skills', 'pt-budget', 'pt-deadline'].forEach((id) => { document.getElementById(id).value = ''; });
+          document.getElementById('post-task-form').reset();
           document.getElementById('pt-type').value = 'fixed';
           showTab('marketplace');
         }
@@ -1455,9 +1719,7 @@
         resultId: 'bid-result',
         successLabel: 'Application submitted.',
         onSuccess: () => {
-          ['sb-taskid', 'sb-tasktitle', 'sb-taskdesc', 'sb-reqskills', 'sb-agentname', 'sb-agentskills', 'sb-rep', 'sb-price', 'sb-pitch', 'sb-approach'].forEach((id) => {
-            document.getElementById(id).value = '';
-          });
+          document.getElementById('bid-form').reset();
           showTab('activity');
         }
       });
@@ -1480,9 +1742,7 @@
         resultId: 'feedback-result',
         successLabel: 'Founder feedback submitted.',
         onSuccess: () => {
-          document.getElementById('fb-taskid').value = '';
-          document.getElementById('fb-applicationid').value = '';
-          document.getElementById('fb-feedback').value = '';
+          document.getElementById('feedback-form').reset();
           document.getElementById('fb-verdict').value = 'shortlisted';
           loadDashboard();
         }
@@ -1508,7 +1768,7 @@
         resultId: 'eval-result',
         successLabel: 'Evaluation submitted.',
         onSuccess: () => {
-          ['ev-id', 'ev-title', 'ev-desc', 'ev-skills', 'ev-url', 'ev-notes'].forEach((id) => { document.getElementById(id).value = ''; });
+          document.getElementById('evaluate-form').reset();
           loadDashboard();
         }
       });
@@ -1534,9 +1794,7 @@
         resultId: 'dispute-result',
         successLabel: 'Dispute submitted.',
         onSuccess: () => {
-          ['dr-id', 'dr-taskdesc', 'dr-submission', 'dr-claimant', 'dr-cevidence', 'dr-respondent', 'dr-revidence'].forEach((id) => {
-            document.getElementById(id).value = '';
-          });
+          document.getElementById('dispute-form').reset();
           loadDashboard();
         }
       });
@@ -1549,6 +1807,7 @@
         toast('Could not load task details', 'err');
         return;
       }
+
       document.getElementById('sb-taskid').value = task.task_id;
       document.getElementById('sb-tasktitle').value = task.title || '';
       document.getElementById('sb-taskdesc').value = task.description || '';
@@ -1580,4 +1839,5 @@
   </script>
 </body>
 </html>
+
 
