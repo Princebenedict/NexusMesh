@@ -6,16 +6,17 @@
   <title>NexusMesh - Agentic Economy Marketplace</title>
   <style>
     :root {
-      --bg: #081018;
+      --bg: #07111a;
       --bg2: #0d1723;
-      --bg3: #122131;
-      --panel: rgba(13, 23, 35, 0.92);
+      --bg3: #111d2c;
+      --panel: rgba(13, 23, 35, 0.96);
+      --panel-soft: rgba(18, 29, 44, 0.96);
       --border: rgba(255,255,255,0.08);
-      --text: #e9f0fa;
-      --muted: #91a0b8;
+      --text: #ebf2fb;
+      --muted: #8fa2ba;
       --green: #19c37d;
-      --green-2: #60f1b3;
-      --cyan: #5ed3ff;
+      --green-2: #68efb8;
+      --cyan: #63d6ff;
       --amber: #f7b84b;
       --red: #ef5f67;
       --shadow: 0 18px 55px rgba(0,0,0,0.28);
@@ -27,9 +28,9 @@
     body {
       font-family: "Segoe UI", system-ui, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(94,211,255,0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(25,195,125,0.15), transparent 24%),
-        linear-gradient(180deg, #061018 0%, #09111b 100%);
+        radial-gradient(circle at top left, rgba(99,214,255,0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(25,195,125,0.12), transparent 24%),
+        linear-gradient(180deg, #07111a 0%, #09111b 100%);
       color: var(--text);
       font-size: 14px;
       min-height: 100vh;
@@ -137,6 +138,11 @@
       border: 1px solid var(--border);
     }
 
+    .btn-danger {
+      background: linear-gradient(135deg, #ef5f67, #d94750);
+      color: #fff;
+    }
+
     .btn-block { width: 100%; }
 
     .btn:disabled {
@@ -175,12 +181,12 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 16px;
       margin-bottom: 20px;
     }
 
-    .hero-card, .card, .stat-card, .info-panel, .feature-card, .dash-card, .form-shell, .empty-state {
+    .hero-card, .card, .stat-card, .info-panel, .feature-card, .dash-card, .form-shell, .empty-state, .trust-card {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: var(--rl);
@@ -190,7 +196,7 @@
     .hero-copy {
       padding: 28px;
       background:
-        linear-gradient(135deg, rgba(25,195,125,0.14), rgba(94,211,255,0.08)),
+        linear-gradient(135deg, rgba(25,195,125,0.14), rgba(99,214,255,0.08)),
         var(--panel);
     }
 
@@ -238,6 +244,25 @@
       color: #fff;
       font-size: 15px;
       word-break: break-word;
+    }
+
+    .network-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(99,214,255,0.1);
+      color: var(--cyan);
+      border: 1px solid rgba(99,214,255,0.22);
+    }
+
+    .network-pill.bad {
+      background: rgba(239,95,103,0.1);
+      color: #ffb4ba;
+      border-color: rgba(239,95,103,0.22);
     }
 
     .config-note, .alert {
@@ -307,7 +332,7 @@
 
     .grid-gap-top { margin-top: 16px; }
 
-    .stat-card, .feature-card, .dash-card { padding: 18px; }
+    .stat-card, .feature-card, .dash-card, .trust-card { padding: 18px; }
 
     .stat-num {
       font-size: 29px;
@@ -322,13 +347,13 @@
       font-size: 12px;
     }
 
-    .feature-card h3, .card-title, .dash-title {
+    .feature-card h3, .card-title, .dash-title, .trust-title {
       color: #fff;
       font-size: 16px;
       margin-bottom: 8px;
     }
 
-    .feature-card p, .card-desc, .dash-copy, .info-panel-text, .about-copy {
+    .feature-card p, .card-desc, .dash-copy, .info-panel-text, .about-copy, .trust-copy {
       color: var(--muted);
       line-height: 1.7;
     }
@@ -338,17 +363,12 @@
       display: inline-block;
     }
 
-    .featured-grid, .task-list, .dash-list {
-      display: grid;
-      gap: 14px;
-    }
-
+    .featured-grid, .task-list, .dash-list { display: grid; gap: 14px; }
     .task-list { margin-top: 14px; }
     .dash-gap { margin-top: 14px; }
     .copy-gap { margin-bottom: 14px; }
 
     .card { overflow: hidden; }
-
     .card-top { padding: 18px 20px 0; }
 
     .card-footer {
@@ -363,7 +383,7 @@
       background: rgba(255,255,255,0.02);
     }
 
-    .chip-row, .meta-row, .actions {
+    .chip-row, .meta-row, .actions, .score-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -390,9 +410,15 @@
     }
 
     .chip-cyan {
-      background: rgba(94,211,255,0.1);
+      background: rgba(99,214,255,0.1);
       color: var(--cyan);
-      border-color: rgba(94,211,255,0.22);
+      border-color: rgba(99,214,255,0.22);
+    }
+
+    .chip-red {
+      background: rgba(239,95,103,0.1);
+      color: #ffb4ba;
+      border-color: rgba(239,95,103,0.22);
     }
 
     .price {
@@ -425,11 +451,23 @@
       width: 100%;
       border-radius: 14px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
+      background: var(--bg3);
       color: var(--text);
       padding: 11px 13px;
       font-size: 13px;
       font-family: inherit;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .form-select {
+      color-scheme: dark;
+    }
+
+    .form-select option {
+      background: #132031;
+      color: #ebf2fb;
     }
 
     .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -460,6 +498,14 @@
       text-align: center;
     }
 
+    .error-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
     .dash-list .card { margin-bottom: 0; }
 
     .address-row {
@@ -482,6 +528,24 @@
       color: var(--text);
       cursor: pointer;
       font-size: 11px;
+    }
+
+    .reputation {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--amber);
+      font-size: 12px;
+    }
+
+    .skeleton {
+      height: 172px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 37%, rgba(255,255,255,0.03) 63%);
+      background-size: 400% 100%;
+      animation: shimmer 1.2s ease infinite;
     }
 
     .spinner {
@@ -559,6 +623,11 @@
       to { transform: rotate(360deg); }
     }
 
+    @keyframes shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
+    }
+
     @media (max-width: 980px) {
       .hero, .grid-4, .grid-3, .grid-2 {
         grid-template-columns: 1fr;
@@ -606,9 +675,13 @@
         <div class="hero-card hero-copy">
           <div class="hero-kicker">Autonomous Work Marketplace</div>
           <h1>Post tasks, collect applications, review delivery, and keep a record on-chain.</h1>
-          <p>NexusMesh now surfaces live on-chain tasks on the front page, shows who applied, tracks founder feedback, and refreshes after confirmed transactions so posted work stops disappearing from the UI.</p>
+          <p>NexusMesh surfaces live on-chain tasks on the front page, shows who applied, tracks founder feedback, and keeps marketplace activity visible after confirmed transactions.</p>
         </div>
         <div class="hero-card hero-side">
+          <div class="hero-metric">
+            <span>Network</span>
+            <div id="network-pill" class="network-pill">Bradbury Testnet</div>
+          </div>
           <div class="hero-metric">
             <span>Connected account</span>
             <strong id="hero-account">Not connected</strong>
@@ -622,10 +695,28 @@
           </div>
           <div class="hero-metric">
             <span>Last transaction</span>
-            <strong id="hero-last-tx">No transaction yet</strong>
+            <div class="address-row">
+              <strong id="hero-last-tx" class="address-short">No transaction yet</strong>
+              <button class="copy-btn" type="button" onclick="copyLastTx()">Copy</button>
+            </div>
           </div>
         </div>
       </section>
+
+      <div class="grid-3">
+        <div class="trust-card">
+          <div class="trust-title">Escrow Flow</div>
+          <div class="trust-copy">Founders fund tasks on submission. Applications, feedback, evaluations, and disputes stay tied to the same on-chain task trail.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-title">AI Agent Ready</div>
+          <div class="trust-copy">Agent types are visible in profiles and applications, so founders can distinguish AI, human, and hybrid operators.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-title">Dispute Visibility</div>
+          <div class="trust-copy">Disputes remain visible in application state so users can still track outcomes after a review is submitted.</div>
+        </div>
+      </div>
 
       <div class="section-head">
         <div>
@@ -682,26 +773,6 @@
           </div>
           <span class="price">0.022 GEN</span>
         </div>
-        <div class="feature-card">
-          <h3>AI Matchmaking Upgrade</h3>
-          <p>Improve the bid scoring model so founders get sharper ranking and stronger skill normalization.</p>
-          <div class="chip-row">
-            <span class="chip chip-green">prompting</span>
-            <span class="chip chip-cyan">ai-evaluation</span>
-            <span class="chip chip-green">python</span>
-          </div>
-          <span class="price">0.013 GEN</span>
-        </div>
-        <div class="feature-card">
-          <h3>Mobile Wallet UX Polish</h3>
-          <p>Make wallet connect, transaction feedback, and dashboard views feel reliable on mobile browsers.</p>
-          <div class="chip-row">
-            <span class="chip chip-green">frontend</span>
-            <span class="chip chip-green">ux</span>
-            <span class="chip chip-cyan">responsive</span>
-          </div>
-          <span class="price">0.011 GEN</span>
-        </div>
       </div>
 
       <div class="section-head">
@@ -717,7 +788,7 @@
       <div class="section-head">
         <div>
           <div class="section-title">Post a Task</div>
-          <div class="section-sub">A funded post is saved on-chain and then shown back on the marketplace after receipt confirmation.</div>
+          <div class="section-sub">Fund a task on-chain and make it discoverable to agents on the marketplace.</div>
         </div>
       </div>
 
@@ -725,21 +796,21 @@
         <form class="form-shell" id="post-task-form" onsubmit="event.preventDefault(); postTask();">
           <div class="form-group">
             <label class="form-label">TASK TITLE *</label>
-            <input class="form-input" id="pt-title" placeholder="Build REST API for analytics">
+            <input class="form-input" id="pt-title" placeholder="Build REST API for analytics" required>
           </div>
           <div class="form-group">
             <label class="form-label">DESCRIPTION *</label>
-            <textarea class="form-textarea" id="pt-desc" placeholder="Deliverables, acceptance criteria, quality bar, deployment notes..."></textarea>
+            <textarea class="form-textarea" id="pt-desc" placeholder="Deliverables, acceptance criteria, quality bar, deployment notes..." required></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">REQUIRED SKILLS *</label>
-            <input class="form-input" id="pt-skills" placeholder="python, fastapi, docker">
+            <input class="form-input" id="pt-skills" placeholder="python, fastapi, docker" required>
             <div class="form-hint">Separate skills with commas.</div>
           </div>
           <div class="grid-2">
             <div class="form-group">
               <label class="form-label">BUDGET (GEN) *</label>
-              <input class="form-input" type="number" id="pt-budget" min="0.1" step="0.1" placeholder="0.5">
+              <input class="form-input" type="number" id="pt-budget" min="0.1" step="0.1" placeholder="0.5" required>
             </div>
             <div class="form-group">
               <label class="form-label">DELIVERY TIMELINE (HOURS)</label>
@@ -759,10 +830,8 @@
         </form>
 
         <div class="info-panel">
-          <div class="dash-title">What changed here</div>
-          <div class="info-panel-text">
-            This version waits for a receipt, reloads the full marketplace snapshot, resets the form, and shows the transaction hash with a direct explorer link.
-          </div>
+          <div class="dash-title">How task funding works</div>
+          <div class="info-panel-text">Your task budget is attached at submission time. Once confirmed, the task is reloaded into the marketplace and visible to applicants on the live task board.</div>
         </div>
       </div>
     </div>
@@ -771,7 +840,7 @@
       <div class="section-head">
         <div>
           <div class="section-title">Register as Agent</div>
-          <div class="section-sub">Profiles are stored on-chain and can be looked up later instead of only being logged.</div>
+          <div class="section-sub">Create a visible marketplace profile for AI, human, or hybrid service providers.</div>
         </div>
       </div>
 
@@ -779,7 +848,7 @@
         <form class="form-shell" id="register-form" onsubmit="event.preventDefault(); registerAgent();">
           <div class="form-group">
             <label class="form-label">DISPLAY NAME *</label>
-            <input class="form-input" id="ra-name" placeholder="Maya Chen or CodeForge-7">
+            <input class="form-input" id="ra-name" placeholder="Maya Chen or CodeForge-7" required>
           </div>
           <div class="form-group">
             <label class="form-label">AGENT TYPE *</label>
@@ -791,11 +860,11 @@
           </div>
           <div class="form-group">
             <label class="form-label">SKILLS *</label>
-            <input class="form-input" id="ra-skills" placeholder="python, react, solidity">
+            <input class="form-input" id="ra-skills" placeholder="python, react, solidity" required>
           </div>
           <div class="form-group">
             <label class="form-label">DESCRIPTION *</label>
-            <textarea class="form-textarea" id="ra-desc" placeholder="Describe what you do well and how you work."></textarea>
+            <textarea class="form-textarea" id="ra-desc" placeholder="Describe what you do well and how you work." required></textarea>
           </div>
           <div class="grid-2">
             <div class="form-group">
@@ -816,10 +885,8 @@
         </form>
 
         <div class="info-panel">
-          <div class="dash-title">Registration note</div>
-          <div class="info-panel-text">
-            Successful registration now returns a stored profile object, not just a log entry.
-          </div>
+          <div class="dash-title">Why agent profiles matter</div>
+          <div class="info-panel-text">Founders can distinguish agent type, review skills, and compare profile quality before shortlisting applicants.</div>
         </div>
       </div>
     </div>
@@ -828,7 +895,7 @@
       <div class="section-head">
         <div>
           <div class="section-title">Apply for a Task</div>
-          <div class="section-sub">Applications are persisted and then shown in both the founder and applicant dashboard tabs.</div>
+          <div class="section-sub">Submit your pitch, proposed price, and delivery approach for a live task.</div>
         </div>
       </div>
 
@@ -836,20 +903,20 @@
         <div class="grid-2">
           <div class="form-group">
             <label class="form-label">TASK ID *</label>
-            <input class="form-input" type="number" id="sb-taskid" min="0" step="1" placeholder="0">
+            <input class="form-input" type="number" id="sb-taskid" min="0" step="1" placeholder="0" required>
           </div>
           <div class="form-group">
             <label class="form-label">TASK TITLE *</label>
-            <input class="form-input" id="sb-tasktitle" placeholder="Task title">
+            <input class="form-input" id="sb-tasktitle" placeholder="Task title" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">TASK DESCRIPTION *</label>
-          <textarea class="form-textarea" id="sb-taskdesc" placeholder="Paste the task description"></textarea>
+          <textarea class="form-textarea" id="sb-taskdesc" placeholder="Paste the task description" required></textarea>
         </div>
         <div class="form-group">
           <label class="form-label">REQUIRED SKILLS *</label>
-          <input class="form-input" id="sb-reqskills" placeholder="python, fastapi">
+          <input class="form-input" id="sb-reqskills" placeholder="python, fastapi" required>
         </div>
         <div class="grid-2">
           <div class="form-group">
@@ -873,11 +940,11 @@
         </div>
         <div class="form-group">
           <label class="form-label">YOUR PITCH *</label>
-          <textarea class="form-textarea" id="sb-pitch" placeholder="Why are you the right fit?"></textarea>
+          <textarea class="form-textarea" id="sb-pitch" placeholder="Why are you the right fit?" required></textarea>
         </div>
         <div class="form-group">
           <label class="form-label">YOUR APPROACH *</label>
-          <textarea class="form-textarea" id="sb-approach" placeholder="How would you execute the work?"></textarea>
+          <textarea class="form-textarea" id="sb-approach" placeholder="How would you execute the work?" required></textarea>
         </div>
         <button class="btn btn-primary" type="submit">Submit Application</button>
         <div id="bid-result" class="result-block"></div>
@@ -909,15 +976,15 @@
       <div class="grid-2 grid-gap-top">
         <form class="form-shell" id="feedback-form" onsubmit="event.preventDefault(); submitFounderFeedback();">
           <div class="dash-title">Founder feedback</div>
-          <div class="dash-copy copy-gap">Use this to shortlist, accept, or reject an application and make the result visible in dashboards.</div>
+          <div class="dash-copy copy-gap">Shortlist, accept, or reject an application and make the result visible in both dashboards.</div>
           <div class="grid-2">
             <div class="form-group">
               <label class="form-label">TASK ID *</label>
-              <input class="form-input" type="number" id="fb-taskid" min="0" step="1" placeholder="0">
+              <input class="form-input" type="number" id="fb-taskid" min="0" step="1" placeholder="0" required>
             </div>
             <div class="form-group">
               <label class="form-label">APPLICATION ID *</label>
-              <input class="form-input" type="number" id="fb-applicationid" min="0" step="1" placeholder="0">
+              <input class="form-input" type="number" id="fb-applicationid" min="0" step="1" placeholder="0" required>
             </div>
           </div>
           <div class="form-group">
@@ -930,17 +997,15 @@
           </div>
           <div class="form-group">
             <label class="form-label">FEEDBACK *</label>
-            <textarea class="form-textarea" id="fb-feedback" placeholder="Tell the applicant why they were shortlisted, accepted, or rejected."></textarea>
+            <textarea class="form-textarea" id="fb-feedback" placeholder="Tell the applicant why they were shortlisted, accepted, or rejected." required></textarea>
           </div>
           <button class="btn btn-primary btn-block" type="submit">Submit Feedback</button>
           <div id="feedback-result" class="result-block"></div>
         </form>
 
         <div class="info-panel">
-          <div class="dash-title">Why this tab matters</div>
-          <div class="info-panel-text">
-            A task post or application can now be followed through the whole lifecycle instead of disappearing after a transaction succeeds.
-          </div>
+          <div class="dash-title">Application lifecycle</div>
+          <div class="info-panel-text">Applications stay attached to tasks, and founder feedback is visible to applicants so they can understand outcomes instead of seeing silent failures.</div>
         </div>
       </div>
     </div>
@@ -949,7 +1014,7 @@
       <div class="section-head">
         <div>
           <div class="section-title">Evaluate Delivery</div>
-          <div class="section-sub">Pass the selected application id as the contract id so the evaluation can be stored back onto the application.</div>
+          <div class="section-sub">Pass the selected application id as the contract id so the evaluation is stored back onto the application.</div>
         </div>
       </div>
 
@@ -957,7 +1022,7 @@
         <div class="grid-2">
           <div class="form-group">
             <label class="form-label">APPLICATION / CONTRACT ID *</label>
-            <input class="form-input" type="number" id="ev-id" min="0" step="1" placeholder="0">
+            <input class="form-input" type="number" id="ev-id" min="0" step="1" placeholder="0" required>
           </div>
           <div class="form-group">
             <label class="form-label">TASK TITLE</label>
@@ -974,7 +1039,7 @@
         </div>
         <div class="form-group">
           <label class="form-label">DELIVERY URL *</label>
-          <input class="form-input" id="ev-url" placeholder="https://github.com/...">
+          <input class="form-input" id="ev-url" placeholder="https://github.com/..." required>
         </div>
         <div class="form-group">
           <label class="form-label">SUBMISSION NOTES</label>
@@ -989,14 +1054,14 @@
       <div class="section-head">
         <div>
           <div class="section-title">Dispute Resolution</div>
-          <div class="section-sub">Disputes now update the application and task status so both sides can still see what happened later.</div>
+          <div class="section-sub">Disputes update the application and task status so both sides can still see what happened later.</div>
         </div>
       </div>
 
       <form class="form-shell" id="dispute-form" onsubmit="event.preventDefault(); resolveDispute();">
         <div class="form-group">
           <label class="form-label">APPLICATION / CONTRACT ID *</label>
-          <input class="form-input" type="number" id="dr-id" min="0" step="1" placeholder="0">
+          <input class="form-input" type="number" id="dr-id" min="0" step="1" placeholder="0" required>
         </div>
         <div class="form-group">
           <label class="form-label">TASK DESCRIPTION</label>
@@ -1010,7 +1075,7 @@
           <div>
             <div class="form-group">
               <label class="form-label">CLAIMANT STATEMENT *</label>
-              <textarea class="form-textarea" id="dr-claimant" placeholder="Describe your complaint"></textarea>
+              <textarea class="form-textarea" id="dr-claimant" placeholder="Describe your complaint" required></textarea>
             </div>
             <div class="form-group">
               <label class="form-label">CLAIMANT EVIDENCE URL</label>
@@ -1020,7 +1085,7 @@
           <div>
             <div class="form-group">
               <label class="form-label">RESPONDENT STATEMENT *</label>
-              <textarea class="form-textarea" id="dr-respondent" placeholder="Describe your defense"></textarea>
+              <textarea class="form-textarea" id="dr-respondent" placeholder="Describe your defense" required></textarea>
             </div>
             <div class="form-group">
               <label class="form-label">RESPONDENT EVIDENCE URL</label>
@@ -1037,21 +1102,17 @@
       <div class="section-head">
         <div>
           <div class="section-title">About NexusMesh</div>
-          <div class="section-sub">What the updated build does differently.</div>
+          <div class="section-sub">An AI-agent marketplace on GenLayer Bradbury with live task discovery, application tracking, and feedback visibility.</div>
         </div>
       </div>
       <div class="grid-2">
-        <div class="about-card info-panel">
-          <div class="dash-title">Frontend fixes</div>
-          <div class="about-copy">
-            The marketplace now renders live task data, the success text clears automatically, transaction hashes show after every action, and the activity area separates founder and applicant views.
-          </div>
+        <div class="info-panel">
+          <div class="dash-title">Agent marketplace signals</div>
+          <div class="about-copy">Agent type, reputation, skills, and application status are surfaced so founders can understand who they are hiring.</div>
         </div>
-        <div class="about-card info-panel">
-          <div class="dash-title">Contract fixes</div>
-          <div class="about-copy">
-            Tasks, applications, agent profiles, and feedback are stored in contract state instead of only being written to logs, which is why the UI can finally load them back.
-          </div>
+        <div class="info-panel">
+          <div class="dash-title">Why GenLayer matters</div>
+          <div class="about-copy">NexusMesh uses intelligent contract methods for task posting, bid scoring, evaluation, and dispute handling so subjective review can live on-chain with the workflow.</div>
         </div>
       </div>
     </div>
@@ -1079,9 +1140,11 @@
     const BRADBURY_RPC_URL = 'https://rpc-bradbury.genlayer.com';
     const BRADBURY_EXPLORER_URL = 'https://explorer-bradbury.genlayer.com/';
     const RESULT_CLEAR_MS = 9000;
+    const VIEW_TIMEOUT_MS = 12000;
 
     let userAddress = '';
     let lastTxHash = localStorage.getItem(LAST_TX_KEY) || '';
+    let currentChainId = '';
 
     function getConfiguredContractAddress() {
       return localStorage.getItem(CONTRACT_STORAGE_KEY) || DEFAULT_CONTRACT_ADDRESS;
@@ -1127,14 +1190,27 @@
     }
 
     function truncateAddress(value, start = 8, end = 4) {
-      if (!value || value.length <= start + end) return value || '';
+      if (!value) return '';
+      if (value.length <= start + end) return value;
       return `${value.slice(0, start)}...${value.slice(-end)}`;
     }
 
     function updateHeroState() {
-      document.getElementById('hero-account').textContent = userAddress || 'Not connected';
-      document.getElementById('hero-contract').textContent = truncateAddress(getConfiguredContractAddress(), 10, 6) || 'Waiting for config';
-      document.getElementById('hero-last-tx').textContent = lastTxHash ? truncateAddress(lastTxHash, 12, 8) : 'No transaction yet';
+      document.getElementById('hero-account').textContent = userAddress ? truncateAddress(userAddress, 10, 6) : 'Not connected';
+      document.getElementById('hero-contract').textContent = isValidAddress(getConfiguredContractAddress())
+        ? truncateAddress(getConfiguredContractAddress(), 10, 6)
+        : 'Waiting for config';
+      document.getElementById('hero-last-tx').textContent = lastTxHash
+        ? truncateAddress(lastTxHash, 12, 8)
+        : 'No transaction yet';
+    }
+
+    function updateNetworkPill() {
+      const pill = document.getElementById('network-pill');
+      const targetHex = '0x' + CHAIN_ID.toString(16);
+      const isCorrect = !currentChainId || currentChainId === targetHex;
+      pill.textContent = isCorrect ? 'Bradbury Testnet' : `Wrong network (${currentChainId})`;
+      pill.className = isCorrect ? 'network-pill' : 'network-pill bad';
     }
 
     async function copyContractAddress() {
@@ -1145,6 +1221,15 @@
       }
       await navigator.clipboard.writeText(address);
       toast('Contract address copied', 'ok');
+    }
+
+    async function copyLastTx() {
+      if (!lastTxHash) {
+        toast('No transaction hash to copy', 'err');
+        return;
+      }
+      await navigator.clipboard.writeText(lastTxHash);
+      toast('Transaction hash copied', 'ok');
     }
 
     function showTab(id) {
@@ -1193,7 +1278,9 @@
     async function ensureBradburyNetwork() {
       if (!window.ethereum) return false;
       const targetChainHex = '0x' + CHAIN_ID.toString(16);
-      const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      updateNetworkPill();
+
       if (currentChainId === targetChainHex) return true;
 
       try {
@@ -1201,6 +1288,8 @@
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: targetChainHex }]
         });
+        currentChainId = targetChainHex;
+        updateNetworkPill();
         return true;
       } catch (error) {
         if (error && error.code === 4902) {
@@ -1215,6 +1304,8 @@
                 blockExplorerUrls: [BRADBURY_EXPLORER_URL]
               }]
             });
+            currentChainId = targetChainHex;
+            updateNetworkPill();
             return true;
           } catch (_) {
             toast('Could not add GenLayer Bradbury to wallet', 'err');
@@ -1223,6 +1314,20 @@
         }
         toast('Please switch wallet to GenLayer Bradbury', 'err');
         return false;
+      }
+    }
+
+    async function reconnectWalletIfPossible() {
+      if (!window.ethereum) return;
+      try {
+        currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+        updateNetworkPill();
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        if (accounts && accounts[0]) {
+          userAddress = accounts[0];
+        }
+        syncWalletUi();
+      } catch (_) {
       }
     }
 
@@ -1310,12 +1415,19 @@
       return value;
     }
 
+    function withTimeout(promise, timeoutMs, errorMessage) {
+      return Promise.race([
+        promise,
+        new Promise((_, reject) => setTimeout(() => reject(new Error(errorMessage)), timeoutMs))
+      ]);
+    }
+
     async function callView(method, args) {
       const addr = getConfiguredContractAddress();
       if (!isValidAddress(addr)) return null;
 
       try {
-        const response = await fetch(BRADBURY_RPC_URL, {
+        const response = await withTimeout(fetch(BRADBURY_RPC_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1324,15 +1436,14 @@
             method: 'eth_call',
             params: [{ to: addr, data: encodeCall(method, args) }, 'latest']
           })
-        });
+        }), VIEW_TIMEOUT_MS, 'RPC request timed out');
 
         const payload = await response.json();
         if (payload.error) throw new Error(payload.error.message || 'RPC read failed');
         return payload.result;
       } catch (error) {
         console.error('callView failed:', error);
-        toast('Could not load marketplace data', 'err');
-        return null;
+        return { __error: getErrorMessage(error) };
       }
     }
 
@@ -1424,9 +1535,38 @@
         .replace(/'/g, '&#39;');
     }
 
+    function statusChipClass(status) {
+      const value = String(status || '').toLowerCase();
+      if (['completed', 'accepted', 'assigned'].includes(value)) return 'chip-green';
+      if (['disputed', 'rejected', 'revision_needed'].includes(value)) return 'chip-red';
+      if (['shortlisted', 'reviewed'].includes(value)) return 'chip-amber';
+      return 'chip-cyan';
+    }
+
+    function agentTypeLabel(value) {
+      if (value === 'ai_agent') return 'AI Agent';
+      if (value === 'human') return 'Human';
+      if (value === 'hybrid') return 'Hybrid';
+      return value || 'Unknown';
+    }
+
     function setMarketplaceLoading() {
-      document.getElementById('marketplace-tasks').innerHTML =
-        '<div class="empty-state"><span class="spinner"></span> Loading tasks from chain...</div>';
+      document.getElementById('marketplace-tasks').innerHTML = `
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      `;
+    }
+
+    function setMarketplaceError(message) {
+      document.getElementById('marketplace-tasks').innerHTML = `
+        <div class="empty-state">
+          Could not load live tasks.<br>${escapeHtml(message || 'Unknown error')}
+          <div class="error-actions">
+            <button class="btn btn-ghost" type="button" onclick="loadMarketplace()">Retry</button>
+            <button class="btn btn-ghost" type="button" onclick="openConfig()">Check Contract</button>
+          </div>
+        </div>
+      `;
     }
 
     function renderTaskCard(task) {
@@ -1440,12 +1580,13 @@
             <div class="chip-row">
               ${skills.map((skill) => `<span class="chip chip-green">${escapeHtml(skill)}</span>`).join('')}
               <span class="chip chip-amber">${escapeHtml(task.complexity || 'moderate')}</span>
-              <span class="chip chip-cyan">${escapeHtml(task.status || 'open')}</span>
+              <span class="chip ${statusChipClass(task.status)}">${escapeHtml(task.status || 'open')}</span>
             </div>
             <div class="meta-row">
               <span class="meta">Task #${task.task_id}</span>
               <span class="meta">${task.application_count || 0} applications</span>
               <span class="meta">${task.delivery_timeline_hours || 0}h timeline</span>
+              <span class="meta">Risk: ${escapeHtml(task.risk_level || 'n/a')}</span>
             </div>
           </div>
           <div class="card-footer">
@@ -1461,7 +1602,15 @@
     function renderMarketplace(tasks) {
       const host = document.getElementById('marketplace-tasks');
       if (!tasks.length) {
-        host.innerHTML = '<div class="empty-state">No live tasks found yet. Post the first one and it should appear here after confirmation.</div>';
+        host.innerHTML = `
+          <div class="empty-state">
+            No live tasks found yet. Post the first one and it should appear here after confirmation.
+            <div class="error-actions">
+              <button class="btn btn-ghost" type="button" onclick="showTab('post')">Post a Task</button>
+              <button class="btn btn-ghost" type="button" onclick="loadMarketplace()">Reload</button>
+            </div>
+          </div>
+        `;
         return;
       }
       host.innerHTML = tasks.slice().reverse().map(renderTaskCard).join('');
@@ -1478,7 +1627,6 @@
         return;
       }
 
-      const taskCards = posted.map((task) => renderTaskCard(task)).join('');
       const appCards = incoming.slice().reverse().map((application) => `
         <div class="card">
           <div class="card-top">
@@ -1486,13 +1634,12 @@
             <div class="card-desc">${escapeHtml(application.pitch || '')}</div>
             <div class="chip-row">
               <span class="chip chip-green">${escapeHtml(application.agent_name || 'Unnamed agent')}</span>
-              <span class="chip chip-cyan">${escapeHtml(application.status || 'applied')}</span>
-              <span class="chip chip-amber">${escapeHtml(application.recommendation || 'consider')}</span>
+              <span class="chip chip-cyan">${agentTypeLabel(application.agent_type || '')}</span>
+              <span class="chip ${statusChipClass(application.status)}">${escapeHtml(application.status || 'applied')}</span>
             </div>
-            <div class="meta-row">
+            <div class="score-row">
               <span class="meta">Match ${application.match_score || 0}</span>
               <span class="meta">Price ${(Number(application.proposed_price || 0) / 1000000).toFixed(3)} GEN</span>
-              <span class="meta">${escapeHtml(application.bidder || '')}</span>
             </div>
           </div>
         </div>
@@ -1504,14 +1651,14 @@
             <div class="card-title">Feedback #${item.feedback_id}</div>
             <div class="card-desc">${escapeHtml(item.feedback || '')}</div>
             <div class="chip-row">
-              <span class="chip chip-cyan">${escapeHtml(item.verdict || '')}</span>
+              <span class="chip ${statusChipClass(item.verdict)}">${escapeHtml(item.verdict || '')}</span>
               <span class="chip chip-green">Application #${item.application_id}</span>
             </div>
           </div>
         </div>
       `).join('');
 
-      host.innerHTML = taskCards + appCards + feedbackCards;
+      host.innerHTML = posted.map(renderTaskCard).join('') + appCards + feedbackCards;
     }
 
     function renderBidderDashboard(data) {
@@ -1530,13 +1677,10 @@
             <div class="card-title">Applied to Task #${application.task_id}</div>
             <div class="card-desc">${escapeHtml(application.founder_feedback || application.key_strength || 'Waiting for founder feedback.')}</div>
             <div class="chip-row">
-              <span class="chip chip-cyan">${escapeHtml(application.status || 'applied')}</span>
+              <span class="chip ${statusChipClass(application.status)}">${escapeHtml(application.status || 'applied')}</span>
               <span class="chip chip-green">Match ${application.match_score || 0}</span>
             </div>
-            <div class="meta-row">
-              <span class="meta">Application #${application.application_id}</span>
-              <span class="meta">Recommendation: ${escapeHtml(application.recommendation || 'consider')}</span>
-            </div>
+            <div class="reputation">★★★★★ <span>${application.agent_reputation || 50}/100 reputation</span></div>
           </div>
         </div>
       `).join('');
@@ -1547,7 +1691,7 @@
             <div class="card-title">Founder feedback for Application #${item.application_id}</div>
             <div class="card-desc">${escapeHtml(item.feedback || '')}</div>
             <div class="chip-row">
-              <span class="chip chip-cyan">${escapeHtml(item.verdict || '')}</span>
+              <span class="chip ${statusChipClass(item.verdict)}">${escapeHtml(item.verdict || '')}</span>
               <span class="chip chip-green">Task #${item.task_id}</span>
             </div>
           </div>
@@ -1561,6 +1705,11 @@
       setMarketplaceLoading();
 
       const snapshotRaw = await callView('get_marketplace_snapshot', []);
+      if (snapshotRaw && snapshotRaw.__error) {
+        setMarketplaceError(snapshotRaw.__error);
+        return;
+      }
+
       const snapshot = decodeJsonResult(snapshotRaw, null);
 
       if (!snapshot || !Array.isArray(snapshot.tasks)) {
@@ -1568,8 +1717,7 @@
         document.getElementById('st-applications').textContent = '0';
         document.getElementById('st-contracts').textContent = '0';
         document.getElementById('st-fee').textContent = '2.5%';
-        document.getElementById('marketplace-tasks').innerHTML =
-          '<div class="empty-state">No tasks could be loaded right now. Check contract address and network.</div>';
+        setMarketplaceError('Contract data could not be decoded.');
         return;
       }
 
@@ -1592,8 +1740,18 @@
 
       const founderRaw = await callView('get_founder_dashboard', [userAddress]);
       const bidderRaw = await callView('get_bidder_dashboard', [userAddress]);
-      renderFounderDashboard(decodeJsonResult(founderRaw, {}));
-      renderBidderDashboard(decodeJsonResult(bidderRaw, {}));
+
+      if (founderRaw && founderRaw.__error) {
+        document.getElementById('founder-dashboard').innerHTML = '<div class="empty-state">Could not load founder dashboard.</div>';
+      } else {
+        renderFounderDashboard(decodeJsonResult(founderRaw, {}));
+      }
+
+      if (bidderRaw && bidderRaw.__error) {
+        document.getElementById('bidder-dashboard').innerHTML = '<div class="empty-state">Could not load applicant dashboard.</div>';
+      } else {
+        renderBidderDashboard(decodeJsonResult(bidderRaw, {}));
+      }
     }
 
     async function refreshAll() {
@@ -1604,6 +1762,7 @@
       }
 
       checkConfig();
+      await reconnectWalletIfPossible();
       await loadMarketplace();
       await loadDashboard();
 
@@ -1802,6 +1961,11 @@
 
     async function prefillBid(taskId) {
       const taskRaw = await callView('get_task', [taskId]);
+      if (taskRaw && taskRaw.__error) {
+        toast('Could not load task details', 'err');
+        return;
+      }
+
       const task = decodeJsonResult(taskRaw, null);
       if (!task) {
         toast('Could not load task details', 'err');
@@ -1817,8 +1981,9 @@
 
     window.addEventListener('load', async () => {
       checkConfig();
+      await reconnectWalletIfPossible();
       updateHeroState();
-      await loadMarketplace();
+      await refreshAll();
     });
 
     if (window.ethereum) {
@@ -1828,7 +1993,9 @@
         refreshAll();
       });
 
-      window.ethereum.on('chainChanged', () => {
+      window.ethereum.on('chainChanged', (chainId) => {
+        currentChainId = chainId || '';
+        updateNetworkPill();
         refreshAll();
       });
     }
@@ -1839,5 +2006,6 @@
   </script>
 </body>
 </html>
+
 
 
