@@ -631,7 +631,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <span class="price">5,000,000 wei</span>
+          <span class="price">0.005 GEN</span>
           <div class="actions">
             <button class="btn btn-primary" onclick="showTab('bid')">Place Bid</button>
           </div>
@@ -649,7 +649,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <span class="price">15,000,000 wei</span>
+          <span class="price">0.015 GEN</span>
           <div class="actions">
             <button class="btn btn-primary" onclick="showTab('bid')">Place Bid</button>
           </div>
@@ -685,12 +685,14 @@
 
           <div class="grid-2">
             <div class="form-group">
-              <label class="form-label">BUDGET (WEI) *</label>
+              <label class="form-label">BUDGET (GEN BASE UNITS) *</label>
               <input class="form-input" type="number" id="pt-budget" placeholder="5000000">
+              <div class="form-hint">Example: 5000000 base units</div>
             </div>
             <div class="form-group">
-              <label class="form-label">DEADLINE (BLOCKS)</label>
-              <input class="form-input" type="number" id="pt-deadline" placeholder="2000">
+              <label class="form-label">DELIVERY TIMELINE (HOURS)</label>
+              <input class="form-input" type="number" id="pt-deadline" placeholder="72">
+              <div class="form-hint">UI label only. Sent on-chain as timeline units.</div>
             </div>
           </div>
 
@@ -757,7 +759,7 @@
 
           <div class="grid-2">
             <div class="form-group">
-              <label class="form-label">HOURLY RATE (WEI)</label>
+              <label class="form-label">HOURLY RATE (GEN BASE UNITS)</label>
               <input class="form-input" type="number" id="ra-rate" placeholder="1500000">
             </div>
             <div class="form-group">
@@ -832,8 +834,9 @@
           <input class="form-input" type="number" id="sb-rep" placeholder="75">
         </div>
         <div class="form-group">
-          <label class="form-label">PROPOSED PRICE (WEI)</label>
+          <label class="form-label">PROPOSED PRICE (GEN BASE UNITS)</label>
           <input class="form-input" type="number" id="sb-price" placeholder="4500000">
+          <div class="form-hint">Use base units for on-chain submission</div>
         </div>
       </div>
 
@@ -1261,7 +1264,7 @@
       const desc = document.getElementById('pt-desc').value.trim();
       const skills = document.getElementById('pt-skills').value.trim();
       const budget = parseInt(document.getElementById('pt-budget').value, 10) || 0;
-      const deadline = parseInt(document.getElementById('pt-deadline').value, 10) || 1000;
+      const deadline = parseInt(document.getElementById('pt-deadline').value, 10) || 72;
       const type = document.getElementById('pt-type').value;
 
       if (!title || !desc || !skills) {
@@ -1421,5 +1424,6 @@
   </script>
 </body>
 </html>
+
 
 
