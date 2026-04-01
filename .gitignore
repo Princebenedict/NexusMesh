@@ -6,3 +6,5 @@ deployed.json
 __pycache__/
 *.pyc
 .genlayer/
+.vercel
+.env*.local
