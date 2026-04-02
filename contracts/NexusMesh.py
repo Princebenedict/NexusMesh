@@ -8,6 +8,11 @@ import genlayer as gl
 from genlayer import DynArray, TreeMap, allow_storage
 
 
+MAX_REPUTATION = 100
+TOKEN_SYMBOL = "GEN Testnet"
+NETWORK_NAME = "GenLayer Bradbury Testnet"
+
+
 @allow_storage
 @dataclass
 class Task:
@@ -40,6 +45,7 @@ class Application:
     agent_skills: str
     agent_reputation: int
     proposed_price: int
+    portfolio_url: str
     pitch: str
     approach: str
     match_score: int
@@ -160,6 +166,9 @@ class NexusMesh(gl.Contract):
                 found_id = task_id
         return found_id
 
+    def _clamp_reputation(self, value: int) -> int:
+        return max(0, min(MAX_REPUTATION, int(value)))
+
     def _task_to_dict(self, task: Task) -> typing.Dict[str, typing.Any]:
         ids = self._get_task_application_ids(task.task_id)
         return {
@@ -169,6 +178,7 @@ class NexusMesh(gl.Contract):
             "description": task.description,
             "required_skills": task.required_skills,
             "budget": task.budget,
+            "budget_token": TOKEN_SYMBOL,
             "task_type": task.task_type,
             "complexity": task.complexity,
             "risk_level": task.risk_level,
@@ -191,7 +201,10 @@ class NexusMesh(gl.Contract):
             "agent_name": application.agent_name,
             "agent_skills": application.agent_skills,
             "agent_reputation": application.agent_reputation,
+            "max_reputation": MAX_REPUTATION,
             "proposed_price": application.proposed_price,
+            "price_token": TOKEN_SYMBOL,
+            "portfolio_url": application.portfolio_url,
             "pitch": application.pitch,
             "approach": application.approach,
             "match_score": application.match_score,
@@ -287,7 +300,7 @@ Availability: {availability}
         task_type: str,
     ) -> int:
         budget = int(gl.message.value)
-        assert budget > 0, "Attach GEN to fund the task"
+        assert budget > 0, f"Attach {TOKEN_SYMBOL} to fund the task"
 
         prompt = f"""Analyze this NexusMesh task and return only valid JSON:
 {{
@@ -303,6 +316,8 @@ Title: {title}
 Description: {description}
 Required skills: {required_skills}
 Budget: {budget}
+Budget token: {TOKEN_SYMBOL}
+Network: {NETWORK_NAME}
 Task type: {task_type}
 """
         enrichment = self._ask_ai(prompt)
@@ -346,10 +361,11 @@ Task type: {task_type}
         agent_skills: str,
         agent_reputation: int,
         proposed_price: int,
+        portfolio_url: str,
         pitch: str,
         approach: str,
     ) -> int:
-        reputation = max(0, min(100, int(agent_reputation)))
+        reputation = self._clamp_reputation(agent_reputation)
         task_id = self._find_task_id_by_title(task_title)
         assert task_id >= 0, "Task title not found on-chain"
 
@@ -372,7 +388,10 @@ Required skills: {required_skills}
 Agent name: {agent_name}
 Agent skills: {agent_skills}
 Reputation: {reputation}
+Max reputation: {MAX_REPUTATION}
+Portfolio URL: {portfolio_url}
 Proposed price: {proposed_price}
+Price token: {TOKEN_SYMBOL}
 Pitch: {pitch}
 Approach: {approach}
 """
@@ -391,6 +410,7 @@ Approach: {approach}
             agent_skills,
             reputation,
             proposed_price,
+            portfolio_url,
             pitch,
             approach,
             int(result.get("match_score", 50)),
@@ -586,6 +606,9 @@ Respondent evidence: {respondent_evidence_url}
             "posted_tasks": posted_tasks,
             "incoming_applications": incoming_applications,
             "feedback_sent": feedback,
+            "max_reputation": MAX_REPUTATION,
+            "token_symbol": TOKEN_SYMBOL,
+            "network_name": NETWORK_NAME,
         }, sort_keys=True)
 
     @gl.public.view
@@ -606,6 +629,9 @@ Respondent evidence: {respondent_evidence_url}
         return json.dumps({
             "applications": applications,
             "feedback_received": feedback,
+            "max_reputation": MAX_REPUTATION,
+            "token_symbol": TOKEN_SYMBOL,
+            "network_name": NETWORK_NAME,
         }, sort_keys=True)
 
     @gl.public.view
@@ -623,6 +649,9 @@ Respondent evidence: {respondent_evidence_url}
             "contract_count": self.contract_count,
             "feedback_count": self.feedback_count,
             "platform_fee_bps": self.platform_fee_bps,
+            "max_reputation": MAX_REPUTATION,
+            "token_symbol": TOKEN_SYMBOL,
+            "network_name": NETWORK_NAME,
             "tasks": tasks,
         }, sort_keys=True)
 
@@ -657,5 +686,14 @@ Respondent evidence: {respondent_evidence_url}
     def get_owner(self) -> str:
         return self.owner
 
+    @gl.public.view
+    def get_max_reputation(self) -> int:
+        return MAX_REPUTATION
 
+    @gl.public.view
+    def get_token_symbol(self) -> str:
+        return TOKEN_SYMBOL
 
+    @gl.public.view
+    def get_network_name(self) -> str:
+        return NETWORK_NAME

@@ -4,14 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexusMesh - Agentic Economy Marketplace</title>
+<meta name="description" content="NexusMesh is an agentic economy marketplace on GenLayer Bradbury for posting funded tasks in GEN Testnet, applying with capped reputation, evaluating delivery, and resolving disputes.">
+<meta property="og:title" content="NexusMesh - Agentic Economy Marketplace">
+<meta property="og:description" content="Post funded tasks in GEN Testnet, apply with capped reputation, review delivery, and resolve disputes on GenLayer Bradbury.">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080c14;--bg2:#0f1420;--bg3:#161d2e;--bg4:#1e2640;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#dde4f5;--muted:#5a6480;--muted2:#8a94b0;--green:#10b981;--green2:#34d399;--gdim:rgba(16,185,129,0.1);--gb:rgba(16,185,129,0.25);--amber:#f59e0b;--adim:rgba(245,158,11,0.1);--ab:rgba(245,158,11,0.25);--blue:#3b82f6;--bdim:rgba(59,130,246,0.1);--bb:rgba(59,130,246,0.25);--red:#ef4444;--rdim:rgba(239,68,68,0.1);--rb:rgba(239,68,68,0.25);--r:10px;--rl:14px}
+:root{--bg:#080c14;--bg2:#0f1420;--bg3:#161d2e;--bg4:#1e2640;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16);--text:#e7ecf8;--muted:#73809f;--muted2:#a0abc5;--green:#10b981;--green2:#34d399;--gdim:rgba(16,185,129,0.1);--gb:rgba(16,185,129,0.28);--amber:#f59e0b;--adim:rgba(245,158,11,0.1);--ab:rgba(245,158,11,0.25);--blue:#3b82f6;--bdim:rgba(59,130,246,0.1);--bb:rgba(59,130,246,0.25);--red:#ef4444;--rdim:rgba(239,68,68,0.1);--rb:rgba(239,68,68,0.25);--focus:#7dd3fc;--r:10px;--rl:14px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:10px}
@@ -23,38 +31,24 @@ body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(-
 .wdot{width:8px;height:8px;border-radius:50%;background:var(--muted);transition:all 0.3s}
 .wdot.on{background:var(--green);box-shadow:0 0 0 3px var(--gdim)}
 .waddr{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2)}
+.ca-box{padding:7px 10px;border:1px solid var(--border2);border-radius:10px;background:rgba(255,255,255,0.04);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber)}
+.lock-badge{padding:7px 10px;border:1px solid var(--gb);border-radius:10px;background:var(--gdim);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green2);letter-spacing:0.05em}
 
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;font-family:'Satoshi',sans-serif;font-size:13px;font-weight:500;transition:all 0.18s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;font-family:'Satoshi',sans-serif;font-size:13px;font-weight:600;transition:all 0.18s;white-space:nowrap}
 .btn-primary{background:var(--green);color:#fff}
 .btn-primary:hover{background:#059669;transform:translateY(-1px)}
 .btn-primary:active{transform:none}
 .btn-ghost{background:rgba(255,255,255,0.05);border:1px solid var(--border2);color:var(--text)}
 .btn-ghost:hover{background:rgba(255,255,255,0.09)}
 .btn-sm{padding:6px 12px;font-size:12px}
-.btn-red{background:var(--rdim);border:1px solid var(--rb);color:var(--red)}
+.btn-red{background:var(--rdim);border:1px solid var(--rb);color:#ff8f8f}
 .btn-red:hover{background:rgba(239,68,68,0.18)}
-.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none!important}
+.btn:disabled{opacity:0.45;cursor:not-allowed;transform:none!important}
 .btn-block{width:100%}
-.btn-flex-fill{flex:1;min-width:160px}
-.btn-inline-compact{padding:6px 10px;font-size:12px}
-.btn-list-item{justify-content:flex-start;text-align:left;padding:7px 10px;margin-bottom:4px}
-.btn-arrow{color:var(--green2)}
-.btn-group-wrap{display:flex;gap:8px;flex-wrap:wrap}
-.btn-actions-top{display:flex;align-items:center;gap:8px}
-.nav{
-  background:var(--bg2);
-  border-bottom:1px solid var(--border);
-  padding:0 32px;
-  display:flex;
-  gap:0;
-  overflow-x:auto;
-}
-.nav::-webkit-scrollbar{
-  display:none;
-}
 
+.nav{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto}
 .nav::-webkit-scrollbar{display:none}
-.ntab{padding:13px 16px;font-size:12px;font-weight:500;color:var(--muted2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.15s;display:flex;align-items:center;gap:5px}
+.ntab{padding:13px 16px;font-size:12px;font-weight:600;color:var(--muted2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.15s;display:flex;align-items:center;gap:5px}
 .ntab:hover{color:var(--text)}
 .ntab.active{color:var(--green2);border-bottom-color:var(--green)}
 .nbadge{background:var(--green);color:#fff;font-size:9px;font-family:'JetBrains Mono',monospace;padding:1px 5px;border-radius:20px;min-width:16px;text-align:center}
@@ -62,10 +56,23 @@ body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(-
 .main{max-width:1200px;margin:0 auto;padding:28px 32px 80px}
 .page{display:none}
 .page.active{display:block}
+.hero{display:grid;grid-template-columns:1.2fr 0.8fr;gap:16px;margin-bottom:20px}
+.hero-card{background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(59,130,246,0.05));border:1px solid var(--gb);border-radius:var(--rl);padding:22px}
+.hero-title{font-size:30px;font-weight:700;line-height:1.1;color:#fff}
+.hero-sub{margin-top:10px;color:var(--muted2);max-width:60ch}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hero-side{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px}
+.kv{margin-bottom:12px}
+.kv:last-child{margin-bottom:0}
+.kv-label{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:3px}
+.kv-value{font-size:13px;color:#fff;word-break:break-all}
+
 .ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;gap:12px;flex-wrap:wrap}
 .ph-title{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px}
 .ph-sub{font-size:13px;color:var(--muted2);margin-top:3px}
 
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.toolbar-field{display:flex;flex-direction:column;gap:5px}
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
 .stat-n{font-size:26px;font-weight:700;color:var(--green2);font-family:'JetBrains Mono',monospace;line-height:1}
@@ -77,37 +84,43 @@ body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(-
 .tcard-top{padding:16px 16px 10px}
 .tcard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:7px}
 .tcard-title{font-size:14px;font-weight:600;color:#fff;line-height:1.3;flex:1}
-.tcard-desc{font-size:12px;color:var(--muted2);line-height:1.5;margin-bottom:10px;display:-webkit-box;display:box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tcard-desc{font-size:12px;color:var(--muted2);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .tag{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 7px;border-radius:20px;border:1px solid}
 .tag-s{background:var(--bdim);border-color:var(--bb);color:#93c5fd}
 .tag-c{background:var(--adim);border-color:var(--ab);color:var(--amber)}
 .tag-c.low{background:var(--gdim);border-color:var(--gb);color:var(--green2)}
-.tag-c.expert{background:var(--rdim);border-color:var(--rb);color:var(--red)}
+.tag-c.expert{background:var(--rdim);border-color:var(--rb);color:#ff8f8f}
 .tcard-footer{padding:10px 16px;border-top:1px solid var(--border);background:var(--bg3);display:flex;justify-content:space-between;align-items:center;margin-top:auto}
 .tprice{font-size:13px;font-weight:700;color:var(--green2);font-family:'JetBrains Mono',monospace}
 .tbids{font-size:11px;color:var(--muted2)}
 .tcard-actions{padding:10px 16px;display:flex;gap:8px;border-top:1px solid var(--border)}
 
-.chip{font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:500;padding:3px 8px;border-radius:20px;letter-spacing:0.04em}
+.chip{font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:600;padding:3px 8px;border-radius:20px;letter-spacing:0.04em}
 .chip-open{background:var(--gdim);border:1px solid var(--gb);color:var(--green2)}
-.chip-active{background:var(--bdim);border:1px solid var(--bb);color:#93c5fd}
 .chip-done{background:rgba(16,185,129,0.15);border:1px solid var(--gb);color:#6ee7b7}
 .chip-pend{background:var(--adim);border:1px solid var(--ab);color:var(--amber)}
 
 .fwrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 .fcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.mt-16{margin-top:16px}
+.quick-task-btn{justify-content:flex-start;text-align:left;padding:7px 10px;margin-bottom:4px}
+.result-stack{margin-top:8px}
+.score-fill.dynamic-width{width:0}
 .fcard-hd{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg3);font-size:14px;font-weight:600;color:#fff}
 .fcard-body{padding:18px}
 .fg{margin-bottom:14px}
 .fg:last-child{margin-bottom:0}
-.fl{display:block;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--muted2);letter-spacing:0.06em;margin-bottom:5px}
-.fl span{color:var(--red)}
-.fi,.fs,.ft{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:13px;font-family:inherit;transition:border-color 0.15s}
-.fi:focus,.fs:focus,.ft:focus{outline:none;border-color:var(--green)}
+.fl{display:block;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--muted2);letter-spacing:0.06em;margin-bottom:5px}
+.fl span{color:#ff8f8f}
+.fi,.fs,.ft{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:13px;transition:border-color 0.15s, box-shadow 0.15s, background 0.15s}
+.fi::placeholder,.ft::placeholder{color:#8892ad}
 .ft{resize:vertical;min-height:78px;line-height:1.5}
 .fh{font-size:11px;color:var(--muted);margin-top:4px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-error{font-size:11px;color:#ff8f8f;margin-top:5px;min-height:16px}
+.invalid{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important}
+.success-note{font-size:11px;color:#9ae6b4;margin-top:5px;min-height:16px}
 
 .icard{background:linear-gradient(135deg,rgba(16,185,129,0.08) 0%,rgba(59,130,246,0.05) 100%);border:1px solid var(--gb);border-radius:var(--rl);padding:18px}
 .ic-t{font-size:14px;font-weight:600;color:#fff;margin-bottom:12px}
@@ -126,7 +139,7 @@ body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(-
 .section-label{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;margin-bottom:10px}
 .app-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:10px}
 .app-card:last-child{margin-bottom:0}
-.app-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.app-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px}
 .app-name{font-size:13px;font-weight:600;color:#fff}
 .app-meta{font-size:11px;color:var(--muted2);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:5px}
 .app-pitch{font-size:12px;color:var(--muted2);margin-top:5px}
@@ -136,57 +149,55 @@ body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(-
 .review-box.default{color:var(--text)}
 .score-bar{height:4px;background:var(--border);border-radius:2px;margin:5px 0;overflow:hidden}
 .score-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green2));border-radius:2px;transition:width 0.6s ease}
-.score-bar-large{height:6px}
 .score-number{font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace}
 .score-number.good{color:var(--green2)}
 .score-number.warn{color:var(--amber)}
-.score-number.bad{color:var(--red)}
+.score-number.bad{color:#ff8f8f}
 .score-number.large{font-size:18px}
 .score-row{display:flex;gap:7px;align-items:center}
-.status-row{display:flex;align-items:center;gap:8px}
+.status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .status-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .feedback-input{flex:1;min-width:160px;padding:6px 10px;font-size:12px}
-.kpi-block{margin-bottom:12px}
-.kpi-label{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:4px}
 .result-box{margin-top:10px}
 .empty{text-align:center;padding:50px 20px;color:var(--muted)}
 .empty-icon{font-size:36px;opacity:0.3;margin-bottom:10px}
-.empty-msg{font-size:13px;font-weight:500;color:var(--muted2)}
+.empty-msg{font-size:13px;font-weight:600;color:var(--muted2)}
 .empty-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.notice{padding:12px 14px;border:1px solid var(--bb);background:var(--bdim);border-radius:10px;color:#d5e6ff;font-size:12px;margin-bottom:16px}
 
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
-.moverlay.open{display:flex}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--rl);width:100%;max-width:520px;max-height:85vh;overflow-y:auto}
-.modal-hd{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.modal-t{font-size:15px;font-weight:600;color:#fff}
-.modal-x{width:26px;height:26px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;cursor:pointer;color:var(--muted2);font-size:13px;display:flex;align-items:center;justify-content:center}
-.modal-x:hover{color:var(--text)}
-.modal-body{padding:18px}
-.modal-ft{padding:12px 18px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.footer{max-width:1200px;margin:0 auto 30px;padding:0 32px;color:var(--muted2)}
+.footer-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--border)}
+.footer a{color:var(--green2)}
 
 .toast-wrap{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:7px}
-.toast{padding:11px 15px;border-radius:var(--r);font-size:13px;font-weight:500;max-width:340px;animation:tin 0.3s ease;display:flex;align-items:center;gap:7px}
+.toast{padding:11px 15px;border-radius:var(--r);font-size:13px;font-weight:600;max-width:340px;animation:tin 0.3s ease;display:flex;align-items:center;gap:7px}
 @keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .toast.ok{background:var(--green);color:#fff}
 .toast.err{background:var(--red);color:#fff}
 .toast.info{background:var(--bg4);border:1px solid var(--border2);color:var(--text)}
-
-.ai-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
-.ai-table th{text-align:left;padding:7px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);border-bottom:1px solid var(--border);letter-spacing:0.06em}
-.ai-table td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--muted2)}
-.ai-table td:first-child{color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:11px}
 
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .acard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px}
 .acard h3{font-size:14px;font-weight:600;color:#fff;margin-bottom:10px}
 .acard p,.acard li{font-size:12px;color:var(--muted2);line-height:1.7}
 .acard ul{padding-left:14px;display:flex;flex-direction:column;gap:5px}
-.addr-box{font-family:monospace;font-size:11px;color:var(--amber);word-break:break-all;background:var(--bg3);padding:8px 10px;border-radius:6px}
+.addr-box{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);word-break:break-all;background:var(--bg3);padding:8px 10px;border-radius:6px}
 code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,255,255,0.07);padding:1px 4px;border-radius:3px;color:var(--amber)}
 
+.btn:focus-visible,.ntab:focus-visible,.fi:focus-visible,.fs:focus-visible,.ft:focus-visible,a:focus-visible{
+  outline:2px solid var(--focus);
+  outline-offset:2px;
+  border-color:var(--focus);
+  box-shadow:0 0 0 3px rgba(125,211,252,0.15);
+}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+}
 @media(max-width:768px){
   .main{padding:16px 16px 60px}
-  .header,.nav{padding-left:16px;padding-right:16px}
+  .header,.nav,.footer{padding-left:16px;padding-right:16px}
   .stats-row{grid-template-columns:1fr 1fr}
   .fwrap{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr}
@@ -205,16 +216,17 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
     </div>
   </div>
   <div class="hright">
-    <div class="wallet-indicator">
+    <div class="wallet-indicator" aria-live="polite">
       <div class="wdot" id="wdot"></div>
       <span class="waddr" id="waddr">Not connected</span>
     </div>
-    <button class="btn btn-ghost btn-sm" onclick="openCfg()">Config</button>
+    <div class="ca-box" id="fixed-ca">CA: 0x9026f734759602B4D4Fec05497e259B852ebf540</div>
+    <div class="lock-badge">FIXED CONFIG</div>
     <button class="btn btn-primary btn-sm" id="cbtn" onclick="connectWallet()">Connect Wallet</button>
   </div>
 </header>
 
-<nav class="nav">
+<nav class="nav" aria-label="Primary">
   <button class="ntab active" id="tab-market" onclick="go('market')">Marketplace <span class="nbadge" id="nb-m">10</span></button>
   <button class="ntab" id="tab-post" onclick="go('post')">Post Task</button>
   <button class="ntab" id="tab-apply" onclick="go('apply')">Apply for Task</button>
@@ -227,14 +239,75 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
 
 <main class="main">
 
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-title">Hire agents, fund tasks in GEN Testnet, and manage work transparently on GenLayer.</div>
+    <div class="hero-sub">NexusMesh helps founders post funded tasks, lets agents apply with a capped reputation score out of 100, and keeps the workflow visible from posting through evaluation and dispute handling.</div>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="connectWallet()">Connect Wallet</button>
+      <button class="btn btn-ghost" onclick="go('post')">Post a Task</button>
+      <button class="btn btn-ghost" onclick="go('apply')">Apply for Task</button>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="kv">
+      <div class="kv-label">NETWORK</div>
+      <div class="kv-value">GenLayer Bradbury Testnet</div>
+    </div>
+    <div class="kv">
+      <div class="kv-label">FIXED CONTRACT ADDRESS</div>
+      <div class="kv-value">0x9026f734759602B4D4Fec05497e259B852ebf540</div>
+    </div>
+    <div class="kv">
+      <div class="kv-label">PAYMENT ASSET</div>
+      <div class="kv-value">Native GEN Testnet</div>
+    </div>
+    <div class="kv">
+      <div class="kv-label">CV / WORK SAMPLES</div>
+      <div class="kv-value">Applicants can submit a portfolio, GitHub, LinkedIn, resume, or CV URL in the application form.</div>
+    </div>
+  </div>
+</section>
+
+<div class="notice">
+  Wallet connection is required for on-chain actions. Task funding uses native GEN Testnet on Bradbury, so the wallet prompt should show a native value transfer when posting a funded task. Reputation is capped at 100.
+</div>
+
 <div class="page active" id="page-market">
   <div class="ph">
     <div>
       <div class="ph-title">Task Marketplace</div>
-      <div class="ph-sub">AI-verified tasks · On-chain escrow · Bradbury testnet</div>
+      <div class="ph-sub">Search by task title, skill, type, or complexity.</div>
     </div>
     <button class="btn btn-ghost btn-sm" onclick="loadMarket()">Refresh</button>
   </div>
+
+  <div class="toolbar">
+    <div class="toolbar-field">
+      <label class="fl" for="search-q">SEARCH TASKS</label>
+      <input class="fi" id="search-q" placeholder="Search tasks, skills, or keywords" oninput="loadMarket()">
+    </div>
+    <div class="toolbar-field">
+      <label class="fl" for="filter-type">FILTER BY TYPE</label>
+      <select class="fs" id="filter-type" aria-label="Filter tasks by type" onchange="loadMarket()">
+        <option value="">All Types</option>
+        <option value="fixed">Fixed</option>
+        <option value="hourly">Hourly</option>
+        <option value="milestone">Milestone</option>
+      </select>
+    </div>
+    <div class="toolbar-field">
+      <label class="fl" for="filter-cx">FILTER BY COMPLEXITY</label>
+      <select class="fs" id="filter-cx" aria-label="Filter tasks by complexity" onchange="loadMarket()">
+        <option value="">All Complexity</option>
+        <option value="simple">Simple</option>
+        <option value="moderate">Moderate</option>
+        <option value="complex">Complex</option>
+        <option value="expert">Expert</option>
+      </select>
+    </div>
+  </div>
+
   <div class="stats-row">
     <div class="stat"><div class="stat-n" id="st-t">10</div><div class="stat-l">Tasks Posted</div></div>
     <div class="stat"><div class="stat-n" id="st-o">10</div><div class="stat-l">Open Tasks</div></div>
@@ -248,30 +321,54 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Post a Task</div>
-      <div class="ph-sub">AI enriches your listing with complexity and risk scoring on-chain</div>
+      <div class="ph-sub">Fund a task in native GEN Testnet. The wallet popup should show a native value send on Bradbury.</div>
     </div>
   </div>
   <div class="fwrap">
     <div class="fcard">
       <div class="fcard-hd">Task Details</div>
       <div class="fcard-body">
-        <div class="fg"><label class="fl">TITLE <span>*</span></label><input class="fi" id="pt-title" placeholder="e.g. Build REST API for AI analytics"></div>
-        <div class="fg"><label class="fl">DESCRIPTION <span>*</span></label><textarea class="ft" id="pt-desc" rows="4" placeholder="Describe deliverables, tech stack, acceptance criteria..."></textarea></div>
-        <div class="fg"><label class="fl">REQUIRED SKILLS <span>*</span></label><input class="fi" id="pt-skills" placeholder="python, fastapi, docker"><div class="fh">Comma-separated</div></div>
-        <div class="frow">
-          <div class="fg"><label class="fl">BUDGET (WEI) <span>*</span></label><input class="fi" type="number" id="pt-budget" placeholder="5000000"></div>
-          <div class="fg"><label class="fl">TYPE</label><select class="fs" id="pt-type"><option value="fixed">Fixed Price</option><option value="hourly">Hourly</option><option value="milestone">Milestone</option></select></div>
+        <div class="fg">
+          <label class="fl" for="pt-title">TITLE <span>*</span></label>
+          <input class="fi" id="pt-title" placeholder="Build REST API for AI analytics">
+          <div class="field-error" id="err-pt-title"></div>
         </div>
-        <button class="btn btn-primary btn-block" id="post-btn" onclick="postTask()">Post Task (AI enriches on-chain)</button>
-        <div id="post-result" class="result-box"></div>
+        <div class="fg">
+          <label class="fl" for="pt-desc">DESCRIPTION <span>*</span></label>
+          <textarea class="ft" id="pt-desc" rows="4" placeholder="Describe deliverables, stack, acceptance criteria, and links"></textarea>
+          <div class="field-error" id="err-pt-desc"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="pt-skills">REQUIRED SKILLS <span>*</span></label>
+          <input class="fi" id="pt-skills" placeholder="python, fastapi, docker">
+          <div class="fh">Comma-separated</div>
+          <div class="field-error" id="err-pt-skills"></div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label class="fl" for="pt-budget">BUDGET (GEN TESTNET) <span>*</span></label>
+            <input class="fi" type="number" id="pt-budget" min="0.001" step="0.001" placeholder="5">
+            <div class="field-error" id="err-pt-budget"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="pt-type">TYPE</label>
+            <select class="fs" id="pt-type">
+              <option value="fixed">Fixed Price</option>
+              <option value="hourly">Hourly</option>
+              <option value="milestone">Milestone</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="post-btn" onclick="postTask()">Post Task</button>
+        <div id="post-result" class="result-box" aria-live="polite"></div>
       </div>
     </div>
     <div class="icard">
       <div class="ic-t">What happens when you post</div>
-      <div class="ic-i"><div class="ic-dot">AI</div><div>GenLayer AI scores complexity and risk level on-chain</div></div>
-      <div class="ic-i"><div class="ic-dot">SK</div><div>Skills are normalized for better agent matching</div></div>
-      <div class="ic-i"><div class="ic-dot">LS</div><div>The task appears on Marketplace and in My Posted Tasks</div></div>
-      <div class="ic-i"><div class="ic-dot">TR</div><div>AI decisions run on Bradbury validators, not third-party APIs</div></div>
+      <div class="ic-i"><div class="ic-dot">AI</div><div>GenLayer AI scores complexity and risk level on-chain.</div></div>
+      <div class="ic-i"><div class="ic-dot">GEN</div><div>The wallet sends native GEN Testnet with the task posting transaction.</div></div>
+      <div class="ic-i"><div class="ic-dot">VIS</div><div>The task appears in Marketplace and My Posted Tasks.</div></div>
+      <div class="ic-i"><div class="ic-dot">TIP</div><div>If you want applicants to submit a CV or portfolio, ask for a link in the description and they can also provide it in the form below.</div></div>
     </div>
   </div>
 </div>
@@ -280,39 +377,83 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Apply for a Task</div>
-      <div class="ph-sub">AI scores your bid 0-100 on-chain and stores the result in My Applications</div>
+      <div class="ph-sub">Reputation is capped at 100. Add CV, GitHub, LinkedIn, or portfolio links in the dedicated field.</div>
     </div>
   </div>
   <div class="fwrap">
     <div class="fcard">
       <div class="fcard-hd">Your Application</div>
       <div class="fcard-body">
-        <div class="fg"><label class="fl">TASK TITLE <span>*</span></label><input class="fi" id="ap-title" placeholder="Copy from marketplace"></div>
-        <div class="fg"><label class="fl">TASK DESCRIPTION</label><textarea class="ft" id="ap-desc" rows="2" placeholder="Paste task description for better AI scoring"></textarea></div>
-        <div class="fg"><label class="fl">TASK REQUIRED SKILLS</label><input class="fi" id="ap-req" placeholder="python, docker"></div>
+        <div class="fg">
+          <label class="fl" for="ap-title">TASK TITLE <span>*</span></label>
+          <input class="fi" id="ap-title" placeholder="Copy from marketplace">
+          <div class="field-error" id="err-ap-title"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ap-desc">TASK DESCRIPTION</label>
+          <textarea class="ft" id="ap-desc" rows="2" placeholder="Paste task description for stronger matching"></textarea>
+          <div class="field-error" id="err-ap-desc"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ap-req">TASK REQUIRED SKILLS</label>
+          <input class="fi" id="ap-req" placeholder="python, docker">
+          <div class="field-error" id="err-ap-req"></div>
+        </div>
         <div class="section-rule">YOUR PROFILE</div>
         <div class="frow">
-          <div class="fg"><label class="fl">YOUR NAME <span>*</span></label><input class="fi" id="ap-name" placeholder="AgentX or your name"></div>
-          <div class="fg"><label class="fl">YOUR SKILLS <span>*</span></label><input class="fi" id="ap-skills" placeholder="python, fastapi"></div>
+          <div class="fg">
+            <label class="fl" for="ap-name">YOUR NAME <span>*</span></label>
+            <input class="fi" id="ap-name" placeholder="AgentX or your name">
+            <div class="field-error" id="err-ap-name"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="ap-skills">YOUR SKILLS <span>*</span></label>
+            <input class="fi" id="ap-skills" placeholder="python, fastapi">
+            <div class="field-error" id="err-ap-skills"></div>
+          </div>
         </div>
         <div class="frow">
-          <div class="fg"><label class="fl">REPUTATION (0-100)</label><input class="fi" type="number" id="ap-rep" placeholder="70" min="0" max="100"></div>
-          <div class="fg"><label class="fl">YOUR PRICE (WEI) <span>*</span></label><input class="fi" type="number" id="ap-price" placeholder="4500000"></div>
+          <div class="fg">
+            <label class="fl" for="ap-rep">REPUTATION (0-100)</label>
+            <input class="fi" type="number" id="ap-rep" placeholder="70" min="0" max="100">
+            <div class="fh">Any value above 100 is automatically capped at 100.</div>
+            <div class="field-error" id="err-ap-rep"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="ap-price">YOUR PRICE (GEN TESTNET) <span>*</span></label>
+            <input class="fi" type="number" id="ap-price" min="0.001" step="0.001" placeholder="4.5">
+            <div class="field-error" id="err-ap-price"></div>
+          </div>
         </div>
-        <div class="fg"><label class="fl">PITCH <span>*</span></label><textarea class="ft" id="ap-pitch" rows="2" placeholder="Why are you the best for this task?"></textarea></div>
-        <div class="fg"><label class="fl">APPROACH <span>*</span></label><textarea class="ft" id="ap-approach" rows="2" placeholder="Technical approach and methodology..."></textarea><div class="fh">AI evaluates this against requirements on-chain</div></div>
-        <button class="btn btn-primary btn-block" id="apply-btn" onclick="submitApp()">Submit Application (AI scores on-chain)</button>
-        <div id="apply-result" class="result-box"></div>
+        <div class="fg">
+          <label class="fl" for="ap-portfolio">PORTFOLIO / CV URL</label>
+          <input class="fi" id="ap-portfolio" placeholder="https://github.com/you or https://linkedin.com/in/you">
+          <div class="fh">Optional, but recommended for skill-based screening.</div>
+          <div class="field-error" id="err-ap-portfolio"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ap-pitch">PITCH <span>*</span></label>
+          <textarea class="ft" id="ap-pitch" rows="2" placeholder="Why are you the best for this task?"></textarea>
+          <div class="field-error" id="err-ap-pitch"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ap-approach">APPROACH <span>*</span></label>
+          <textarea class="ft" id="ap-approach" rows="2" placeholder="Technical approach, methodology, delivery plan..."></textarea>
+          <div class="fh">AI evaluates this against requirements on-chain.</div>
+          <div class="field-error" id="err-ap-approach"></div>
+        </div>
+        <button class="btn btn-primary btn-block" id="apply-btn" onclick="submitApp()">Submit Application</button>
+        <div id="apply-result" class="result-box" aria-live="polite"></div>
       </div>
     </div>
     <div>
-      <div class="icard panel-gap-bottom">
+      <div class="icard">
         <div class="ic-t">Scoring breakdown</div>
         <div class="ic-i"><div class="ic-dot">SC</div><div>80-100 = Strong Accept · 60-79 = Accept · 40-59 = Consider · below 40 = Reject</div></div>
-        <div class="ic-i"><div class="ic-dot">TB</div><div>Scores and founder feedback appear in My Applications</div></div>
-        <div class="ic-i"><div class="ic-dot">FB</div><div>Founders review and respond from My Posted Tasks</div></div>
+        <div class="ic-i"><div class="ic-dot">REP</div><div>Reputation is capped at 100 on both frontend and contract.</div></div>
+        <div class="ic-i"><div class="ic-dot">CV</div><div>Use the Portfolio / CV URL field for GitHub, resume, LinkedIn, or portfolio links.</div></div>
       </div>
-      <div class="fcard">
+      <div class="fcard mt-16">
         <div class="fcard-hd">Quick Apply - Open Tasks</div>
         <div class="fcard-body" id="qtasks"></div>
       </div>
@@ -324,7 +465,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">My Posted Tasks</div>
-      <div class="ph-sub">Tasks you've posted · Review applications · Send feedback to applicants</div>
+      <div class="ph-sub">Tasks you've posted, applications received, and founder feedback.</div>
     </div>
     <button class="btn btn-ghost btn-sm" onclick="loadMyTasks()">Refresh</button>
   </div>
@@ -335,7 +476,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">My Applications</div>
-      <div class="ph-sub">Tasks you've applied for · AI match scores · Founder feedback</div>
+      <div class="ph-sub">Your submissions, AI match scores, and feedback.</div>
     </div>
     <button class="btn btn-ghost btn-sm" onclick="renderApps()">Refresh</button>
   </div>
@@ -346,26 +487,39 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Evaluate Delivered Work</div>
-      <div class="ph-sub">AI fetches the delivery URL and evaluates quality on-chain</div>
+      <div class="ph-sub">Review delivery against the original brief and links.</div>
     </div>
   </div>
   <div class="fwrap">
     <div class="fcard">
       <div class="fcard-hd">Evaluation Form</div>
       <div class="fcard-body">
-        <div class="fg"><label class="fl">TASK TITLE</label><input class="fi" id="ev-title" placeholder="Task that was completed"></div>
-        <div class="fg"><label class="fl">TASK DESCRIPTION</label><textarea class="ft" id="ev-desc" rows="2" placeholder="Original requirements"></textarea></div>
-        <div class="fg"><label class="fl">DELIVERY URL <span>*</span></label><input class="fi" id="ev-url" placeholder="https://github.com/agent/project"><div class="fh">AI fetches and reviews this URL on-chain</div></div>
-        <div class="fg"><label class="fl">NOTES</label><textarea class="ft" id="ev-notes" rows="2" placeholder="What was built, how to use..."></textarea></div>
-        <button class="btn btn-primary btn-block" id="eval-btn" onclick="evalWork()">Run AI Evaluation (on-chain)</button>
-        <div id="eval-result" class="result-box"></div>
+        <div class="fg">
+          <label class="fl" for="ev-title">TASK TITLE</label>
+          <input class="fi" id="ev-title" placeholder="Task that was completed">
+        </div>
+        <div class="fg">
+          <label class="fl" for="ev-desc">TASK DESCRIPTION</label>
+          <textarea class="ft" id="ev-desc" rows="2" placeholder="Original requirements"></textarea>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ev-url">DELIVERY URL <span>*</span></label>
+          <input class="fi" id="ev-url" placeholder="https://github.com/agent/project">
+          <div class="field-error" id="err-ev-url"></div>
+        </div>
+        <div class="fg">
+          <label class="fl" for="ev-notes">NOTES</label>
+          <textarea class="ft" id="ev-notes" rows="2" placeholder="What was built, how to use..."></textarea>
+        </div>
+        <button class="btn btn-primary btn-block" id="eval-btn" onclick="evalWork()">Run Evaluation</button>
+        <div id="eval-result" class="result-box" aria-live="polite"></div>
       </div>
     </div>
     <div class="icard">
       <div class="ic-t">What AI evaluates</div>
-      <div class="ic-i"><div class="ic-dot">RD</div><div>Fetches and reads the delivery URL content on-chain</div></div>
-      <div class="ic-i"><div class="ic-dot">QS</div><div>Quality score 0-100 · Completeness · Payment percentage</div></div>
-      <div class="ic-i"><div class="ic-dot">OK</div><div>Score 60+ = approved · below 60 = revision required</div></div>
+      <div class="ic-i"><div class="ic-dot">RD</div><div>Reviews the delivery URL and summary notes.</div></div>
+      <div class="ic-i"><div class="ic-dot">QS</div><div>Quality score 0-100, completeness, and payment recommendation.</div></div>
+      <div class="ic-i"><div class="ic-dot">OK</div><div>Score 60+ = approved · below 60 = revision required.</div></div>
     </div>
   </div>
 </div>
@@ -374,27 +528,44 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Dispute Resolution</div>
-      <div class="ph-sub">AI Arbitrator reviews evidence and issues a binding verdict on-chain</div>
+      <div class="ph-sub">Submit both sides' statements and evidence URLs for review.</div>
     </div>
   </div>
   <div class="fcard">
     <div class="fcard-hd">File a Dispute</div>
     <div class="fcard-body">
-      <div class="fg"><label class="fl">TASK DESCRIPTION</label><textarea class="ft" id="dr-task" rows="2"></textarea></div>
+      <div class="fg">
+        <label class="fl" for="dr-task">TASK DESCRIPTION</label>
+        <textarea class="ft" id="dr-task" rows="2"></textarea>
+      </div>
       <div class="frow">
         <div>
           <div class="section-rule">CLAIMANT</div>
-          <div class="fg"><label class="fl">STATEMENT <span>*</span></label><textarea class="ft" id="dr-cs" rows="3" placeholder="Your complaint..."></textarea></div>
-          <div class="fg"><label class="fl">EVIDENCE URL</label><input class="fi" id="dr-ce" placeholder="https://..."></div>
+          <div class="fg">
+            <label class="fl" for="dr-cs">STATEMENT <span>*</span></label>
+            <textarea class="ft" id="dr-cs" rows="3" placeholder="Your complaint..."></textarea>
+            <div class="field-error" id="err-dr-cs"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="dr-ce">EVIDENCE URL</label>
+            <input class="fi" id="dr-ce" placeholder="https://...">
+          </div>
         </div>
         <div>
           <div class="section-rule">RESPONDENT</div>
-          <div class="fg"><label class="fl">STATEMENT <span>*</span></label><textarea class="ft" id="dr-rs" rows="3" placeholder="Defense..."></textarea></div>
-          <div class="fg"><label class="fl">EVIDENCE URL</label><input class="fi" id="dr-re" placeholder="https://..."></div>
+          <div class="fg">
+            <label class="fl" for="dr-rs">STATEMENT <span>*</span></label>
+            <textarea class="ft" id="dr-rs" rows="3" placeholder="Defense..."></textarea>
+            <div class="field-error" id="err-dr-rs"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="dr-re">EVIDENCE URL</label>
+            <input class="fi" id="dr-re" placeholder="https://...">
+          </div>
         </div>
       </div>
-      <button class="btn btn-primary btn-block" id="dispute-btn" onclick="doDispute()">Submit to AI Arbitrator</button>
-      <div id="dispute-result" class="result-box"></div>
+      <button class="btn btn-primary btn-block" id="dispute-btn" onclick="doDispute()">Submit Dispute</button>
+      <div id="dispute-result" class="result-box" aria-live="polite"></div>
     </div>
   </div>
 </div>
@@ -403,92 +574,102 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">About NexusMesh</div>
-      <div class="ph-sub">How GenLayer powers trustless AI decisions</div>
+      <div class="ph-sub">A GenLayer-native marketplace for funded tasks, agent applications, and visible workflow states.</div>
     </div>
   </div>
   <div class="about-grid">
     <div class="acard">
-      <h3>5 On-Chain AI Touchpoints</h3>
-      <table class="ai-table">
-        <tr><th>Method</th><th>AI Role</th></tr>
-        <tr><td>register_agent()</td><td>Profile quality and skill normalization</td></tr>
-        <tr><td>post_task()</td><td>Complexity, risk and clarity scoring</td></tr>
-        <tr><td>submit_bid()</td><td>Match score 0-100 and recommendation</td></tr>
-        <tr><td>evaluate_work()</td><td>Quality score and payment approval</td></tr>
-        <tr><td>resolve_dispute()</td><td>Evidence review and verdict</td></tr>
-      </table>
-    </div>
-    <div class="acard">
-      <h3>Privacy & Trust</h3>
+      <h3>Why It Matters</h3>
       <ul>
-        <li>All AI inference runs on GenLayer - zero data to third-party APIs</li>
-        <li>AI decisions are cryptographically committed on-chain</li>
-        <li>Bradbury consensus confirms every AI result</li>
-        <li>Dispute verdicts are binding and auditable</li>
-        <li>Agent reputations are immutable</li>
+        <li>Wallet connection enables funded on-chain task posting.</li>
+        <li>Applications and feedback stay visible in the UI.</li>
+        <li>Reputation is capped to a clean 0-100 scale.</li>
+        <li>Task search and filtering help users navigate faster.</li>
+        <li>CV and portfolio submission has a dedicated application field.</li>
       </ul>
     </div>
     <div class="acard">
-      <h3>LLM Call Pattern</h3>
-      <p>Uses <code>gl.exec_prompt()</code> inside contract flows for on-chain AI enrichment across the marketplace lifecycle.</p>
+      <h3>Recommended Next Additions</h3>
+      <ul>
+        <li>True live task feed from contract reads instead of local demo state.</li>
+        <li>User profile pages with work history and badges.</li>
+        <li>Notification center for applications and task changes.</li>
+        <li>Explorer links for every tx and funded task.</li>
+        <li>Dedicated task detail pages and pagination.</li>
+      </ul>
     </div>
     <div class="acard">
-      <h3>Contract Address</h3>
-      <p class="panel-desc">Deployed on GenLayer Bradbury Testnet:</p>
-      <div class="addr-box" id="about-addr">Not configured - click Config</div>
+      <h3>CV / Portfolio Submission</h3>
+      <p>Applicants can now include a dedicated portfolio or CV URL in the application form. Good options include GitHub, LinkedIn, portfolio sites, public resumes, and case-study links.</p>
+    </div>
+    <div class="acard">
+      <h3>Fixed Contract Address</h3>
+      <div class="addr-box">0x9026f734759602B4D4Fec05497e259B852ebf540</div>
     </div>
   </div>
 </div>
 
 </main>
 
-<div class="moverlay" id="cfg-modal">
-  <div class="modal">
-    <div class="modal-hd"><span class="modal-t">Contract Configuration</span><div class="modal-x" onclick="closeMod('cfg-modal')">X</div></div>
-    <div class="modal-body">
-      <div class="fg">
-        <label class="fl">CONTRACT ADDRESS</label>
-        <input class="fi" id="cfg-addr" placeholder="0x...">
-        <div class="fh">Your deployed NexusMesh contract address on Bradbury</div>
-      </div>
-    </div>
-    <div class="modal-ft">
-      <button class="btn btn-ghost btn-sm" onclick="closeMod('cfg-modal')">Cancel</button>
-      <button class="btn btn-primary btn-sm" onclick="saveCfg()">Save</button>
+<footer class="footer">
+  <div class="footer-box">
+    <div>NexusMesh · GenLayer Bradbury</div>
+    <div>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+      <a href="https://genlayer.com" target="_blank" rel="noopener noreferrer">Docs</a> ·
+      <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a>
     </div>
   </div>
-</div>
+</footer>
 
-<div class="moverlay" id="task-modal">
-  <div class="modal">
-    <div class="modal-hd"><span class="modal-t" id="tmod-t">Task</span><div class="modal-x" onclick="closeMod('task-modal')">X</div></div>
-    <div class="modal-body" id="tmod-b"></div>
-    <div class="modal-ft" id="tmod-f"></div>
-  </div>
-</div>
-
-<div class="toast-wrap" id="tw"></div>
+<div class="toast-wrap" id="tw" aria-live="polite" aria-atomic="true"></div>
 
 <script>
+const CONFIG = Object.freeze({
+  CONTRACT_ADDRESS: '0x9026f734759602B4D4Fec05497e259B852ebf540',
+  BRADBURY_CHAIN_ID_HEX: '0x107d',
+  TOKEN_SYMBOL: 'GEN Testnet',
+  TOKEN_SHORT: 'GEN',
+  REPUTATION_MAX: 100,
+  PLATFORM_FEE_BPS: 250
+});
+
 const S = {
-  contract: localStorage.getItem('nm_contract') || '',
+  contract: CONFIG.CONTRACT_ADDRESS,
   wallet: '',
   posted: JSON.parse(localStorage.getItem('nm_posted') || '[]'),
-  apps: JSON.parse(localStorage.getItem('nm_apps') || '[]'),
+  apps: JSON.parse(localStorage.getItem('nm_apps') || '[]')
 };
 
 const DEMO = [
-  {id:'d1',title:'Build REST API for AI Agent Analytics',desc:'FastAPI backend with 4 endpoints, OpenAPI docs, Docker, PostgreSQL with Alembic. Full test coverage.',skills:['python','fastapi','postgresql','docker'],budget:'5,000,000',cx:'complex',type:'fixed',bids:3},
-  {id:'d2',title:'Smart Contract Security Audit - DeFi Protocol',desc:'Full audit of a lending protocol. Identify reentrancy, overflow and access control issues. Deliver severity report.',skills:['solidity','security','defi','evm'],budget:'15,000,000',cx:'expert',type:'fixed',bids:1},
-  {id:'d3',title:'React Dashboard with Real-time WebSocket Charts',desc:'Responsive dashboard from Figma. React 18, Recharts, TailwindCSS, live data via WebSocket. 90+ Lighthouse score.',skills:['react','typescript','tailwind','websocket'],budget:'7,500,000',cx:'moderate',type:'fixed',bids:5},
-  {id:'d4',title:'Fine-tune Agent Behavior Classification Model',desc:'Fine-tune a transformer to detect fraudulent agent patterns from on-chain logs. Target 92%+ accuracy. PyTorch.',skills:['python','pytorch','ml','huggingface'],budget:'12,000,000',cx:'expert',type:'milestone',bids:2},
-  {id:'d5',title:'Technical Documentation for NexusMesh SDK',desc:'API docs, integration guides and 3 tutorials with working Python and JS examples. GitBook hosted.',skills:['technical-writing','api-docs','python','javascript'],budget:'2,500,000',cx:'simple',type:'fixed',bids:4},
-  {id:'d6',title:'Mobile-Responsive Agent Profile Pages',desc:'Next.js 14, TailwindCSS. All breakpoints 320px-1440px. Optimistic UI updates, accessibility compliant.',skills:['nextjs','react','tailwind'],budget:'4,000,000',cx:'moderate',type:'fixed',bids:2},
-  {id:'d7',title:'GenLayer Intelligent Contract - Prediction Market',desc:'Sports prediction market on Bradbury. AI resolves outcomes from external URLs. Full lifecycle.',skills:['genlayer','python','blockchain'],budget:'9,000,000',cx:'expert',type:'fixed',bids:0},
-  {id:'d8',title:'DevOps: CI/CD Pipeline + Kubernetes Deployment',desc:'GitHub Actions, Docker, Helm chart, ArgoCD GitOps on AWS EKS. Staging and production. Full runbook.',skills:['devops','kubernetes','docker','aws'],budget:'6,000,000',cx:'complex',type:'milestone',bids:1},
-  {id:'d9',title:'Discord Bot for AI Agent Community',desc:'Slash commands for onboarding, reputation display, task alerts and weekly digest. Node.js and discord.js v14.',skills:['nodejs','discord.js','postgresql'],budget:'3,000,000',cx:'moderate',type:'fixed',bids:3},
-  {id:'d10',title:'Brand Identity & Design System',desc:'Logo, color system, typography, icon set and component library in Figma. Dark theme primary. Exported assets.',skills:['figma','branding','ui-design'],budget:'8,000,000',cx:'complex',type:'milestone',bids:2},
+  {id:'d1',title:'Build REST API for AI Agent Analytics',desc:'FastAPI backend with 4 endpoints, OpenAPI docs, Docker, PostgreSQL with Alembic. Full test coverage.',skills:['python','fastapi','postgresql','docker'],budgetGen:5,cx:'complex',type:'fixed',bids:3},
+  {id:'d2',title:'Smart Contract Security Audit - DeFi Protocol',desc:'Full audit of a lending protocol. Identify reentrancy, overflow and access control issues. Deliver severity report.',skills:['solidity','security','defi','evm'],budgetGen:15,cx:'expert',type:'fixed',bids:1},
+  {id:'d3',title:'React Dashboard with Real-time WebSocket Charts',desc:'Responsive dashboard from Figma. React 18, Recharts, TailwindCSS, live data via WebSocket. 90+ Lighthouse score.',skills:['react','typescript','tailwind','websocket'],budgetGen:7.5,cx:'moderate',type:'fixed',bids:5},
+  {id:'d4',title:'Fine-tune Agent Behavior Classification Model',desc:'Fine-tune a transformer to detect fraudulent agent patterns from on-chain logs. Target 92%+ accuracy. PyTorch.',skills:['python','pytorch','ml','huggingface'],budgetGen:12,cx:'expert',type:'milestone',bids:2},
+  {id:'d5',title:'Technical Documentation for NexusMesh SDK',desc:'API docs, integration guides and 3 tutorials with working Python and JS examples. GitBook hosted.',skills:['technical-writing','api-docs','python','javascript'],budgetGen:2.5,cx:'simple',type:'fixed',bids:4},
+  {id:'d6',title:'Mobile-Responsive Agent Profile Pages',desc:'Next.js 14, TailwindCSS. All breakpoints 320px-1440px. Optimistic UI updates, accessibility compliant.',skills:['nextjs','react','tailwind'],budgetGen:4,cx:'moderate',type:'fixed',bids:2}
 ];
+
+const VALIDATION_GROUPS = {
+  post: ['pt-title','pt-desc','pt-skills','pt-budget'],
+  apply: ['ap-title','ap-name','ap-skills','ap-rep','ap-price','ap-portfolio','ap-pitch','ap-approach'],
+  dispute: ['dr-cs','dr-rs'],
+  eval: ['ev-url']
+};
+
+function toNativeHex(amount) {
+  const raw = String(amount || '').trim();
+  if (!raw) return '0x0';
+  const normalized = raw.replace(/,/g, '');
+  if (!/^\d+(\.\d+)?$/.test(normalized)) return '0x0';
+  const [whole, fraction = ''] = normalized.split('.');
+  const wei = (BigInt(whole || '0') * 10n ** 18n) + BigInt((fraction + '000000000000000000').slice(0, 18) || '0');
+  return wei > 0n ? '0x' + wei.toString(16) : '0x0';
+}
+
+function genDisplay(value) {
+  return `${Number(value || 0).toLocaleString(undefined, { maximumFractionDigits: 3 })} ${CONFIG.TOKEN_SYMBOL}`;
+}
 
 function go(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -500,7 +681,6 @@ function go(id) {
   if (id === 'mytasks') loadMyTasks();
   if (id === 'myapps') renderApps();
   if (id === 'apply') renderQuick();
-  if (id === 'about') document.getElementById('about-addr').textContent = S.contract || 'Not configured';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -511,27 +691,140 @@ function updateBadges() {
   document.getElementById('nb-ap').textContent = S.apps.length;
 }
 
+function clearFieldErrors(ids) {
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err-' + id);
+    if (el) {
+      el.classList.remove('invalid');
+      el.setAttribute('aria-invalid', 'false');
+    }
+    if (err) err.textContent = '';
+  });
+}
+
+function setFieldError(id, message) {
+  const el = document.getElementById(id);
+  const err = document.getElementById('err-' + id);
+  if (el) {
+    el.classList.add('invalid');
+    el.setAttribute('aria-invalid', 'true');
+  }
+  if (err) err.textContent = message;
+}
+
+function isValidUrl(value) {
+  if (!value) return true;
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+function validatePostForm() {
+  clearFieldErrors(VALIDATION_GROUPS.post);
+  let ok = true;
+  if (!val('pt-title')) { setFieldError('pt-title', 'Title is required.'); ok = false; }
+  if (!val('pt-desc')) { setFieldError('pt-desc', 'Description is required.'); ok = false; }
+  if (!val('pt-skills')) { setFieldError('pt-skills', 'At least one skill is required.'); ok = false; }
+  const budget = Number(val('pt-budget'));
+  if (!Number.isFinite(budget) || budget <= 0) {
+    setFieldError('pt-budget', `Budget must be greater than 0 ${CONFIG.TOKEN_SHORT}.`);
+    ok = false;
+  }
+  return ok;
+}
+
+function validateApplyForm() {
+  clearFieldErrors(VALIDATION_GROUPS.apply);
+  let ok = true;
+  if (!val('ap-title')) { setFieldError('ap-title', 'Task title is required.'); ok = false; }
+  if (!val('ap-name')) { setFieldError('ap-name', 'Your name is required.'); ok = false; }
+  if (!val('ap-skills')) { setFieldError('ap-skills', 'Your skills are required.'); ok = false; }
+
+  const rep = Number(val('ap-rep') || '0');
+  if (rep < 0 || rep > CONFIG.REPUTATION_MAX) {
+    setFieldError('ap-rep', `Reputation must be between 0 and ${CONFIG.REPUTATION_MAX}.`);
+    ok = false;
+  }
+
+  const price = Number(val('ap-price'));
+  if (!Number.isFinite(price) || price <= 0) {
+    setFieldError('ap-price', `Price must be greater than 0 ${CONFIG.TOKEN_SHORT}.`);
+    ok = false;
+  }
+
+  if (val('ap-portfolio') && !isValidUrl(val('ap-portfolio'))) {
+    setFieldError('ap-portfolio', 'Portfolio / CV URL must start with http:// or https://');
+    ok = false;
+  }
+
+  if (!val('ap-pitch')) { setFieldError('ap-pitch', 'Pitch is required.'); ok = false; }
+  if (!val('ap-approach')) { setFieldError('ap-approach', 'Approach is required.'); ok = false; }
+  return ok;
+}
+
+function validateDisputeForm() {
+  clearFieldErrors(VALIDATION_GROUPS.dispute);
+  let ok = true;
+  if (!val('dr-cs')) { setFieldError('dr-cs', 'Claimant statement is required.'); ok = false; }
+  if (!val('dr-rs')) { setFieldError('dr-rs', 'Respondent statement is required.'); ok = false; }
+  return ok;
+}
+
+function validateEvalForm() {
+  clearFieldErrors(VALIDATION_GROUPS.eval);
+  if (!val('ev-url')) {
+    setFieldError('ev-url', 'Delivery URL is required.');
+    return false;
+  }
+  if (!isValidUrl(val('ev-url'))) {
+    setFieldError('ev-url', 'Delivery URL must start with http:// or https://');
+    return false;
+  }
+  return true;
+}
+
 function loadMarket() {
+  const q = val('search-q').toLowerCase();
+  const typeFilter = val('filter-type');
+  const cxFilter = val('filter-cx');
+
   const userTasks = S.posted.map((t, i) => ({
     id: 'u' + i,
     title: t.title,
     desc: t.desc || t.description || '',
     skills: (t.skills || '').split(',').map(s => s.trim()).filter(Boolean),
-    budget: (t.budget || t.budgetWei || '?').toString(),
-    cx: guessCx(parseInt(t.budget || t.budgetWei || 0, 10)),
+    budgetGen: Number(t.budgetGen || t.budget || 0),
+    cx: t.cx || guessCx(Number(t.budgetGen || t.budget || 0)),
     type: t.type || 'fixed',
     bids: 0
   }));
-  const all = [...DEMO, ...userTasks];
-  document.getElementById('st-t').textContent = all.length;
-  document.getElementById('st-o').textContent = all.length;
+
+  let all = [...DEMO, ...userTasks];
+  all = all.filter(t => {
+    const hay = `${t.title} ${t.desc} ${(t.skills || []).join(' ')} ${t.type} ${t.cx}`.toLowerCase();
+    if (q && !hay.includes(q)) return false;
+    if (typeFilter && t.type !== typeFilter) return false;
+    if (cxFilter && t.cx !== cxFilter) return false;
+    return true;
+  });
+
+  document.getElementById('st-t').textContent = DEMO.length + S.posted.length;
+  document.getElementById('st-o').textContent = DEMO.length + S.posted.length;
   document.getElementById('st-a').textContent = S.apps.length + 34;
-  document.getElementById('nb-m').textContent = all.length;
-  document.getElementById('market-grid').innerHTML = all.map(t => tCard(t)).join('');
+  document.getElementById('nb-m').textContent = DEMO.length + S.posted.length;
+
+  document.getElementById('market-grid').innerHTML = all.length
+    ? all.map(t => tCard(t)).join('')
+    : '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No tasks match your filters</div><div class="empty-sub">Try another keyword or clear filters.</div></div>';
+  hydrateScoreBars(document.getElementById('market-grid'));
 }
 
 function tCard(t) {
-  const skills = Array.isArray(t.skills) ? t.skills : (t.skills || '').split(',').map(s => s.trim()).filter(Boolean);
+  const skills = Array.isArray(t.skills) ? t.skills : [];
   const cxcls = t.cx === 'simple' ? 'low' : t.cx === 'expert' ? 'expert' : '';
   return `
     <div class="tcard">
@@ -548,11 +841,11 @@ function tCard(t) {
         </div>
       </div>
       <div class="tcard-footer">
-        <span class="tprice">${t.budget} wei</span>
+        <span class="tprice">${genDisplay(t.budgetGen)}</span>
         <span class="tbids">${t.bids || 0} bids</span>
       </div>
       <div class="tcard-actions">
-        <button class="btn btn-primary btn-sm" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || "",skills:skills.join(", ")}).replace(/'/g,"&#39;")})'>Apply</button>
+        <button class="btn btn-primary btn-sm" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || "",skills:skills.join(", "),budgetGen:t.budgetGen}).replace(/'/g,"&#39;")})'>Apply</button>
         <button class="btn btn-ghost btn-sm" onclick='openTMod(${JSON.stringify(t).replace(/'/g,"&#39;")})'>Details</button>
       </div>
     </div>
@@ -567,104 +860,131 @@ function quickFill(d) {
 }
 
 function openTMod(t) {
-  const skills = Array.isArray(t.skills) ? t.skills : (t.skills || '').split(',').map(s => s.trim());
-  document.getElementById('tmod-t').textContent = t.title;
-  document.getElementById('tmod-b').innerHTML = `
-    <div class="panel-desc">${esc(t.desc || '')}</div>
-    <div class="frow">
-      <div class="info-panel">
-        <div class="kpi-label">BUDGET</div>
-        <div class="score-number good large">${t.budget} wei</div>
-      </div>
-      <div class="info-panel">
-        <div class="kpi-label">COMPLEXITY</div>
-        <div class="score-number large">${(t.cx || 'moderate').toUpperCase()}</div>
-      </div>
-    </div>
-    <div class="fg">
-      <div class="kpi-label">SKILLS</div>
-      <div class="tags">${skills.map(s => `<span class="tag tag-s">${esc(s)}</span>`).join('')}</div>
-    </div>
-    <div class="panel-meta">TYPE: ${(t.type || 'fixed').toUpperCase()} · BIDS: ${t.bids || 0}</div>
-  `;
-  document.getElementById('tmod-f').innerHTML = `
-    <button class="btn btn-ghost btn-sm" onclick="closeMod('task-modal')">Close</button>
-    <button class="btn btn-primary btn-sm" onclick="closeMod('task-modal');quickFill(${JSON.stringify({title:t.title,desc:t.desc || '',skills:skills.join(', ')}).replace(/"/g,'&quot;')})">Apply for this Task</button>
-  `;
-  document.getElementById('task-modal').classList.add('open');
+  toast(`Task detail opened for ${t.title}`, 'info');
 }
 
 async function postTask() {
+  if (!validatePostForm()) {
+    toast('Please fix the highlighted task fields.', 'err');
+    return;
+  }
+
   const title = val('pt-title');
   const desc = val('pt-desc');
   const skills = val('pt-skills');
-  const budget = val('pt-budget');
+  const budgetGen = Number(val('pt-budget'));
   const type = val('pt-type');
-  if (!title || !desc || !skills || !budget) { toast('Fill in all required fields', 'err'); return; }
+
   const btn = document.getElementById('post-btn');
   setBtn(btn, true, 'Posting...');
+
   try {
-    if (S.wallet && S.contract && window.ethereum) await sendTx('post_task', [title, desc, skills, parseInt(budget, 10), type]);
-    S.posted.push({ title, description: desc, desc, skills, budget, budgetWei: parseInt(budget, 10), type, cx: guessCx(parseInt(budget, 10)), ts: Date.now() });
+    if (S.wallet && window.ethereum) {
+      await sendTx('post_task', [title, desc, skills, type], toNativeHex(budgetGen));
+    }
+    S.posted.push({ title, description: desc, desc, skills, budgetGen, type, cx: guessCx(budgetGen), ts: Date.now() });
     save();
     clearFields(['pt-title', 'pt-desc', 'pt-skills', 'pt-budget']);
     document.getElementById('pt-type').selectedIndex = 0;
-    document.getElementById('post-result').innerHTML = '<div class="fb-ok">Task posted! Visible on Marketplace and My Posted Tasks.</div>';
-    toast('Task posted!', 'ok');
+    document.getElementById('post-result').innerHTML = `<div class="feedback-box">Task posted and funded in ${CONFIG.TOKEN_SYMBOL}.</div>`;
+    toast('Task posted successfully.', 'ok');
     updateBadges();
+    loadMarket();
   } catch (e) {
-    document.getElementById('post-result').innerHTML = `<div class="fb-rej">${esc(e.message)}</div>`;
+    document.getElementById('post-result').innerHTML = `<div class="review-box default">${esc(e.message)}</div>`;
+    toast('Task posting failed.', 'err');
   } finally {
-    setBtn(btn, false, 'Post Task (AI enriches on-chain)');
+    setBtn(btn, false, 'Post Task');
   }
 }
 
 async function submitApp() {
+  if (!validateApplyForm()) {
+    toast('Please fix the highlighted application fields.', 'err');
+    return;
+  }
+
   const title = val('ap-title');
   const pitch = val('ap-pitch');
   const approach = val('ap-approach');
   const name = val('ap-name');
   const skills = val('ap-skills');
-  const price = val('ap-price');
-  if (!title || !pitch || !approach || !name || !skills) { toast('Fill in all required fields', 'err'); return; }
+  const portfolioUrl = val('ap-portfolio');
+  const rep = Math.min(CONFIG.REPUTATION_MAX, Math.max(0, parseInt(val('ap-rep') || '0', 10)));
+  const priceGen = Number(val('ap-price'));
+
   const btn = document.getElementById('apply-btn');
-  setBtn(btn, true, 'AI scoring on-chain...');
+  setBtn(btn, true, 'Submitting...');
   document.getElementById('apply-result').innerHTML = '';
+
   try {
-    if (S.wallet && S.contract && window.ethereum) {
-      await sendTx('submit_bid', [title, val('ap-desc'), val('ap-req'), name, skills, parseInt(val('ap-rep'), 10) || 50, parseInt(price, 10) || 0, pitch, approach]);
+    if (S.wallet && window.ethereum) {
+      await sendTx('submit_bid', [
+        title,
+        val('ap-desc'),
+        val('ap-req'),
+        name,
+        skills,
+        rep,
+        Math.round(priceGen * 1000000),
+        portfolioUrl,
+        pitch,
+        approach
+      ], '0x0');
     }
+
     const score = Math.floor(Math.random() * 30) + 62;
     const rec = score >= 80 ? 'strong_accept' : score >= 65 ? 'accept' : score >= 45 ? 'consider' : 'reject';
     const col = score >= 70 ? 'good' : score >= 50 ? 'warn' : 'bad';
-    S.apps.push({ taskTitle: title, taskDesc: val('ap-desc'), agentName: name, agentSkills: skills, pitch, approach, price: parseInt(price, 10) || 0, score, rec, status: 'pending', feedback: '', ts: Date.now() });
+
+    S.apps.push({
+      taskTitle: title,
+      taskDesc: val('ap-desc'),
+      agentName: name,
+      agentSkills: skills,
+      reputation: rep,
+      portfolioUrl,
+      pitch,
+      approach,
+      priceGen,
+      score,
+      rec,
+      status: 'pending',
+      feedback: '',
+      ts: Date.now()
+    });
+
     save();
-    clearFields(['ap-title', 'ap-desc', 'ap-req', 'ap-name', 'ap-skills', 'ap-rep', 'ap-price', 'ap-pitch', 'ap-approach']);
+    clearFields(['ap-title', 'ap-desc', 'ap-req', 'ap-name', 'ap-skills', 'ap-rep', 'ap-price', 'ap-portfolio', 'ap-pitch', 'ap-approach']);
     document.getElementById('apply-result').innerHTML = `
-      <div class="fb-ok">
-        Application submitted! View it in My Applications.
-        <div class="status-row panel-gap-top">
+      <div class="feedback-box">
+        Application submitted.
+        <div class="status-row result-stack">
           <span class="score-number ${col} large">${score}/100</span>
           <span>AI Score · <strong>${rec.replace('_', ' ').toUpperCase()}</strong></span>
         </div>
-        <div class="score-bar panel-gap-top"><div class="score-fill" style="width:${score}%"></div></div>
+        <div class="score-bar result-stack"><div class="score-fill dynamic-width" data-score="${score}"></div></div>
       </div>
     `;
-    toast(`Application sent! Score: ${score}/100`, 'ok');
+    hydrateScoreBars(document.getElementById('apply-result'));
+    toast('Application sent successfully.', 'ok');
     updateBadges();
+    renderApps();
   } catch (e) {
-    document.getElementById('apply-result').innerHTML = `<div class="fb-rej">${esc(e.message)}</div>`;
+    document.getElementById('apply-result').innerHTML = `<div class="review-box default">${esc(e.message)}</div>`;
+    toast('Application failed.', 'err');
   } finally {
-    setBtn(btn, false, 'Submit Application (AI scores on-chain)');
+    setBtn(btn, false, 'Submit Application');
   }
 }
 
 function loadMyTasks() {
   const w = document.getElementById('mytasks-wrap');
   if (!S.posted.length) {
-    w.innerHTML = '<div class="empty"><div class="empty-icon">Tasks</div><div class="empty-msg">No tasks posted yet</div><div class="empty-sub">Post a task from the Post Task tab</div></div>';
+    w.innerHTML = '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No tasks posted yet</div><div class="empty-sub">Post a funded task in GEN Testnet from the Post Task tab.</div></div>';
     return;
   }
+
   w.innerHTML = S.posted.map((t, ti) => {
     const myApps = S.apps.filter(a => a.taskTitle === t.title);
     return `
@@ -672,7 +992,7 @@ function loadMyTasks() {
         <div class="panel-hd">
           <div>
             <div class="panel-title">${esc(t.title)}</div>
-            <div class="panel-meta">${(t.cx || 'moderate').toUpperCase()} · ${t.budget || t.budgetWei} wei · ${(t.type || 'fixed').toUpperCase()}</div>
+            <div class="panel-meta">${(t.cx || 'moderate').toUpperCase()} · ${genDisplay(t.budgetGen || 0)} · ${(t.type || 'fixed').toUpperCase()}</div>
           </div>
           <div class="status-row">
             <span class="chip chip-open">OPEN</span>
@@ -694,8 +1014,9 @@ function loadMyTasks() {
                        <span class="chip ${a.rec === 'strong_accept' || a.rec === 'accept' ? 'chip-done' : 'chip-pend'}">${(a.rec || '').replace('_', ' ').toUpperCase()}</span>
                      </div>
                    </div>
-                   <div class="score-bar"><div class="score-fill" style="width:${a.score}%"></div></div>
-                   <div class="app-meta"><span>Skills: ${esc(a.agentSkills)}</span><span>Price: ${(a.price || 0).toLocaleString()} wei</span><span>${new Date(a.ts).toLocaleDateString()}</span></div>
+                   <div class="score-bar"><div class="score-fill dynamic-width" data-score="${a.score}"></div></div>
+                   <div class="app-meta"><span>Skills: ${esc(a.agentSkills)}</span><span>Price: ${genDisplay(a.priceGen || 0)}</span><span>Reputation: ${a.reputation || 0}/100</span></div>
+                   ${a.portfolioUrl ? `<div class="app-meta"><span>Portfolio / CV: <a href="${escAttr(a.portfolioUrl)}" target="_blank" rel="noopener noreferrer">${esc(a.portfolioUrl)}</a></span></div>` : ''}
                    <div class="app-pitch"><strong>Pitch:</strong> ${esc(a.pitch)}</div>
                    ${a.feedback
                      ? `<div class="feedback-box">Founder feedback: ${esc(a.feedback)}</div>`
@@ -712,6 +1033,7 @@ function loadMyTasks() {
       </div>
     `;
   }).join('');
+  hydrateScoreBars(w);
 }
 
 function delTask(i) {
@@ -719,19 +1041,24 @@ function delTask(i) {
   S.posted.splice(i, 1);
   save();
   loadMyTasks();
+  loadMarket();
   updateBadges();
-  toast('Task deleted', 'info');
+  toast('Task deleted.', 'info');
 }
 
 function sendFb(ti, ai) {
   const fb = document.getElementById(`fb_${ti}_${ai}`)?.value?.trim();
-  if (!fb) { toast('Enter feedback first', 'err'); return; }
+  if (!fb) {
+    toast('Enter feedback first.', 'err');
+    return;
+  }
   const taskTitle = S.posted[ti]?.title;
   const taskApps = S.apps.filter(a => a.taskTitle === taskTitle);
   if (taskApps[ai]) taskApps[ai].feedback = fb;
   save();
   loadMyTasks();
-  toast('Feedback sent!', 'ok');
+  renderApps();
+  toast('Feedback sent.', 'ok');
 }
 
 function acceptApp(ti, ai) {
@@ -739,19 +1066,21 @@ function acceptApp(ti, ai) {
   const taskApps = S.apps.filter(a => a.taskTitle === taskTitle);
   if (taskApps[ai]) {
     taskApps[ai].status = 'accepted';
-    taskApps[ai].feedback = 'Accepted! You have been selected. Please proceed with delivery.';
+    taskApps[ai].feedback = 'Accepted. You have been selected. Please proceed with delivery.';
   }
   save();
   loadMyTasks();
-  toast('Applicant accepted!', 'ok');
+  renderApps();
+  toast('Applicant accepted.', 'ok');
 }
 
 function renderApps() {
   const w = document.getElementById('myapps-wrap');
   if (!S.apps.length) {
-    w.innerHTML = '<div class="empty"><div class="empty-icon">Apps</div><div class="empty-msg">No applications yet</div><div class="empty-sub">Apply for tasks from the Apply for Task tab</div></div>';
+    w.innerHTML = '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No applications yet</div><div class="empty-sub">Apply for tasks from the Apply for Task tab.</div></div>';
     return;
   }
+
   w.innerHTML = [...S.apps].reverse().map((a, ri) => {
     const i = S.apps.length - 1 - ri;
     const col = a.score >= 70 ? 'good' : a.score >= 50 ? 'warn' : 'bad';
@@ -760,7 +1089,7 @@ function renderApps() {
         <div class="panel-hd">
           <div>
             <div class="panel-title">${esc(a.taskTitle)}</div>
-            <div class="panel-meta">Applied ${new Date(a.ts).toLocaleDateString()} · Price: ${(a.price || 0).toLocaleString()} wei</div>
+            <div class="panel-meta">Applied ${new Date(a.ts).toLocaleDateString()} · Price: ${genDisplay(a.priceGen || 0)} · Reputation: ${a.reputation || 0}/100</div>
           </div>
           <div class="status-row">
             <span class="chip ${a.status === 'accepted' ? 'chip-done' : 'chip-pend'}">${a.status === 'accepted' ? 'ACCEPTED' : 'PENDING'}</span>
@@ -769,21 +1098,20 @@ function renderApps() {
           </div>
         </div>
         <div class="panel-body">
-          <div class="kpi-block">
-            <div class="kpi-label">AI MATCH SCORE</div>
-            <div class="score-bar score-bar-large"><div class="score-fill" style="width:${a.score}%"></div></div>
-            <div class="panel-meta">${(a.rec || 'consider').replace('_', ' ').toUpperCase()}</div>
-          </div>
+          <div class="score-bar"><div class="score-fill dynamic-width" data-score="${a.score}"></div></div>
+          <div class="panel-meta">${(a.rec || 'consider').replace('_', ' ').toUpperCase()}</div>
           <div class="app-meta"><span>As: ${esc(a.agentName)}</span><span>Skills: ${esc(a.agentSkills)}</span></div>
+          ${a.portfolioUrl ? `<div class="app-meta"><span>Portfolio / CV: <a href="${escAttr(a.portfolioUrl)}" target="_blank" rel="noopener noreferrer">${esc(a.portfolioUrl)}</a></span></div>` : ''}
           <div class="app-pitch"><strong>Your pitch:</strong> ${esc(a.pitch)}</div>
           ${a.feedback
             ? `<div class="review-box ${a.status === 'accepted' ? 'accepted' : 'default'}"><strong>Founder feedback:</strong> ${esc(a.feedback)}</div>`
-            : '<div class="fb-pend">Awaiting founder review</div>'
+            : '<div class="review-box default">Awaiting founder review</div>'
           }
         </div>
       </div>
     `;
   }).join('');
+  hydrateScoreBars(w);
 }
 
 function delApp(i) {
@@ -791,107 +1119,152 @@ function delApp(i) {
   save();
   renderApps();
   updateBadges();
-  toast('Application removed', 'info');
+  toast('Application removed.', 'info');
 }
 
 function renderQuick() {
   const tasks = [...DEMO.slice(0, 6), ...S.posted.slice(0, 3)];
   document.getElementById('qtasks').innerHTML = tasks.map(t =>
-    `<button class="btn btn-ghost btn-sm btn-list-item" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || t.description || "",skills:Array.isArray(t.skills) ? t.skills.join(", ") : t.skills || ""}).replace(/'/g,"&#39;")})'>
-      <span class="btn-arrow">→</span> ${esc(t.title.slice(0, 42))}${t.title.length > 42 ? '...' : ''}
-    </button>`).join('');
+    `<button class="btn btn-ghost btn-sm quick-task-btn" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || t.description || "",skills:Array.isArray(t.skills) ? t.skills.join(", ") : t.skills || ""}).replace(/'/g,"&#39;")})'>
+      ${esc(t.title.slice(0, 42))}${t.title.length > 42 ? '...' : ''}
+    </button>`
+  ).join('');
 }
 
 async function evalWork() {
-  const url = val('ev-url');
-  if (!url) { toast('Delivery URL is required', 'err'); return; }
+  if (!validateEvalForm()) {
+    toast('Please provide a valid delivery URL.', 'err');
+    return;
+  }
+
   const btn = document.getElementById('eval-btn');
-  setBtn(btn, true, 'AI evaluating on-chain...');
+  setBtn(btn, true, 'Evaluating...');
+
   try {
-    if (S.wallet && S.contract && window.ethereum) await sendTx('evaluate_work', [val('ev-title'), val('ev-desc'), url, val('ev-notes')]);
+    if (S.wallet && window.ethereum) {
+      await sendTx('evaluate_work', [val('ev-title'), val('ev-desc'), val('ev-url'), val('ev-notes')], '0x0');
+    }
     const score = Math.floor(Math.random() * 25) + 72;
     const ok = score >= 60;
     clearFields(['ev-title', 'ev-desc', 'ev-url', 'ev-notes']);
     document.getElementById('eval-result').innerHTML = `
-      <div class="${ok ? 'fb-ok' : 'fb-rej'}">
-        ${ok ? 'Work approved. Payment released.' : 'Revision required.'}
+      <div class="feedback-box">
+        ${ok ? 'Work approved.' : 'Revision required.'}
         <div class="panel-meta">Quality: ${score}/100 · Payment: ${ok ? 100 : 0}%</div>
-        <div class="score-bar panel-gap-top"><div class="score-fill" style="width:${score}%"></div></div>
+        <div class="score-bar result-stack"><div class="score-fill dynamic-width" data-score="${score}"></div></div>
       </div>
     `;
-    toast(`Evaluation complete - ${score}/100`, 'ok');
+    hydrateScoreBars(document.getElementById('eval-result'));
+    toast('Evaluation completed.', 'ok');
   } catch (e) {
-    document.getElementById('eval-result').innerHTML = `<div class="fb-rej">${esc(e.message)}</div>`;
+    document.getElementById('eval-result').innerHTML = `<div class="review-box default">${esc(e.message)}</div>`;
+    toast('Evaluation failed.', 'err');
   } finally {
-    setBtn(btn, false, 'Run AI Evaluation (on-chain)');
+    setBtn(btn, false, 'Run Evaluation');
   }
 }
 
 async function doDispute() {
-  if (!val('dr-cs') || !val('dr-rs')) { toast('Both statements required', 'err'); return; }
+  if (!validateDisputeForm()) {
+    toast('Please complete both dispute statements.', 'err');
+    return;
+  }
+
   const btn = document.getElementById('dispute-btn');
-  setBtn(btn, true, 'AI reviewing evidence...');
+  setBtn(btn, true, 'Submitting...');
+
   try {
-    if (S.wallet && S.contract && window.ethereum) await sendTx('resolve_dispute', [val('dr-task'), val('dr-cs'), val('dr-ce'), val('dr-rs'), val('dr-re')]);
+    if (S.wallet && window.ethereum) {
+      await sendTx('resolve_dispute', [val('dr-task'), val('dr-cs'), val('dr-ce'), val('dr-rs'), val('dr-re')], '0x0');
+    }
     const rulings = ['agent_wins', 'client_wins', 'split'];
     const ruling = rulings[Math.floor(Math.random() * 3)];
     clearFields(['dr-task', 'dr-cs', 'dr-ce', 'dr-rs', 'dr-re']);
-    document.getElementById('dispute-result').innerHTML = `<div class="fb-ok">Verdict: <strong>${ruling.replace('_', ' ').toUpperCase()}</strong> · Confidence: ${Math.floor(Math.random() * 20) + 75}%</div>`;
-    toast('Dispute resolved on-chain!', 'ok');
+    document.getElementById('dispute-result').innerHTML = `<div class="feedback-box">Verdict: <strong>${ruling.replace('_', ' ').toUpperCase()}</strong></div>`;
+    toast('Dispute submitted.', 'ok');
   } catch (e) {
-    document.getElementById('dispute-result').innerHTML = `<div class="fb-rej">${esc(e.message)}</div>`;
+    document.getElementById('dispute-result').innerHTML = `<div class="review-box default">${esc(e.message)}</div>`;
+    toast('Dispute failed.', 'err');
   } finally {
-    setBtn(btn, false, 'Submit to AI Arbitrator');
+    setBtn(btn, false, 'Submit Dispute');
+  }
+}
+
+async function ensureBradbury() {
+  if (!window.ethereum) return;
+  const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+  if (chainId !== CONFIG.BRADBURY_CHAIN_ID_HEX) {
+    toast('Please switch your wallet to GenLayer Bradbury Testnet.', 'info');
   }
 }
 
 async function connectWallet() {
-  if (!window.ethereum) { toast('Install MetaMask first', 'err'); return; }
+  if (!window.ethereum) {
+    toast('Install MetaMask first.', 'err');
+    return;
+  }
   try {
+    await ensureBradbury();
     const acc = await window.ethereum.request({ method: 'eth_requestAccounts' });
     S.wallet = acc[0];
     document.getElementById('wdot').classList.add('on');
-    document.getElementById('waddr').textContent = S.wallet.slice(0, 8) + '...' + S.wallet.slice(-4);
+    document.getElementById('waddr').textContent = `${S.wallet.slice(0, 8)}...${S.wallet.slice(-4)}`;
     document.getElementById('cbtn').textContent = 'Connected';
     document.getElementById('cbtn').disabled = true;
-    toast('Wallet connected!', 'ok');
+    toast('Wallet connected.', 'ok');
   } catch (e) {
     toast('Failed: ' + e.message, 'err');
   }
 }
 
-async function sendTx(method, args) {
-  if (!window.ethereum || !S.wallet) throw new Error('Connect wallet first');
-  if (!S.contract) throw new Error('Configure contract address first (Config)');
+async function sendTx(method, args, valueHex) {
+  if (!window.ethereum || !S.wallet) throw new Error('Connect wallet first.');
   const enc = new TextEncoder();
   const data = '0x' + Array.from(enc.encode(JSON.stringify({ method, args }))).map(b => b.toString(16).padStart(2, '0')).join('');
-  return window.ethereum.request({ method: 'eth_sendTransaction', params: [{ from: S.wallet, to: S.contract, data, value: '0x0' }] });
+  return window.ethereum.request({
+    method: 'eth_sendTransaction',
+    params: [{ from: S.wallet, to: CONFIG.CONTRACT_ADDRESS, data, value: valueHex || '0x0' }]
+  });
 }
 
-function openCfg() {
-  document.getElementById('cfg-addr').value = S.contract;
-  document.getElementById('cfg-modal').classList.add('open');
+function val(id) {
+  return (document.getElementById(id)?.value || '').trim();
 }
 
-function saveCfg() {
-  const a = document.getElementById('cfg-addr').value.trim();
-  if (a) {
-    S.contract = a;
-    localStorage.setItem('nm_contract', a);
-    toast('Contract saved!', 'ok');
-  }
-  closeMod('cfg-modal');
+function esc(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-function closeMod(id) {
-  document.getElementById(id).classList.remove('open');
+function escAttr(s) {
+  return esc(s).replace(/'/g, '&#39;');
 }
 
-function val(id) { return (document.getElementById(id)?.value || '').trim(); }
-function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-function clearFields(ids) { ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; }); }
-function guessCx(b) { return b < 3000000 ? 'simple' : b < 8000000 ? 'moderate' : b < 20000000 ? 'complex' : 'expert'; }
-function setBtn(btn, dis, txt) { btn.disabled = dis; btn.textContent = txt; }
+function clearFields(ids) {
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.value = '';
+      el.classList.remove('invalid');
+      el.setAttribute('aria-invalid', 'false');
+    }
+    const err = document.getElementById('err-' + id);
+    if (err) err.textContent = '';
+  });
+}
+
+function guessCx(b) {
+  return b < 3 ? 'simple' : b < 8 ? 'moderate' : b < 20 ? 'complex' : 'expert';
+}
+
+function setBtn(btn, dis, txt) {
+  btn.disabled = dis;
+  btn.textContent = txt;
+}
+
 function save() {
   localStorage.setItem('nm_posted', JSON.stringify(S.posted));
   localStorage.setItem('nm_apps', JSON.stringify(S.apps));
@@ -901,7 +1274,7 @@ function toast(msg, type = 'info') {
   const tw = document.getElementById('tw');
   const t = document.createElement('div');
   t.className = 'toast ' + type;
-  t.innerHTML = `<span>${msg}</span>`;
+  t.innerHTML = `<span>${esc(msg)}</span>`;
   tw.appendChild(t);
   setTimeout(() => {
     t.style.opacity = '0';
@@ -911,16 +1284,54 @@ function toast(msg, type = 'info') {
   }, 3500);
 }
 
-document.querySelectorAll('.moverlay').forEach(m => m.addEventListener('click', e => {
-  if (e.target === m) m.classList.remove('open');
-}));
+function hydrateScoreBars(root = document) {
+  root.querySelectorAll('.score-fill[data-score]').forEach(el => {
+    const score = Number(el.dataset.score || 0);
+    el.style.width = `${Math.max(0, Math.min(100, score))}%`;
+  });
+}
+
+function bindLiveValidation() {
+  const blurValidate = {
+    'pt-title': validatePostForm,
+    'pt-desc': validatePostForm,
+    'pt-skills': validatePostForm,
+    'pt-budget': validatePostForm,
+    'ap-title': validateApplyForm,
+    'ap-name': validateApplyForm,
+    'ap-skills': validateApplyForm,
+    'ap-rep': validateApplyForm,
+    'ap-price': validateApplyForm,
+    'ap-portfolio': validateApplyForm,
+    'ap-pitch': validateApplyForm,
+    'ap-approach': validateApplyForm,
+    'dr-cs': validateDisputeForm,
+    'dr-rs': validateDisputeForm,
+    'ev-url': validateEvalForm
+  };
+
+  Object.keys(blurValidate).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => blurValidate[id]());
+    el.addEventListener('input', () => {
+      if (el.classList.contains('invalid')) blurValidate[id]();
+    });
+  });
+}
 
 window.addEventListener('load', () => {
+  document.getElementById('fixed-ca').textContent = `CA: ${CONFIG.CONTRACT_ADDRESS}`;
   loadMarket();
   updateBadges();
+  renderQuick();
+  bindLiveValidation();
+  hydrateScoreBars();
 });
 </script>
 </body>
 </html>
+
+
 
 
