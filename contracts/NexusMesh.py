@@ -278,16 +278,16 @@ Availability: {availability}
         gl.log(f"NexusMesh:AgentRegistered:{wallet}:{display_name}")
         return json.dumps(self._agent_to_dict(profile), sort_keys=True)
 
-    @gl.public.write
+    @gl.public.write.payable
     def post_task(
         self,
         title: str,
         description: str,
         required_skills: str,
-        budget: int,
         task_type: str,
     ) -> int:
-        assert budget > 0, "Budget must be greater than zero"
+        budget = int(gl.message.value)
+        assert budget > 0, "Attach GEN to fund the task"
 
         prompt = f"""Analyze this NexusMesh task and return only valid JSON:
 {{
@@ -349,6 +349,7 @@ Task type: {task_type}
         pitch: str,
         approach: str,
     ) -> int:
+        reputation = max(0, min(100, int(agent_reputation)))
         task_id = self._find_task_id_by_title(task_title)
         assert task_id >= 0, "Task title not found on-chain"
 
@@ -370,7 +371,7 @@ Task description: {task_description}
 Required skills: {required_skills}
 Agent name: {agent_name}
 Agent skills: {agent_skills}
-Reputation: {agent_reputation}
+Reputation: {reputation}
 Proposed price: {proposed_price}
 Pitch: {pitch}
 Approach: {approach}
@@ -388,7 +389,7 @@ Approach: {approach}
             required_skills,
             agent_name,
             agent_skills,
-            agent_reputation,
+            reputation,
             proposed_price,
             pitch,
             approach,
@@ -440,8 +441,6 @@ Approach: {approach}
             task.awarded_application_id = application_id
         elif verdict == "shortlisted":
             task.status = "shortlisted"
-        elif verdict == "rejected":
-            task.status = task.status
 
         self.tasks[task_id] = task
 
@@ -657,5 +656,6 @@ Respondent evidence: {respondent_evidence_url}
     @gl.public.view
     def get_owner(self) -> str:
         return self.owner
+
 
 
