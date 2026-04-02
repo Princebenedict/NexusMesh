@@ -9,8 +9,7 @@ from genlayer import DynArray, TreeMap, allow_storage
 
 
 MAX_REPUTATION = 100
-TOKEN_SYMBOL = "GEN Testnet"
-NETWORK_NAME = "GenLayer Bradbury Testnet"
+TOKEN_SYMBOL = "$GEN"
 
 
 @allow_storage
@@ -45,7 +44,7 @@ class Application:
     agent_skills: str
     agent_reputation: int
     proposed_price: int
-    portfolio_url: str
+    profile_links: str
     pitch: str
     approach: str
     match_score: int
@@ -166,9 +165,6 @@ class NexusMesh(gl.Contract):
                 found_id = task_id
         return found_id
 
-    def _clamp_reputation(self, value: int) -> int:
-        return max(0, min(MAX_REPUTATION, int(value)))
-
     def _task_to_dict(self, task: Task) -> typing.Dict[str, typing.Any]:
         ids = self._get_task_application_ids(task.task_id)
         return {
@@ -204,7 +200,7 @@ class NexusMesh(gl.Contract):
             "max_reputation": MAX_REPUTATION,
             "proposed_price": application.proposed_price,
             "price_token": TOKEN_SYMBOL,
-            "portfolio_url": application.portfolio_url,
+            "profile_links": application.profile_links,
             "pitch": application.pitch,
             "approach": application.approach,
             "match_score": application.match_score,
@@ -317,7 +313,6 @@ Description: {description}
 Required skills: {required_skills}
 Budget: {budget}
 Budget token: {TOKEN_SYMBOL}
-Network: {NETWORK_NAME}
 Task type: {task_type}
 """
         enrichment = self._ask_ai(prompt)
@@ -361,24 +356,24 @@ Task type: {task_type}
         agent_skills: str,
         agent_reputation: int,
         proposed_price: int,
-        portfolio_url: str,
+        profile_links: str,
         pitch: str,
         approach: str,
     ) -> int:
-        reputation = self._clamp_reputation(agent_reputation)
+        reputation = max(0, min(MAX_REPUTATION, int(agent_reputation)))
         task_id = self._find_task_id_by_title(task_title)
         assert task_id >= 0, "Task title not found on-chain"
 
         task = self._get_task(task_id)
         assert task.status in ("open", "shortlisted"), "Task is not accepting applications"
 
-        prompt = f"""Score this NexusMesh bid and return only valid JSON:
+        prompt = f"""Score this NexusMesh bid strictly and return only valid JSON:
 {{
   "match_score": 78,
   "skill_match": 85,
   "price_value": 74,
   "recommendation": "accept",
-  "key_strength": "Strong API background",
+  "key_strength": "Strong public proof of work",
   "key_concern": ""
 }}
 
@@ -389,7 +384,7 @@ Agent name: {agent_name}
 Agent skills: {agent_skills}
 Reputation: {reputation}
 Max reputation: {MAX_REPUTATION}
-Portfolio URL: {portfolio_url}
+Profile links and credibility proof: {profile_links}
 Proposed price: {proposed_price}
 Price token: {TOKEN_SYMBOL}
 Pitch: {pitch}
@@ -410,7 +405,7 @@ Approach: {approach}
             agent_skills,
             reputation,
             proposed_price,
-            portfolio_url,
+            profile_links,
             pitch,
             approach,
             int(result.get("match_score", 50)),
@@ -606,9 +601,8 @@ Respondent evidence: {respondent_evidence_url}
             "posted_tasks": posted_tasks,
             "incoming_applications": incoming_applications,
             "feedback_sent": feedback,
-            "max_reputation": MAX_REPUTATION,
             "token_symbol": TOKEN_SYMBOL,
-            "network_name": NETWORK_NAME,
+            "max_reputation": MAX_REPUTATION,
         }, sort_keys=True)
 
     @gl.public.view
@@ -629,9 +623,8 @@ Respondent evidence: {respondent_evidence_url}
         return json.dumps({
             "applications": applications,
             "feedback_received": feedback,
-            "max_reputation": MAX_REPUTATION,
             "token_symbol": TOKEN_SYMBOL,
-            "network_name": NETWORK_NAME,
+            "max_reputation": MAX_REPUTATION,
         }, sort_keys=True)
 
     @gl.public.view
@@ -649,9 +642,8 @@ Respondent evidence: {respondent_evidence_url}
             "contract_count": self.contract_count,
             "feedback_count": self.feedback_count,
             "platform_fee_bps": self.platform_fee_bps,
-            "max_reputation": MAX_REPUTATION,
             "token_symbol": TOKEN_SYMBOL,
-            "network_name": NETWORK_NAME,
+            "max_reputation": MAX_REPUTATION,
             "tasks": tasks,
         }, sort_keys=True)
 
@@ -689,11 +681,3 @@ Respondent evidence: {respondent_evidence_url}
     @gl.public.view
     def get_max_reputation(self) -> int:
         return MAX_REPUTATION
-
-    @gl.public.view
-    def get_token_symbol(self) -> str:
-        return TOKEN_SYMBOL
-
-    @gl.public.view
-    def get_network_name(self) -> str:
-        return NETWORK_NAME

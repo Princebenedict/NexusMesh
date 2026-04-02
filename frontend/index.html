@@ -4,13 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexusMesh - Agentic Economy Marketplace</title>
-<meta name="description" content="NexusMesh is an agentic economy marketplace on GenLayer Bradbury for posting funded tasks in GEN Testnet, applying with capped reputation, evaluating delivery, and resolving disputes.">
-<meta property="og:title" content="NexusMesh - Agentic Economy Marketplace">
-<meta property="og:description" content="Post funded tasks in GEN Testnet, apply with capped reputation, review delivery, and resolve disputes on GenLayer Bradbury.">
-<meta property="og:type" content="website">
+<meta name="description" content="NexusMesh is an agentic economy marketplace on GenLayer Bradbury for posting funded tasks in $GEN, applying with capped reputation, evaluating delivery, and resolving disputes.">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080c14;--bg2:#0f1420;--bg3:#161d2e;--bg4:#1e2640;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.16);--text:#e7ecf8;--muted:#73809f;--muted2:#a0abc5;--green:#10b981;--green2:#34d399;--gdim:rgba(16,185,129,0.1);--gb:rgba(16,185,129,0.28);--amber:#f59e0b;--adim:rgba(245,158,11,0.1);--ab:rgba(245,158,11,0.25);--blue:#3b82f6;--bdim:rgba(59,130,246,0.1);--bb:rgba(59,130,246,0.25);--red:#ef4444;--rdim:rgba(239,68,68,0.1);--rb:rgba(239,68,68,0.25);--focus:#7dd3fc;--r:10px;--rl:14px}
+:root{--bg:#080c14;--bg2:#0f1420;--bg3:#161d2e;--bg4:#1e2640;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);--text:#e6ecfa;--muted:#70809d;--muted2:#a0acc8;--green:#10b981;--green2:#34d399;--gdim:rgba(16,185,129,0.1);--gb:rgba(16,185,129,0.28);--amber:#f59e0b;--adim:rgba(245,158,11,0.1);--ab:rgba(245,158,11,0.25);--blue:#3b82f6;--bdim:rgba(59,130,246,0.1);--bb:rgba(59,130,246,0.25);--red:#ef4444;--rdim:rgba(239,68,68,0.1);--rb:rgba(239,68,68,0.25);--focus:#7dd3fc;--r:10px;--rl:14px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Satoshi',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
@@ -18,8 +15,6 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
-
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:10px}
@@ -32,16 +27,16 @@ button,input,select,textarea{font:inherit}
 .wdot.on{background:var(--green);box-shadow:0 0 0 3px var(--gdim)}
 .waddr{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2)}
 .ca-box{padding:7px 10px;border:1px solid var(--border2);border-radius:10px;background:rgba(255,255,255,0.04);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber)}
-.lock-badge{padding:7px 10px;border:1px solid var(--gb);border-radius:10px;background:var(--gdim);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green2);letter-spacing:0.05em}
+.lock-badge{padding:7px 10px;border:1px solid var(--gb);border-radius:10px;background:var(--gdim);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green2)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;font-family:'Satoshi',sans-serif;font-size:13px;font-weight:600;transition:all 0.18s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:var(--r);border:none;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.18s;white-space:nowrap}
 .btn-primary{background:var(--green);color:#fff}
 .btn-primary:hover{background:#059669;transform:translateY(-1px)}
 .btn-primary:active{transform:none}
 .btn-ghost{background:rgba(255,255,255,0.05);border:1px solid var(--border2);color:var(--text)}
 .btn-ghost:hover{background:rgba(255,255,255,0.09)}
 .btn-sm{padding:6px 12px;font-size:12px}
-.btn-red{background:var(--rdim);border:1px solid var(--rb);color:#ff8f8f}
+.btn-red{background:var(--rdim);border:1px solid var(--rb);color:#ff9e9e}
 .btn-red:hover{background:rgba(239,68,68,0.18)}
 .btn:disabled{opacity:0.45;cursor:not-allowed;transform:none!important}
 .btn-block{width:100%}
@@ -90,7 +85,7 @@ button,input,select,textarea{font:inherit}
 .tag-s{background:var(--bdim);border-color:var(--bb);color:#93c5fd}
 .tag-c{background:var(--adim);border-color:var(--ab);color:var(--amber)}
 .tag-c.low{background:var(--gdim);border-color:var(--gb);color:var(--green2)}
-.tag-c.expert{background:var(--rdim);border-color:var(--rb);color:#ff8f8f}
+.tag-c.expert{background:var(--rdim);border-color:var(--rb);color:#ff9e9e}
 .tcard-footer{padding:10px 16px;border-top:1px solid var(--border);background:var(--bg3);display:flex;justify-content:space-between;align-items:center;margin-top:auto}
 .tprice{font-size:13px;font-weight:700;color:var(--green2);font-family:'JetBrains Mono',monospace}
 .tbids{font-size:11px;color:var(--muted2)}
@@ -113,14 +108,13 @@ button,input,select,textarea{font:inherit}
 .fg:last-child{margin-bottom:0}
 .fl{display:block;font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--muted2);letter-spacing:0.06em;margin-bottom:5px}
 .fl span{color:#ff8f8f}
-.fi,.fs,.ft{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:13px;transition:border-color 0.15s, box-shadow 0.15s, background 0.15s}
-.fi::placeholder,.ft::placeholder{color:#8892ad}
+.fi,.fs,.ft{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:13px;transition:border-color 0.15s, box-shadow 0.15s}
+.fi::placeholder,.ft::placeholder{color:#8995b0}
 .ft{resize:vertical;min-height:78px;line-height:1.5}
 .fh{font-size:11px;color:var(--muted);margin-top:4px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field-error{font-size:11px;color:#ff8f8f;margin-top:5px;min-height:16px}
+.field-error{font-size:11px;color:#ff9e9e;margin-top:5px;min-height:16px}
 .invalid{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(239,68,68,0.12)!important}
-.success-note{font-size:11px;color:#9ae6b4;margin-top:5px;min-height:16px}
 
 .icard{background:linear-gradient(135deg,rgba(16,185,129,0.08) 0%,rgba(59,130,246,0.05) 100%);border:1px solid var(--gb);border-radius:var(--rl);padding:18px}
 .ic-t{font-size:14px;font-weight:600;color:#fff;margin-bottom:12px}
@@ -152,7 +146,7 @@ button,input,select,textarea{font:inherit}
 .score-number{font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace}
 .score-number.good{color:var(--green2)}
 .score-number.warn{color:var(--amber)}
-.score-number.bad{color:#ff8f8f}
+.score-number.bad{color:#ff9e9e}
 .score-number.large{font-size:18px}
 .score-row{display:flex;gap:7px;align-items:center}
 .status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -163,7 +157,7 @@ button,input,select,textarea{font:inherit}
 .empty-icon{font-size:36px;opacity:0.3;margin-bottom:10px}
 .empty-msg{font-size:13px;font-weight:600;color:var(--muted2)}
 .empty-sub{font-size:12px;color:var(--muted);margin-top:4px}
-.notice{padding:12px 14px;border:1px solid var(--bb);background:var(--bdim);border-radius:10px;color:#d5e6ff;font-size:12px;margin-bottom:16px}
+.notice{padding:12px 14px;border:1px solid var(--bb);background:var(--bdim);border-radius:10px;color:#d7e6ff;font-size:12px;margin-bottom:16px}
 
 .footer{max-width:1200px;margin:0 auto 30px;padding:0 32px;color:var(--muted2)}
 .footer-box{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--border)}
@@ -222,7 +216,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
     </div>
     <div class="ca-box" id="fixed-ca">CA: 0x9026f734759602B4D4Fec05497e259B852ebf540</div>
     <div class="lock-badge">FIXED CONFIG</div>
-    <button class="btn btn-primary btn-sm" id="cbtn" onclick="connectWallet()">Connect Wallet</button>
+    <button class="btn btn-primary btn-sm wallet-connect-btn" id="cbtn" onclick="connectWallet()">Connect Wallet</button>
   </div>
 </header>
 
@@ -241,10 +235,10 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
 
 <section class="hero">
   <div class="hero-card">
-    <div class="hero-title">Hire agents, fund tasks in GEN Testnet, and manage work transparently on GenLayer.</div>
-    <div class="hero-sub">NexusMesh helps founders post funded tasks, lets agents apply with a capped reputation score out of 100, and keeps the workflow visible from posting through evaluation and dispute handling.</div>
+    <div class="hero-title">Hire agents, fund tasks in $GEN, and manage work transparently on GenLayer.</div>
+    <div class="hero-sub">NexusMesh helps founders post funded tasks, lets agents apply with a strict credibility-based reputation score capped at 100, and keeps the workflow visible from posting through evaluation and dispute handling.</div>
     <div class="hero-actions">
-      <button class="btn btn-primary" onclick="connectWallet()">Connect Wallet</button>
+      <button class="btn btn-primary wallet-connect-btn" onclick="connectWallet()">Connect Wallet</button>
       <button class="btn btn-ghost" onclick="go('post')">Post a Task</button>
       <button class="btn btn-ghost" onclick="go('apply')">Apply for Task</button>
     </div>
@@ -260,17 +254,17 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
     </div>
     <div class="kv">
       <div class="kv-label">PAYMENT ASSET</div>
-      <div class="kv-value">Native GEN Testnet</div>
+      <div class="kv-value">$GEN</div>
     </div>
     <div class="kv">
-      <div class="kv-label">CV / WORK SAMPLES</div>
-      <div class="kv-value">Applicants can submit a portfolio, GitHub, LinkedIn, resume, or CV URL in the application form.</div>
+      <div class="kv-label">PROFILE CREDIBILITY</div>
+      <div class="kv-value">Reputation is computed from GitHub, Twitter/X, Discord, LinkedIn, portfolio and supporting proof links. Max score: 100.</div>
     </div>
   </div>
 </section>
 
 <div class="notice">
-  Wallet connection is required for on-chain actions. Task funding uses native GEN Testnet on Bradbury, so the wallet prompt should show a native value transfer when posting a funded task. Reputation is capped at 100.
+  Wallet connection is required for on-chain actions. Task funding uses native $GEN on Bradbury, so the wallet prompt should show a native value transfer. Reputation is strict and capped at 100.
 </div>
 
 <div class="page active" id="page-market">
@@ -321,7 +315,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Post a Task</div>
-      <div class="ph-sub">Fund a task in native GEN Testnet. The wallet popup should show a native value send on Bradbury.</div>
+      <div class="ph-sub">Fund a task in native $GEN. The wallet popup should show a native value send on Bradbury.</div>
     </div>
   </div>
   <div class="fwrap">
@@ -340,13 +334,13 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
         </div>
         <div class="fg">
           <label class="fl" for="pt-skills">REQUIRED SKILLS <span>*</span></label>
-          <input class="fi" id="pt-skills" placeholder="python, fastapi, docker">
-          <div class="fh">Comma-separated</div>
+          <input class="fi" id="pt-skills" list="skill-suggestions" placeholder="solidity, discord moderation, event host">
+          <div class="fh">Comma-separated. Includes community, growth, and technical skills.</div>
           <div class="field-error" id="err-pt-skills"></div>
         </div>
         <div class="frow">
           <div class="fg">
-            <label class="fl" for="pt-budget">BUDGET (GEN TESTNET) <span>*</span></label>
+            <label class="fl" for="pt-budget">BUDGET ($GEN) <span>*</span></label>
             <input class="fi" type="number" id="pt-budget" min="0.001" step="0.001" placeholder="5">
             <div class="field-error" id="err-pt-budget"></div>
           </div>
@@ -360,15 +354,15 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
           </div>
         </div>
         <button class="btn btn-primary btn-block" id="post-btn" onclick="postTask()">Post Task</button>
-        <div id="post-result" class="result-box" aria-live="polite"></div>
+        <div id="post-result" class="result-box"></div>
       </div>
     </div>
     <div class="icard">
       <div class="ic-t">What happens when you post</div>
       <div class="ic-i"><div class="ic-dot">AI</div><div>GenLayer AI scores complexity and risk level on-chain.</div></div>
-      <div class="ic-i"><div class="ic-dot">GEN</div><div>The wallet sends native GEN Testnet with the task posting transaction.</div></div>
+      <div class="ic-i"><div class="ic-dot">$GEN</div><div>The wallet sends native $GEN with the task posting transaction.</div></div>
       <div class="ic-i"><div class="ic-dot">VIS</div><div>The task appears in Marketplace and My Posted Tasks.</div></div>
-      <div class="ic-i"><div class="ic-dot">TIP</div><div>If you want applicants to submit a CV or portfolio, ask for a link in the description and they can also provide it in the form below.</div></div>
+      <div class="ic-i"><div class="ic-dot">TIP</div><div>You can request proof of community work, moderation experience, portfolio links, or engineering repos directly in the task.</div></div>
     </div>
   </div>
 </div>
@@ -377,7 +371,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">Apply for a Task</div>
-      <div class="ph-sub">Reputation is capped at 100. Add CV, GitHub, LinkedIn, or portfolio links in the dedicated field.</div>
+      <div class="ph-sub">Reputation is strict and computed from credibility signals, capped at 100.</div>
     </div>
   </div>
   <div class="fwrap">
@@ -396,10 +390,12 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
         </div>
         <div class="fg">
           <label class="fl" for="ap-req">TASK REQUIRED SKILLS</label>
-          <input class="fi" id="ap-req" placeholder="python, docker">
+          <input class="fi" id="ap-req" list="skill-suggestions" placeholder="discord moderation, solidity, community ops">
           <div class="field-error" id="err-ap-req"></div>
         </div>
+
         <div class="section-rule">YOUR PROFILE</div>
+
         <div class="frow">
           <div class="fg">
             <label class="fl" for="ap-name">YOUR NAME <span>*</span></label>
@@ -408,50 +404,81 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
           </div>
           <div class="fg">
             <label class="fl" for="ap-skills">YOUR SKILLS <span>*</span></label>
-            <input class="fi" id="ap-skills" placeholder="python, fastapi">
+            <input class="fi" id="ap-skills" list="skill-suggestions" placeholder="twitter engagement, web3 research, react">
             <div class="field-error" id="err-ap-skills"></div>
           </div>
         </div>
+
         <div class="frow">
           <div class="fg">
-            <label class="fl" for="ap-rep">REPUTATION (0-100)</label>
-            <input class="fi" type="number" id="ap-rep" placeholder="70" min="0" max="100">
-            <div class="fh">Any value above 100 is automatically capped at 100.</div>
-            <div class="field-error" id="err-ap-rep"></div>
-          </div>
-          <div class="fg">
-            <label class="fl" for="ap-price">YOUR PRICE (GEN TESTNET) <span>*</span></label>
+            <label class="fl" for="ap-price">YOUR PRICE ($GEN) <span>*</span></label>
             <input class="fi" type="number" id="ap-price" min="0.001" step="0.001" placeholder="4.5">
             <div class="field-error" id="err-ap-price"></div>
           </div>
+          <div class="fg">
+            <label class="fl" for="ap-rep">REPUTATION SCORE (0-100)</label>
+            <input class="fi" type="number" id="ap-rep" min="0" max="100" readonly>
+            <div class="fh">Auto-scored from profile credibility, proof links, and social presence.</div>
+            <div class="field-error" id="err-ap-rep"></div>
+          </div>
         </div>
+
+        <div class="frow">
+          <div class="fg">
+            <label class="fl" for="ap-github">GITHUB URL</label>
+            <input class="fi" id="ap-github" placeholder="https://github.com/username">
+            <div class="field-error" id="err-ap-github"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="ap-twitter">TWITTER / X URL</label>
+            <input class="fi" id="ap-twitter" placeholder="https://x.com/username">
+            <div class="field-error" id="err-ap-twitter"></div>
+          </div>
+        </div>
+
+        <div class="frow">
+          <div class="fg">
+            <label class="fl" for="ap-discord">DISCORD PROFILE / HANDLE</label>
+            <input class="fi" id="ap-discord" placeholder="username#1234 or community proof link">
+            <div class="field-error" id="err-ap-discord"></div>
+          </div>
+          <div class="fg">
+            <label class="fl" for="ap-linkedin">LINKEDIN / PORTFOLIO URL</label>
+            <input class="fi" id="ap-linkedin" placeholder="https://linkedin.com/in/username">
+            <div class="field-error" id="err-ap-linkedin"></div>
+          </div>
+        </div>
+
         <div class="fg">
-          <label class="fl" for="ap-portfolio">PORTFOLIO / CV URL</label>
-          <input class="fi" id="ap-portfolio" placeholder="https://github.com/you or https://linkedin.com/in/you">
-          <div class="fh">Optional, but recommended for skill-based screening.</div>
-          <div class="field-error" id="err-ap-portfolio"></div>
+          <label class="fl" for="ap-proof">PROOF OF WORK / CASE STUDIES</label>
+          <textarea class="ft" id="ap-proof" rows="2" placeholder="Add shipped work, repos, communities moderated, campaigns run, events hosted, audits completed..."></textarea>
+          <div class="field-error" id="err-ap-proof"></div>
         </div>
+
         <div class="fg">
           <label class="fl" for="ap-pitch">PITCH <span>*</span></label>
           <textarea class="ft" id="ap-pitch" rows="2" placeholder="Why are you the best for this task?"></textarea>
           <div class="field-error" id="err-ap-pitch"></div>
         </div>
+
         <div class="fg">
           <label class="fl" for="ap-approach">APPROACH <span>*</span></label>
-          <textarea class="ft" id="ap-approach" rows="2" placeholder="Technical approach, methodology, delivery plan..."></textarea>
+          <textarea class="ft" id="ap-approach" rows="2" placeholder="Technical approach, moderation plan, community growth plan, delivery methodology..."></textarea>
           <div class="fh">AI evaluates this against requirements on-chain.</div>
           <div class="field-error" id="err-ap-approach"></div>
         </div>
+
         <button class="btn btn-primary btn-block" id="apply-btn" onclick="submitApp()">Submit Application</button>
-        <div id="apply-result" class="result-box" aria-live="polite"></div>
+        <div id="apply-result" class="result-box"></div>
       </div>
     </div>
     <div>
       <div class="icard">
-        <div class="ic-t">Scoring breakdown</div>
-        <div class="ic-i"><div class="ic-dot">SC</div><div>80-100 = Strong Accept · 60-79 = Accept · 40-59 = Consider · below 40 = Reject</div></div>
-        <div class="ic-i"><div class="ic-dot">REP</div><div>Reputation is capped at 100 on both frontend and contract.</div></div>
-        <div class="ic-i"><div class="ic-dot">CV</div><div>Use the Portfolio / CV URL field for GitHub, resume, LinkedIn, or portfolio links.</div></div>
+        <div class="ic-t">Credibility scoring breakdown</div>
+        <div class="ic-i"><div class="ic-dot">GH</div><div>GitHub presence, repos, and technical proof boost credibility strongly.</div></div>
+        <div class="ic-i"><div class="ic-dot">X</div><div>Twitter / X profile and public activity add community credibility.</div></div>
+        <div class="ic-i"><div class="ic-dot">DC</div><div>Discord moderation or community proof increases trust for ops roles.</div></div>
+        <div class="ic-i"><div class="ic-dot">PF</div><div>Portfolio, LinkedIn, case studies, shipped work, and detailed proof make the score stricter and stronger.</div></div>
       </div>
       <div class="fcard mt-16">
         <div class="fcard-hd">Quick Apply - Open Tasks</div>
@@ -476,7 +503,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="ph">
     <div>
       <div class="ph-title">My Applications</div>
-      <div class="ph-sub">Your submissions, AI match scores, and feedback.</div>
+      <div class="ph-sub">Your submissions, AI match scores, credibility score, and feedback.</div>
     </div>
     <button class="btn btn-ghost btn-sm" onclick="renderApps()">Refresh</button>
   </div>
@@ -494,25 +521,12 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
     <div class="fcard">
       <div class="fcard-hd">Evaluation Form</div>
       <div class="fcard-body">
-        <div class="fg">
-          <label class="fl" for="ev-title">TASK TITLE</label>
-          <input class="fi" id="ev-title" placeholder="Task that was completed">
-        </div>
-        <div class="fg">
-          <label class="fl" for="ev-desc">TASK DESCRIPTION</label>
-          <textarea class="ft" id="ev-desc" rows="2" placeholder="Original requirements"></textarea>
-        </div>
-        <div class="fg">
-          <label class="fl" for="ev-url">DELIVERY URL <span>*</span></label>
-          <input class="fi" id="ev-url" placeholder="https://github.com/agent/project">
-          <div class="field-error" id="err-ev-url"></div>
-        </div>
-        <div class="fg">
-          <label class="fl" for="ev-notes">NOTES</label>
-          <textarea class="ft" id="ev-notes" rows="2" placeholder="What was built, how to use..."></textarea>
-        </div>
+        <div class="fg"><label class="fl" for="ev-title">TASK TITLE</label><input class="fi" id="ev-title" placeholder="Task that was completed"></div>
+        <div class="fg"><label class="fl" for="ev-desc">TASK DESCRIPTION</label><textarea class="ft" id="ev-desc" rows="2" placeholder="Original requirements"></textarea></div>
+        <div class="fg"><label class="fl" for="ev-url">DELIVERY URL <span>*</span></label><input class="fi" id="ev-url" placeholder="https://github.com/agent/project"><div class="field-error" id="err-ev-url"></div></div>
+        <div class="fg"><label class="fl" for="ev-notes">NOTES</label><textarea class="ft" id="ev-notes" rows="2" placeholder="What was built, how to use..."></textarea></div>
         <button class="btn btn-primary btn-block" id="eval-btn" onclick="evalWork()">Run Evaluation</button>
-        <div id="eval-result" class="result-box" aria-live="polite"></div>
+        <div id="eval-result" class="result-box"></div>
       </div>
     </div>
     <div class="icard">
@@ -534,38 +548,21 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   <div class="fcard">
     <div class="fcard-hd">File a Dispute</div>
     <div class="fcard-body">
-      <div class="fg">
-        <label class="fl" for="dr-task">TASK DESCRIPTION</label>
-        <textarea class="ft" id="dr-task" rows="2"></textarea>
-      </div>
+      <div class="fg"><label class="fl" for="dr-task">TASK DESCRIPTION</label><textarea class="ft" id="dr-task" rows="2"></textarea></div>
       <div class="frow">
         <div>
           <div class="section-rule">CLAIMANT</div>
-          <div class="fg">
-            <label class="fl" for="dr-cs">STATEMENT <span>*</span></label>
-            <textarea class="ft" id="dr-cs" rows="3" placeholder="Your complaint..."></textarea>
-            <div class="field-error" id="err-dr-cs"></div>
-          </div>
-          <div class="fg">
-            <label class="fl" for="dr-ce">EVIDENCE URL</label>
-            <input class="fi" id="dr-ce" placeholder="https://...">
-          </div>
+          <div class="fg"><label class="fl" for="dr-cs">STATEMENT <span>*</span></label><textarea class="ft" id="dr-cs" rows="3" placeholder="Your complaint..."></textarea><div class="field-error" id="err-dr-cs"></div></div>
+          <div class="fg"><label class="fl" for="dr-ce">EVIDENCE URL</label><input class="fi" id="dr-ce" placeholder="https://..."></div>
         </div>
         <div>
           <div class="section-rule">RESPONDENT</div>
-          <div class="fg">
-            <label class="fl" for="dr-rs">STATEMENT <span>*</span></label>
-            <textarea class="ft" id="dr-rs" rows="3" placeholder="Defense..."></textarea>
-            <div class="field-error" id="err-dr-rs"></div>
-          </div>
-          <div class="fg">
-            <label class="fl" for="dr-re">EVIDENCE URL</label>
-            <input class="fi" id="dr-re" placeholder="https://...">
-          </div>
+          <div class="fg"><label class="fl" for="dr-rs">STATEMENT <span>*</span></label><textarea class="ft" id="dr-rs" rows="3" placeholder="Defense..."></textarea><div class="field-error" id="err-dr-rs"></div></div>
+          <div class="fg"><label class="fl" for="dr-re">EVIDENCE URL</label><input class="fi" id="dr-re" placeholder="https://..."></div>
         </div>
       </div>
       <button class="btn btn-primary btn-block" id="dispute-btn" onclick="doDispute()">Submit Dispute</button>
-      <div id="dispute-result" class="result-box" aria-live="polite"></div>
+      <div id="dispute-result" class="result-box"></div>
     </div>
   </div>
 </div>
@@ -581,26 +578,26 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
     <div class="acard">
       <h3>Why It Matters</h3>
       <ul>
-        <li>Wallet connection enables funded on-chain task posting.</li>
+        <li>Wallet connection enables funded on-chain task posting in $GEN.</li>
         <li>Applications and feedback stay visible in the UI.</li>
-        <li>Reputation is capped to a clean 0-100 scale.</li>
+        <li>Reputation is computed strictly and capped at 100.</li>
         <li>Task search and filtering help users navigate faster.</li>
-        <li>CV and portfolio submission has a dedicated application field.</li>
+        <li>Both technical and community-facing skills are supported.</li>
       </ul>
     </div>
     <div class="acard">
-      <h3>Recommended Next Additions</h3>
+      <h3>Skill Categories</h3>
       <ul>
-        <li>True live task feed from contract reads instead of local demo state.</li>
-        <li>User profile pages with work history and badges.</li>
-        <li>Notification center for applications and task changes.</li>
-        <li>Explorer links for every tx and funded task.</li>
-        <li>Dedicated task detail pages and pagination.</li>
+        <li>Engineering: Solidity, Rust, TypeScript, React, Python, audits, DevOps.</li>
+        <li>Web3 Ops: Discord moderation, community management, growth, support.</li>
+        <li>Marketing: Twitter/X engagement, campaigns, KOL outreach, content.</li>
+        <li>Events: Event host, AMA host, speaker coordination, onboarding.</li>
+        <li>Research: Tokenomics, governance, ecosystem mapping, competitor analysis.</li>
       </ul>
     </div>
     <div class="acard">
-      <h3>CV / Portfolio Submission</h3>
-      <p>Applicants can now include a dedicated portfolio or CV URL in the application form. Good options include GitHub, LinkedIn, portfolio sites, public resumes, and case-study links.</p>
+      <h3>Credibility Inputs</h3>
+      <p>Applicants can add GitHub, Twitter / X, Discord, LinkedIn, portfolio, and proof-of-work references. These are used to compute a stricter credibility score before submission.</p>
     </div>
     <div class="acard">
       <h3>Fixed Contract Address</h3>
@@ -622,16 +619,43 @@ code{font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,2
   </div>
 </footer>
 
-<div class="toast-wrap" id="tw" aria-live="polite" aria-atomic="true"></div>
+<datalist id="skill-suggestions">
+  <option value="solidity">
+  <option value="rust">
+  <option value="typescript">
+  <option value="javascript">
+  <option value="react">
+  <option value="nextjs">
+  <option value="python">
+  <option value="fastapi">
+  <option value="docker">
+  <option value="postgresql">
+  <option value="smart contract audit">
+  <option value="web3 research">
+  <option value="tokenomics">
+  <option value="governance research">
+  <option value="community management">
+  <option value="discord moderation">
+  <option value="twitter interaction">
+  <option value="twitter growth">
+  <option value="event host">
+  <option value="ama host">
+  <option value="content writing">
+  <option value="technical writing">
+  <option value="support ops">
+  <option value="devops">
+  <option value="ui/ux">
+  <option value="product design">
+</datalist>
+
+<div class="toast-wrap" id="tw"></div>
 
 <script>
 const CONFIG = Object.freeze({
   CONTRACT_ADDRESS: '0x9026f734759602B4D4Fec05497e259B852ebf540',
   BRADBURY_CHAIN_ID_HEX: '0x107d',
-  TOKEN_SYMBOL: 'GEN Testnet',
-  TOKEN_SHORT: 'GEN',
-  REPUTATION_MAX: 100,
-  PLATFORM_FEE_BPS: 250
+  TOKEN_SYMBOL: '$GEN',
+  REPUTATION_MAX: 100
 });
 
 const S = {
@@ -643,19 +667,12 @@ const S = {
 
 const DEMO = [
   {id:'d1',title:'Build REST API for AI Agent Analytics',desc:'FastAPI backend with 4 endpoints, OpenAPI docs, Docker, PostgreSQL with Alembic. Full test coverage.',skills:['python','fastapi','postgresql','docker'],budgetGen:5,cx:'complex',type:'fixed',bids:3},
-  {id:'d2',title:'Smart Contract Security Audit - DeFi Protocol',desc:'Full audit of a lending protocol. Identify reentrancy, overflow and access control issues. Deliver severity report.',skills:['solidity','security','defi','evm'],budgetGen:15,cx:'expert',type:'fixed',bids:1},
-  {id:'d3',title:'React Dashboard with Real-time WebSocket Charts',desc:'Responsive dashboard from Figma. React 18, Recharts, TailwindCSS, live data via WebSocket. 90+ Lighthouse score.',skills:['react','typescript','tailwind','websocket'],budgetGen:7.5,cx:'moderate',type:'fixed',bids:5},
-  {id:'d4',title:'Fine-tune Agent Behavior Classification Model',desc:'Fine-tune a transformer to detect fraudulent agent patterns from on-chain logs. Target 92%+ accuracy. PyTorch.',skills:['python','pytorch','ml','huggingface'],budgetGen:12,cx:'expert',type:'milestone',bids:2},
-  {id:'d5',title:'Technical Documentation for NexusMesh SDK',desc:'API docs, integration guides and 3 tutorials with working Python and JS examples. GitBook hosted.',skills:['technical-writing','api-docs','python','javascript'],budgetGen:2.5,cx:'simple',type:'fixed',bids:4},
-  {id:'d6',title:'Mobile-Responsive Agent Profile Pages',desc:'Next.js 14, TailwindCSS. All breakpoints 320px-1440px. Optimistic UI updates, accessibility compliant.',skills:['nextjs','react','tailwind'],budgetGen:4,cx:'moderate',type:'fixed',bids:2}
+  {id:'d2',title:'Discord Moderator for Web3 Community',desc:'Handle moderation, support triage, onboarding, and incident escalation for a fast-growing web3 Discord.',skills:['discord moderation','community management','support ops'],budgetGen:3.5,cx:'moderate',type:'hourly',bids:6},
+  {id:'d3',title:'Twitter / X Growth and Engagement Lead',desc:'Own posting cadence, community replies, social growth experiments and reporting for a launch campaign.',skills:['twitter interaction','twitter growth','content writing'],budgetGen:4,cx:'moderate',type:'fixed',bids:4},
+  {id:'d4',title:'Smart Contract Security Audit - DeFi Protocol',desc:'Full audit of a lending protocol. Identify reentrancy, overflow and access control issues. Deliver severity report.',skills:['solidity','smart contract audit','defi'],budgetGen:15,cx:'expert',type:'fixed',bids:1},
+  {id:'d5',title:'Event Host for Weekly Web3 AMA Series',desc:'Host live sessions, manage speaking flow, audience Q&A and post-event summaries.',skills:['event host','ama host','community management'],budgetGen:2.5,cx:'simple',type:'fixed',bids:2},
+  {id:'d6',title:'React Dashboard with Real-time WebSocket Charts',desc:'Responsive dashboard from Figma. React 18, charts, accessibility, live data via WebSocket.',skills:['react','typescript','ui/ux','websocket'],budgetGen:7.5,cx:'moderate',type:'fixed',bids:5}
 ];
-
-const VALIDATION_GROUPS = {
-  post: ['pt-title','pt-desc','pt-skills','pt-budget'],
-  apply: ['ap-title','ap-name','ap-skills','ap-rep','ap-price','ap-portfolio','ap-pitch','ap-approach'],
-  dispute: ['dr-cs','dr-rs'],
-  eval: ['ev-url']
-};
 
 function toNativeHex(amount) {
   const raw = String(amount || '').trim();
@@ -695,10 +712,7 @@ function clearFieldErrors(ids) {
   ids.forEach(id => {
     const el = document.getElementById(id);
     const err = document.getElementById('err-' + id);
-    if (el) {
-      el.classList.remove('invalid');
-      el.setAttribute('aria-invalid', 'false');
-    }
+    if (el) el.classList.remove('invalid');
     if (err) err.textContent = '';
   });
 }
@@ -706,10 +720,7 @@ function clearFieldErrors(ids) {
 function setFieldError(id, message) {
   const el = document.getElementById(id);
   const err = document.getElementById('err-' + id);
-  if (el) {
-    el.classList.add('invalid');
-    el.setAttribute('aria-invalid', 'true');
-  }
+  if (el) el.classList.add('invalid');
   if (err) err.textContent = message;
 }
 
@@ -723,51 +734,72 @@ function isValidUrl(value) {
   }
 }
 
+function profileLinksPayload() {
+  return {
+    github: val('ap-github'),
+    twitter: val('ap-twitter'),
+    discord: val('ap-discord'),
+    linkedin: val('ap-linkedin'),
+    proof: val('ap-proof')
+  };
+}
+
+function computeCredibilityScore() {
+  let score = 0;
+  const github = val('ap-github');
+  const twitter = val('ap-twitter');
+  const discord = val('ap-discord');
+  const linkedin = val('ap-linkedin');
+  const proof = val('ap-proof');
+  const pitch = val('ap-pitch');
+  const approach = val('ap-approach');
+
+  if (github && isValidUrl(github)) score += 28;
+  if (twitter && isValidUrl(twitter)) score += 16;
+  if (discord) score += 12;
+  if (linkedin && isValidUrl(linkedin)) score += 16;
+  if (proof.length >= 30) score += 14;
+  if (pitch.length >= 40) score += 7;
+  if (approach.length >= 60) score += 7;
+
+  const total = Math.max(0, Math.min(CONFIG.REPUTATION_MAX, score));
+  document.getElementById('ap-rep').value = total;
+  return total;
+}
+
 function validatePostForm() {
-  clearFieldErrors(VALIDATION_GROUPS.post);
+  clearFieldErrors(['pt-title','pt-desc','pt-skills','pt-budget']);
   let ok = true;
   if (!val('pt-title')) { setFieldError('pt-title', 'Title is required.'); ok = false; }
   if (!val('pt-desc')) { setFieldError('pt-desc', 'Description is required.'); ok = false; }
   if (!val('pt-skills')) { setFieldError('pt-skills', 'At least one skill is required.'); ok = false; }
   const budget = Number(val('pt-budget'));
-  if (!Number.isFinite(budget) || budget <= 0) {
-    setFieldError('pt-budget', `Budget must be greater than 0 ${CONFIG.TOKEN_SHORT}.`);
-    ok = false;
-  }
+  if (!Number.isFinite(budget) || budget <= 0) { setFieldError('pt-budget', 'Budget must be greater than 0 $GEN.'); ok = false; }
   return ok;
 }
 
 function validateApplyForm() {
-  clearFieldErrors(VALIDATION_GROUPS.apply);
+  clearFieldErrors(['ap-title','ap-name','ap-skills','ap-price','ap-rep','ap-github','ap-twitter','ap-linkedin','ap-pitch','ap-approach']);
   let ok = true;
   if (!val('ap-title')) { setFieldError('ap-title', 'Task title is required.'); ok = false; }
   if (!val('ap-name')) { setFieldError('ap-name', 'Your name is required.'); ok = false; }
   if (!val('ap-skills')) { setFieldError('ap-skills', 'Your skills are required.'); ok = false; }
-
-  const rep = Number(val('ap-rep') || '0');
-  if (rep < 0 || rep > CONFIG.REPUTATION_MAX) {
-    setFieldError('ap-rep', `Reputation must be between 0 and ${CONFIG.REPUTATION_MAX}.`);
-    ok = false;
-  }
-
   const price = Number(val('ap-price'));
-  if (!Number.isFinite(price) || price <= 0) {
-    setFieldError('ap-price', `Price must be greater than 0 ${CONFIG.TOKEN_SHORT}.`);
-    ok = false;
-  }
-
-  if (val('ap-portfolio') && !isValidUrl(val('ap-portfolio'))) {
-    setFieldError('ap-portfolio', 'Portfolio / CV URL must start with http:// or https://');
-    ok = false;
-  }
-
+  if (!Number.isFinite(price) || price <= 0) { setFieldError('ap-price', 'Price must be greater than 0 $GEN.'); ok = false; }
+  if (val('ap-github') && !isValidUrl(val('ap-github'))) { setFieldError('ap-github', 'GitHub URL must start with http:// or https://'); ok = false; }
+  if (val('ap-twitter') && !isValidUrl(val('ap-twitter'))) { setFieldError('ap-twitter', 'Twitter / X URL must start with http:// or https://'); ok = false; }
+  if (val('ap-linkedin') && !isValidUrl(val('ap-linkedin'))) { setFieldError('ap-linkedin', 'LinkedIn / Portfolio URL must start with http:// or https://'); ok = false; }
   if (!val('ap-pitch')) { setFieldError('ap-pitch', 'Pitch is required.'); ok = false; }
   if (!val('ap-approach')) { setFieldError('ap-approach', 'Approach is required.'); ok = false; }
+
+  const rep = computeCredibilityScore();
+  if (rep <= 0) { setFieldError('ap-rep', 'Add credibility links or proof to generate a reputation score.'); ok = false; }
+
   return ok;
 }
 
 function validateDisputeForm() {
-  clearFieldErrors(VALIDATION_GROUPS.dispute);
+  clearFieldErrors(['dr-cs','dr-rs']);
   let ok = true;
   if (!val('dr-cs')) { setFieldError('dr-cs', 'Claimant statement is required.'); ok = false; }
   if (!val('dr-rs')) { setFieldError('dr-rs', 'Respondent statement is required.'); ok = false; }
@@ -775,7 +807,7 @@ function validateDisputeForm() {
 }
 
 function validateEvalForm() {
-  clearFieldErrors(VALIDATION_GROUPS.eval);
+  clearFieldErrors(['ev-url']);
   if (!val('ev-url')) {
     setFieldError('ev-url', 'Delivery URL is required.');
     return false;
@@ -797,8 +829,8 @@ function loadMarket() {
     title: t.title,
     desc: t.desc || t.description || '',
     skills: (t.skills || '').split(',').map(s => s.trim()).filter(Boolean),
-    budgetGen: Number(t.budgetGen || t.budget || 0),
-    cx: t.cx || guessCx(Number(t.budgetGen || t.budget || 0)),
+    budgetGen: Number(t.budgetGen || 0),
+    cx: t.cx || guessCx(Number(t.budgetGen || 0)),
     type: t.type || 'fixed',
     bids: 0
   }));
@@ -820,7 +852,6 @@ function loadMarket() {
   document.getElementById('market-grid').innerHTML = all.length
     ? all.map(t => tCard(t)).join('')
     : '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No tasks match your filters</div><div class="empty-sub">Try another keyword or clear filters.</div></div>';
-  hydrateScoreBars(document.getElementById('market-grid'));
 }
 
 function tCard(t) {
@@ -845,7 +876,7 @@ function tCard(t) {
         <span class="tbids">${t.bids || 0} bids</span>
       </div>
       <div class="tcard-actions">
-        <button class="btn btn-primary btn-sm" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || "",skills:skills.join(", "),budgetGen:t.budgetGen}).replace(/'/g,"&#39;")})'>Apply</button>
+        <button class="btn btn-primary btn-sm" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || "",skills:skills.join(", ")}).replace(/'/g,"&#39;")})'>Apply</button>
         <button class="btn btn-ghost btn-sm" onclick='openTMod(${JSON.stringify(t).replace(/'/g,"&#39;")})'>Details</button>
       </div>
     </div>
@@ -886,7 +917,7 @@ async function postTask() {
     save();
     clearFields(['pt-title', 'pt-desc', 'pt-skills', 'pt-budget']);
     document.getElementById('pt-type').selectedIndex = 0;
-    document.getElementById('post-result').innerHTML = `<div class="feedback-box">Task posted and funded in ${CONFIG.TOKEN_SYMBOL}.</div>`;
+    document.getElementById('post-result').innerHTML = '<div class="feedback-box">Task posted and funded in $GEN.</div>';
     toast('Task posted successfully.', 'ok');
     updateBadges();
     loadMarket();
@@ -909,9 +940,9 @@ async function submitApp() {
   const approach = val('ap-approach');
   const name = val('ap-name');
   const skills = val('ap-skills');
-  const portfolioUrl = val('ap-portfolio');
-  const rep = Math.min(CONFIG.REPUTATION_MAX, Math.max(0, parseInt(val('ap-rep') || '0', 10)));
+  const rep = computeCredibilityScore();
   const priceGen = Number(val('ap-price'));
+  const profileLinks = profileLinksPayload();
 
   const btn = document.getElementById('apply-btn');
   setBtn(btn, true, 'Submitting...');
@@ -927,7 +958,7 @@ async function submitApp() {
         skills,
         rep,
         Math.round(priceGen * 1000000),
-        portfolioUrl,
+        JSON.stringify(profileLinks),
         pitch,
         approach
       ], '0x0');
@@ -943,7 +974,7 @@ async function submitApp() {
       agentName: name,
       agentSkills: skills,
       reputation: rep,
-      portfolioUrl,
+      profileLinks,
       pitch,
       approach,
       priceGen,
@@ -955,18 +986,18 @@ async function submitApp() {
     });
 
     save();
-    clearFields(['ap-title', 'ap-desc', 'ap-req', 'ap-name', 'ap-skills', 'ap-rep', 'ap-price', 'ap-portfolio', 'ap-pitch', 'ap-approach']);
+    clearFields(['ap-title','ap-desc','ap-req','ap-name','ap-skills','ap-price','ap-github','ap-twitter','ap-discord','ap-linkedin','ap-proof','ap-pitch','ap-approach']);
+    document.getElementById('ap-rep').value = '';
     document.getElementById('apply-result').innerHTML = `
       <div class="feedback-box">
         Application submitted.
         <div class="status-row result-stack">
           <span class="score-number ${col} large">${score}/100</span>
           <span>AI Score · <strong>${rec.replace('_', ' ').toUpperCase()}</strong></span>
+          <span>Credibility · <strong>${rep}/100</strong></span>
         </div>
-        <div class="score-bar result-stack"><div class="score-fill dynamic-width" data-score="${score}"></div></div>
       </div>
     `;
-    hydrateScoreBars(document.getElementById('apply-result'));
     toast('Application sent successfully.', 'ok');
     updateBadges();
     renderApps();
@@ -978,13 +1009,22 @@ async function submitApp() {
   }
 }
 
+function renderLinks(links) {
+  if (!links) return '';
+  const items = [];
+  if (links.github) items.push(`<span>GitHub: <a href="${escAttr(links.github)}" target="_blank" rel="noopener noreferrer">${esc(links.github)}</a></span>`);
+  if (links.twitter) items.push(`<span>Twitter/X: <a href="${escAttr(links.twitter)}" target="_blank" rel="noopener noreferrer">${esc(links.twitter)}</a></span>`);
+  if (links.linkedin) items.push(`<span>Portfolio: <a href="${escAttr(links.linkedin)}" target="_blank" rel="noopener noreferrer">${esc(links.linkedin)}</a></span>`);
+  if (links.discord) items.push(`<span>Discord: ${esc(links.discord)}</span>`);
+  return items.length ? `<div class="app-meta">${items.join('')}</div>` : '';
+}
+
 function loadMyTasks() {
   const w = document.getElementById('mytasks-wrap');
   if (!S.posted.length) {
-    w.innerHTML = '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No tasks posted yet</div><div class="empty-sub">Post a funded task in GEN Testnet from the Post Task tab.</div></div>';
+    w.innerHTML = '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No tasks posted yet</div><div class="empty-sub">Post a funded task in $GEN from the Post Task tab.</div></div>';
     return;
   }
-
   w.innerHTML = S.posted.map((t, ti) => {
     const myApps = S.apps.filter(a => a.taskTitle === t.title);
     return `
@@ -1014,9 +1054,9 @@ function loadMyTasks() {
                        <span class="chip ${a.rec === 'strong_accept' || a.rec === 'accept' ? 'chip-done' : 'chip-pend'}">${(a.rec || '').replace('_', ' ').toUpperCase()}</span>
                      </div>
                    </div>
-                   <div class="score-bar"><div class="score-fill dynamic-width" data-score="${a.score}"></div></div>
-                   <div class="app-meta"><span>Skills: ${esc(a.agentSkills)}</span><span>Price: ${genDisplay(a.priceGen || 0)}</span><span>Reputation: ${a.reputation || 0}/100</span></div>
-                   ${a.portfolioUrl ? `<div class="app-meta"><span>Portfolio / CV: <a href="${escAttr(a.portfolioUrl)}" target="_blank" rel="noopener noreferrer">${esc(a.portfolioUrl)}</a></span></div>` : ''}
+                   <div class="app-meta"><span>Skills: ${esc(a.agentSkills)}</span><span>Price: ${genDisplay(a.priceGen || 0)}</span><span>Credibility: ${a.reputation || 0}/100</span></div>
+                   ${renderLinks(a.profileLinks)}
+                   ${a.profileLinks?.proof ? `<div class="app-pitch"><strong>Proof:</strong> ${esc(a.profileLinks.proof)}</div>` : ''}
                    <div class="app-pitch"><strong>Pitch:</strong> ${esc(a.pitch)}</div>
                    ${a.feedback
                      ? `<div class="feedback-box">Founder feedback: ${esc(a.feedback)}</div>`
@@ -1033,7 +1073,6 @@ function loadMyTasks() {
       </div>
     `;
   }).join('');
-  hydrateScoreBars(w);
 }
 
 function delTask(i) {
@@ -1048,10 +1087,7 @@ function delTask(i) {
 
 function sendFb(ti, ai) {
   const fb = document.getElementById(`fb_${ti}_${ai}`)?.value?.trim();
-  if (!fb) {
-    toast('Enter feedback first.', 'err');
-    return;
-  }
+  if (!fb) { toast('Enter feedback first.', 'err'); return; }
   const taskTitle = S.posted[ti]?.title;
   const taskApps = S.apps.filter(a => a.taskTitle === taskTitle);
   if (taskApps[ai]) taskApps[ai].feedback = fb;
@@ -1080,7 +1116,6 @@ function renderApps() {
     w.innerHTML = '<div class="empty"><div class="empty-icon">0</div><div class="empty-msg">No applications yet</div><div class="empty-sub">Apply for tasks from the Apply for Task tab.</div></div>';
     return;
   }
-
   w.innerHTML = [...S.apps].reverse().map((a, ri) => {
     const i = S.apps.length - 1 - ri;
     const col = a.score >= 70 ? 'good' : a.score >= 50 ? 'warn' : 'bad';
@@ -1089,7 +1124,7 @@ function renderApps() {
         <div class="panel-hd">
           <div>
             <div class="panel-title">${esc(a.taskTitle)}</div>
-            <div class="panel-meta">Applied ${new Date(a.ts).toLocaleDateString()} · Price: ${genDisplay(a.priceGen || 0)} · Reputation: ${a.reputation || 0}/100</div>
+            <div class="panel-meta">Applied ${new Date(a.ts).toLocaleDateString()} · Price: ${genDisplay(a.priceGen || 0)} · Credibility: ${a.reputation || 0}/100</div>
           </div>
           <div class="status-row">
             <span class="chip ${a.status === 'accepted' ? 'chip-done' : 'chip-pend'}">${a.status === 'accepted' ? 'ACCEPTED' : 'PENDING'}</span>
@@ -1098,10 +1133,10 @@ function renderApps() {
           </div>
         </div>
         <div class="panel-body">
-          <div class="score-bar"><div class="score-fill dynamic-width" data-score="${a.score}"></div></div>
           <div class="panel-meta">${(a.rec || 'consider').replace('_', ' ').toUpperCase()}</div>
           <div class="app-meta"><span>As: ${esc(a.agentName)}</span><span>Skills: ${esc(a.agentSkills)}</span></div>
-          ${a.portfolioUrl ? `<div class="app-meta"><span>Portfolio / CV: <a href="${escAttr(a.portfolioUrl)}" target="_blank" rel="noopener noreferrer">${esc(a.portfolioUrl)}</a></span></div>` : ''}
+          ${renderLinks(a.profileLinks)}
+          ${a.profileLinks?.proof ? `<div class="app-pitch"><strong>Proof:</strong> ${esc(a.profileLinks.proof)}</div>` : ''}
           <div class="app-pitch"><strong>Your pitch:</strong> ${esc(a.pitch)}</div>
           ${a.feedback
             ? `<div class="review-box ${a.status === 'accepted' ? 'accepted' : 'default'}"><strong>Founder feedback:</strong> ${esc(a.feedback)}</div>`
@@ -1111,7 +1146,6 @@ function renderApps() {
       </div>
     `;
   }).join('');
-  hydrateScoreBars(w);
 }
 
 function delApp(i) {
@@ -1127,8 +1161,7 @@ function renderQuick() {
   document.getElementById('qtasks').innerHTML = tasks.map(t =>
     `<button class="btn btn-ghost btn-sm quick-task-btn" onclick='quickFill(${JSON.stringify({title:t.title,desc:t.desc || t.description || "",skills:Array.isArray(t.skills) ? t.skills.join(", ") : t.skills || ""}).replace(/'/g,"&#39;")})'>
       ${esc(t.title.slice(0, 42))}${t.title.length > 42 ? '...' : ''}
-    </button>`
-  ).join('');
+    </button>`).join('');
 }
 
 async function evalWork() {
@@ -1136,25 +1169,14 @@ async function evalWork() {
     toast('Please provide a valid delivery URL.', 'err');
     return;
   }
-
   const btn = document.getElementById('eval-btn');
   setBtn(btn, true, 'Evaluating...');
-
   try {
-    if (S.wallet && window.ethereum) {
-      await sendTx('evaluate_work', [val('ev-title'), val('ev-desc'), val('ev-url'), val('ev-notes')], '0x0');
-    }
+    if (S.wallet && window.ethereum) await sendTx('evaluate_work', [val('ev-title'), val('ev-desc'), val('ev-url'), val('ev-notes')], '0x0');
     const score = Math.floor(Math.random() * 25) + 72;
     const ok = score >= 60;
     clearFields(['ev-title', 'ev-desc', 'ev-url', 'ev-notes']);
-    document.getElementById('eval-result').innerHTML = `
-      <div class="feedback-box">
-        ${ok ? 'Work approved.' : 'Revision required.'}
-        <div class="panel-meta">Quality: ${score}/100 · Payment: ${ok ? 100 : 0}%</div>
-        <div class="score-bar result-stack"><div class="score-fill dynamic-width" data-score="${score}"></div></div>
-      </div>
-    `;
-    hydrateScoreBars(document.getElementById('eval-result'));
+    document.getElementById('eval-result').innerHTML = `<div class="feedback-box">${ok ? 'Work approved.' : 'Revision required.'}<div class="panel-meta">Quality: ${score}/100 · Payment: ${ok ? 100 : 0}%</div></div>`;
     toast('Evaluation completed.', 'ok');
   } catch (e) {
     document.getElementById('eval-result').innerHTML = `<div class="review-box default">${esc(e.message)}</div>`;
@@ -1169,14 +1191,10 @@ async function doDispute() {
     toast('Please complete both dispute statements.', 'err');
     return;
   }
-
   const btn = document.getElementById('dispute-btn');
   setBtn(btn, true, 'Submitting...');
-
   try {
-    if (S.wallet && window.ethereum) {
-      await sendTx('resolve_dispute', [val('dr-task'), val('dr-cs'), val('dr-ce'), val('dr-rs'), val('dr-re')], '0x0');
-    }
+    if (S.wallet && window.ethereum) await sendTx('resolve_dispute', [val('dr-task'), val('dr-cs'), val('dr-ce'), val('dr-rs'), val('dr-re')], '0x0');
     const rulings = ['agent_wins', 'client_wins', 'split'];
     const ruling = rulings[Math.floor(Math.random() * 3)];
     clearFields(['dr-task', 'dr-cs', 'dr-ce', 'dr-rs', 'dr-re']);
@@ -1198,19 +1216,23 @@ async function ensureBradbury() {
   }
 }
 
+function updateWalletButtons() {
+  const connected = !!S.wallet;
+  document.querySelectorAll('.wallet-connect-btn').forEach(btn => {
+    btn.textContent = connected ? 'Connected' : 'Connect Wallet';
+    btn.disabled = connected;
+  });
+}
+
 async function connectWallet() {
-  if (!window.ethereum) {
-    toast('Install MetaMask first.', 'err');
-    return;
-  }
+  if (!window.ethereum) { toast('Install MetaMask first.', 'err'); return; }
   try {
     await ensureBradbury();
     const acc = await window.ethereum.request({ method: 'eth_requestAccounts' });
     S.wallet = acc[0];
     document.getElementById('wdot').classList.add('on');
-    document.getElementById('waddr').textContent = `${S.wallet.slice(0, 8)}...${S.wallet.slice(-4)}`;
-    document.getElementById('cbtn').textContent = 'Connected';
-    document.getElementById('cbtn').disabled = true;
+    document.getElementById('waddr').textContent = S.wallet.slice(0, 8) + '...' + S.wallet.slice(-4);
+    updateWalletButtons();
     toast('Wallet connected.', 'ok');
   } catch (e) {
     toast('Failed: ' + e.message, 'err');
@@ -1227,44 +1249,12 @@ async function sendTx(method, args, valueHex) {
   });
 }
 
-function val(id) {
-  return (document.getElementById(id)?.value || '').trim();
-}
-
-function esc(s) {
-  return String(s || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-function escAttr(s) {
-  return esc(s).replace(/'/g, '&#39;');
-}
-
-function clearFields(ids) {
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.value = '';
-      el.classList.remove('invalid');
-      el.setAttribute('aria-invalid', 'false');
-    }
-    const err = document.getElementById('err-' + id);
-    if (err) err.textContent = '';
-  });
-}
-
-function guessCx(b) {
-  return b < 3 ? 'simple' : b < 8 ? 'moderate' : b < 20 ? 'complex' : 'expert';
-}
-
-function setBtn(btn, dis, txt) {
-  btn.disabled = dis;
-  btn.textContent = txt;
-}
-
+function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+function esc(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function escAttr(s) { return esc(s).replace(/'/g, '&#39;'); }
+function clearFields(ids) { ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; const err = document.getElementById('err-' + id); if (err) err.textContent = ''; if (el) el.classList.remove('invalid'); }); }
+function guessCx(b) { return b < 3 ? 'simple' : b < 8 ? 'moderate' : b < 20 ? 'complex' : 'expert'; }
+function setBtn(btn, dis, txt) { btn.disabled = dis; btn.textContent = txt; }
 function save() {
   localStorage.setItem('nm_posted', JSON.stringify(S.posted));
   localStorage.setItem('nm_apps', JSON.stringify(S.apps));
@@ -1284,54 +1274,23 @@ function toast(msg, type = 'info') {
   }, 3500);
 }
 
-function hydrateScoreBars(root = document) {
-  root.querySelectorAll('.score-fill[data-score]').forEach(el => {
-    const score = Number(el.dataset.score || 0);
-    el.style.width = `${Math.max(0, Math.min(100, score))}%`;
-  });
-}
-
-function bindLiveValidation() {
-  const blurValidate = {
-    'pt-title': validatePostForm,
-    'pt-desc': validatePostForm,
-    'pt-skills': validatePostForm,
-    'pt-budget': validatePostForm,
-    'ap-title': validateApplyForm,
-    'ap-name': validateApplyForm,
-    'ap-skills': validateApplyForm,
-    'ap-rep': validateApplyForm,
-    'ap-price': validateApplyForm,
-    'ap-portfolio': validateApplyForm,
-    'ap-pitch': validateApplyForm,
-    'ap-approach': validateApplyForm,
-    'dr-cs': validateDisputeForm,
-    'dr-rs': validateDisputeForm,
-    'ev-url': validateEvalForm
-  };
-
-  Object.keys(blurValidate).forEach(id => {
+function bindCredibilityInputs() {
+  ['ap-github','ap-twitter','ap-discord','ap-linkedin','ap-proof','ap-pitch','ap-approach'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('blur', () => blurValidate[id]());
-    el.addEventListener('input', () => {
-      if (el.classList.contains('invalid')) blurValidate[id]();
-    });
+    el.addEventListener('input', computeCredibilityScore);
   });
 }
 
 window.addEventListener('load', () => {
   document.getElementById('fixed-ca').textContent = `CA: ${CONFIG.CONTRACT_ADDRESS}`;
+  updateWalletButtons();
   loadMarket();
   updateBadges();
   renderQuick();
-  bindLiveValidation();
-  hydrateScoreBars();
+  bindCredibilityInputs();
+  computeCredibilityScore();
 });
 </script>
 </body>
 </html>
-
-
-
-
