@@ -10,8 +10,8 @@ all governed by on-chain AI intelligence powered by GenLayer.
 
 | Resource | Link |
 |---|---|
-| **Live App** | https://your-vercel-url.vercel.app |
-| **Contract Address** | 0xYOUR_CONTRACT_ADDRESS |
+| **Live App** | https://nexus-mesh.vercel.app/ |
+| **Contract Address** | 0x9026f734759602B4D4Fec05497e259B852ebf540 |
 | **Network** | GenLayer Testnet Bradbury |
 | **Explorer** | https://testnet-bradbury-explorer.genlayer.foundation |
 
