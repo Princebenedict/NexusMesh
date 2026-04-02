@@ -17,7 +17,6 @@ class Task:
     description: str
     required_skills: str
     budget: int
-    delivery_timeline_hours: int
     task_type: str
     complexity: str
     risk_level: str
@@ -34,11 +33,13 @@ class Application:
     application_id: int
     task_id: int
     bidder: str
+    task_title: str
+    task_description: str
+    required_skills: str
     agent_name: str
     agent_skills: str
     agent_reputation: int
     proposed_price: int
-    delivery_blocks: int
     pitch: str
     approach: str
     match_score: int
@@ -122,12 +123,8 @@ class NexusMesh(gl.Contract):
 
     def _ask_ai(self, prompt: str) -> typing.Dict[str, typing.Any]:
         try:
-            response = gl.eq_principle.prompt_non_comparative(
-                lambda: prompt,
-                task=prompt,
-                criteria="Return valid JSON only."
-            )
-            return self._safe_json(response)
+            result = gl.exec_prompt(prompt)
+            return self._safe_json(result)
         except Exception:
             return {}
 
@@ -147,6 +144,22 @@ class NexusMesh(gl.Contract):
             return DynArray()
         return ids
 
+    def _find_task_id_by_title(self, title: str) -> int:
+        found_id = -1
+        for task_id in self.task_ids:
+            task = self.tasks.get(task_id)
+            if task is not None and task.title == title:
+                found_id = task_id
+        return found_id
+
+    def _find_task_id_by_description(self, description: str) -> int:
+        found_id = -1
+        for task_id in self.task_ids:
+            task = self.tasks.get(task_id)
+            if task is not None and task.description == description:
+                found_id = task_id
+        return found_id
+
     def _task_to_dict(self, task: Task) -> typing.Dict[str, typing.Any]:
         ids = self._get_task_application_ids(task.task_id)
         return {
@@ -156,7 +169,6 @@ class NexusMesh(gl.Contract):
             "description": task.description,
             "required_skills": task.required_skills,
             "budget": task.budget,
-            "delivery_timeline_hours": task.delivery_timeline_hours,
             "task_type": task.task_type,
             "complexity": task.complexity,
             "risk_level": task.risk_level,
@@ -173,11 +185,13 @@ class NexusMesh(gl.Contract):
             "application_id": application.application_id,
             "task_id": application.task_id,
             "bidder": application.bidder,
+            "task_title": application.task_title,
+            "task_description": application.task_description,
+            "required_skills": application.required_skills,
             "agent_name": application.agent_name,
             "agent_skills": application.agent_skills,
             "agent_reputation": application.agent_reputation,
             "proposed_price": application.proposed_price,
-            "delivery_blocks": application.delivery_blocks,
             "pitch": application.pitch,
             "approach": application.approach,
             "match_score": application.match_score,
@@ -228,29 +242,23 @@ class NexusMesh(gl.Contract):
     ) -> str:
         wallet = str(gl.message.sender_address)
 
-        prompt = f"""You are validating an agent profile for NexusMesh.
-
-Agent Profile:
-- Name: {display_name}
-- Type: {agent_type}
-- Skills: {skills}
-- Description: {description}
-- Hourly Rate: {hourly_rate}
-- Availability: {availability}
-
-Return ONLY valid JSON:
+        prompt = f"""Validate this NexusMesh agent profile and return only valid JSON:
 {{
   "approved": true,
   "quality_score": 80,
   "normalized_skills": ["python", "fastapi"],
   "category": "development",
   "rejection_reason": ""
-}}"""
+}}
 
+Name: {display_name}
+Type: {agent_type}
+Skills: {skills}
+Description: {description}
+Hourly rate: {hourly_rate}
+Availability: {availability}
+"""
         result = self._ask_ai(prompt)
-        quality_score = int(result.get("quality_score", 60))
-        approved = bool(result.get("approved", True))
-        category = str(result.get("category", "other"))
         normalized_skills = json.dumps(result.get("normalized_skills", []), sort_keys=True)
 
         profile = gl.storage.inmem_allocate(
@@ -262,30 +270,26 @@ Return ONLY valid JSON:
             description,
             hourly_rate,
             availability,
-            quality_score,
-            category,
-            approved,
+            int(result.get("quality_score", 60)),
+            str(result.get("category", "other")),
+            bool(result.get("approved", True)),
         )
         self.agents[wallet] = profile
-
-        gl.log(
-            f"NexusMesh:AgentRegistered:{wallet}:{display_name}:{category}:{quality_score}"
-        )
+        gl.log(f"NexusMesh:AgentRegistered:{wallet}:{display_name}")
         return json.dumps(self._agent_to_dict(profile), sort_keys=True)
 
-    @gl.public.write.payable
+    @gl.public.write
     def post_task(
         self,
         title: str,
         description: str,
         required_skills: str,
-        delivery_timeline_hours: int,
+        budget: int,
         task_type: str,
     ) -> int:
-        budget = int(gl.message.value)
-        assert budget > 0, "Attach GEN funding to post a task"
+        assert budget > 0, "Budget must be greater than zero"
 
-        prompt = f"""Analyze this NexusMesh task and return ONLY valid JSON:
+        prompt = f"""Analyze this NexusMesh task and return only valid JSON:
 {{
   "complexity": "moderate",
   "risk_level": "medium",
@@ -295,14 +299,12 @@ Return ONLY valid JSON:
   "improvement_tip": "Add acceptance criteria."
 }}
 
-Task:
-- Title: {title}
-- Description: {description}
-- Required Skills: {required_skills}
-- Budget: {budget}
-- Delivery Timeline Hours: {delivery_timeline_hours}
-- Task Type: {task_type}"""
-
+Title: {title}
+Description: {description}
+Required skills: {required_skills}
+Budget: {budget}
+Task type: {task_type}
+"""
         enrichment = self._ask_ai(prompt)
         task_id = self.task_count
 
@@ -316,12 +318,11 @@ Task:
             if enrichment.get("normalized_skills")
             else required_skills,
             budget,
-            delivery_timeline_hours,
             task_type,
             str(enrichment.get("complexity", "moderate")),
             str(enrichment.get("risk_level", "medium")),
             int(enrichment.get("clarity_score", 70)),
-            int(enrichment.get("estimated_hours", delivery_timeline_hours)),
+            int(enrichment.get("estimated_hours", 8)),
             str(enrichment.get("improvement_tip", "")),
             "open",
             -1,
@@ -332,15 +333,12 @@ Task:
         self.task_ids.append(task_id)
         self.task_count = task_id + 1
 
-        gl.log(
-            f"NexusMesh:TaskPosted:{task_id}:{title}:{budget}:{task.complexity}:{task.risk_level}"
-        )
+        gl.log(f"NexusMesh:TaskPosted:{task_id}:{title}")
         return task_id
 
     @gl.public.write
     def submit_bid(
         self,
-        task_id: int,
         task_title: str,
         task_description: str,
         required_skills: str,
@@ -348,14 +346,16 @@ Task:
         agent_skills: str,
         agent_reputation: int,
         proposed_price: int,
-        delivery_blocks: int,
         pitch: str,
         approach: str,
     ) -> int:
+        task_id = self._find_task_id_by_title(task_title)
+        assert task_id >= 0, "Task title not found on-chain"
+
         task = self._get_task(task_id)
         assert task.status in ("open", "shortlisted"), "Task is not accepting applications"
 
-        prompt = f"""Score this bid for NexusMesh and return ONLY valid JSON:
+        prompt = f"""Score this NexusMesh bid and return only valid JSON:
 {{
   "match_score": 78,
   "skill_match": 85,
@@ -365,20 +365,16 @@ Task:
   "key_concern": ""
 }}
 
-TASK:
-- Title: {task_title}
-- Description: {task_description}
-- Required Skills: {required_skills}
-
-BID:
-- Agent Name: {agent_name}
-- Agent Skills: {agent_skills}
-- Reputation: {agent_reputation}
-- Proposed Price: {proposed_price}
-- Delivery Time: {delivery_blocks}
-- Pitch: {pitch}
-- Approach: {approach}"""
-
+Task title: {task_title}
+Task description: {task_description}
+Required skills: {required_skills}
+Agent name: {agent_name}
+Agent skills: {agent_skills}
+Reputation: {agent_reputation}
+Proposed price: {proposed_price}
+Pitch: {pitch}
+Approach: {approach}
+"""
         result = self._ask_ai(prompt)
         application_id = self.application_count
 
@@ -387,11 +383,13 @@ BID:
             application_id,
             task_id,
             str(gl.message.sender_address),
+            task_title,
+            task_description,
+            required_skills,
             agent_name,
             agent_skills,
             agent_reputation,
             proposed_price,
-            delivery_blocks,
             pitch,
             approach,
             int(result.get("match_score", 50)),
@@ -400,21 +398,20 @@ BID:
             str(result.get("recommendation", "consider")),
             str(result.get("key_strength", "")),
             str(result.get("key_concern", "")),
-            "applied",
+            "pending",
             "",
             "",
         )
 
         self.applications[application_id] = application
         self.application_ids.append(application_id)
-        task_application_ids = self._get_task_application_ids(task_id)
-        task_application_ids.append(application_id)
-        self.task_applications[task_id] = task_application_ids
-        self.application_count = application_id + 1
 
-        gl.log(
-            f"NexusMesh:BidSubmitted:{task_id}:{application_id}:{application.bidder}:{application.match_score}:{application.recommendation}"
-        )
+        ids = self._get_task_application_ids(task_id)
+        ids.append(application_id)
+        self.task_applications[task_id] = ids
+
+        self.application_count = application_id + 1
+        gl.log(f"NexusMesh:BidSubmitted:{task_id}:{application_id}")
         return application_id
 
     @gl.public.write
@@ -429,8 +426,8 @@ BID:
         application = self._get_application(application_id)
         founder = str(gl.message.sender_address)
 
-        assert task.creator == founder or founder == self.owner, "Only the task founder can send feedback"
         assert application.task_id == task_id, "Application does not belong to task"
+        assert founder == task.creator or founder == self.owner, "Only founder can submit feedback"
 
         application.status = verdict
         application.founder_feedback = feedback
@@ -443,6 +440,8 @@ BID:
             task.awarded_application_id = application_id
         elif verdict == "shortlisted":
             task.status = "shortlisted"
+        elif verdict == "rejected":
+            task.status = task.status
 
         self.tasks[task_id] = task
 
@@ -461,101 +460,93 @@ BID:
         self.feedback_ids.append(feedback_id)
         self.feedback_count = feedback_id + 1
 
-        gl.log(
-            f"NexusMesh:FeedbackSubmitted:{task_id}:{application_id}:{verdict}:{feedback_id}"
-        )
+        gl.log(f"NexusMesh:FeedbackSubmitted:{task_id}:{application_id}:{verdict}")
         return feedback_id
 
     @gl.public.write
-    def evaluate_delivery(
+    def evaluate_work(
         self,
-        contract_id: int,
         task_title: str,
         task_description: str,
-        required_skills: str,
         submission_url: str,
         submission_notes: str,
     ) -> str:
-        application = self._get_application(contract_id)
-        task = self._get_task(application.task_id)
-
-        prompt = f"""You are evaluating a NexusMesh delivery. Return ONLY valid JSON:
+        task_id = self._find_task_id_by_title(task_title)
+        result_prompt = f"""Evaluate this NexusMesh delivery and return only valid JSON:
 {{
   "approved": true,
   "quality_score": 85,
   "completeness_score": 90,
   "payment_percentage": 100,
-  "detailed_feedback": "Work meets the requirements.",
+  "detailed_feedback": "Work meets requirements.",
   "revision_required": false,
   "revision_instructions": ""
 }}
 
-TASK:
-- Title: {task_title}
-- Description: {task_description}
-- Required Skills: {required_skills}
+Task title: {task_title}
+Task description: {task_description}
+Submission URL: {submission_url}
+Notes: {submission_notes}
+"""
+        result = self._ask_ai(result_prompt)
+        serialized = json.dumps(result, sort_keys=True)
 
-DELIVERY:
-- Submission URL: {submission_url}
-- Submission Notes: {submission_notes}"""
+        if task_id >= 0:
+            task = self._get_task(task_id)
+            if task.awarded_application_id >= 0:
+                application = self._get_application(task.awarded_application_id)
+                application.evaluation_result = serialized
+                application.founder_feedback = str(result.get("detailed_feedback", application.founder_feedback))
+                application.status = "completed" if bool(result.get("approved", False)) else "revision_needed"
+                self.applications[task.awarded_application_id] = application
+                task.status = application.status
+                self.tasks[task_id] = task
 
-        result = self._ask_ai(prompt)
-        application.evaluation_result = json.dumps(result, sort_keys=True)
-        application.founder_feedback = str(result.get("detailed_feedback", application.founder_feedback))
-        application.status = "completed" if bool(result.get("approved", False)) else "revision_needed"
-        self.applications[contract_id] = application
-
-        task.status = application.status
-        self.tasks[task.task_id] = task
-
-        gl.log(
-            f"NexusMesh:Evaluated:{contract_id}:{application.status}:{result.get('quality_score', 0)}:{result.get('payment_percentage', 0)}"
-        )
-        return application.evaluation_result
+        gl.log(f"NexusMesh:Evaluated:{task_title}")
+        return serialized
 
     @gl.public.write
     def resolve_dispute(
         self,
-        contract_id: int,
         task_description: str,
-        submission_url: str,
         claimant_statement: str,
         claimant_evidence_url: str,
         respondent_statement: str,
         respondent_evidence_url: str,
     ) -> str:
-        application = self._get_application(contract_id)
-        task = self._get_task(application.task_id)
+        task_id = self._find_task_id_by_description(task_description)
 
-        prompt = f"""You are the NexusMesh AI Arbitrator. Return ONLY valid JSON:
+        prompt = f"""Resolve this NexusMesh dispute and return only valid JSON:
 {{
   "ruling": "agent_wins",
   "client_refund_pct": 0,
   "agent_payment_pct": 100,
-  "reasoning": "Decision grounded in the submitted evidence.",
+  "reasoning": "Decision grounded in supplied evidence.",
   "fault_assessment": "No material fault by the agent.",
   "confidence": 88
 }}
 
-TASK DESCRIPTION: {task_description}
-SUBMISSION URL: {submission_url}
-CLAIMANT: {claimant_statement}
-CLAIMANT EVIDENCE: {claimant_evidence_url}
-RESPONDENT: {respondent_statement}
-RESPONDENT EVIDENCE: {respondent_evidence_url}"""
-
+Task description: {task_description}
+Claimant: {claimant_statement}
+Claimant evidence: {claimant_evidence_url}
+Respondent: {respondent_statement}
+Respondent evidence: {respondent_evidence_url}
+"""
         result = self._ask_ai(prompt)
-        application.status = "disputed"
-        application.evaluation_result = json.dumps(result, sort_keys=True)
-        self.applications[contract_id] = application
+        serialized = json.dumps(result, sort_keys=True)
 
-        task.status = "disputed"
-        self.tasks[task.task_id] = task
+        if task_id >= 0:
+            task = self._get_task(task_id)
+            task.status = "disputed"
+            self.tasks[task_id] = task
+            if task.awarded_application_id >= 0:
+                application = self._get_application(task.awarded_application_id)
+                application.status = "disputed"
+                application.evaluation_result = serialized
+                self.applications[task.awarded_application_id] = application
 
-        gl.log(
-            f"NexusMesh:DisputeResolved:{contract_id}:{result.get('ruling', 'split')}:{result.get('confidence', 50)}"
-        )
-        return application.evaluation_result
+        gl.log("NexusMesh:DisputeResolved")
+        return serialized
 
     @gl.public.view
     def get_task(self, task_id: int) -> str:
@@ -592,14 +583,11 @@ RESPONDENT EVIDENCE: {respondent_evidence_url}"""
             if record is not None and record.founder == founder:
                 feedback.append(self._feedback_to_dict(record))
 
-        return json.dumps(
-            {
-                "posted_tasks": posted_tasks,
-                "incoming_applications": incoming_applications,
-                "feedback_sent": feedback,
-            },
-            sort_keys=True,
-        )
+        return json.dumps({
+            "posted_tasks": posted_tasks,
+            "incoming_applications": incoming_applications,
+            "feedback_sent": feedback,
+        }, sort_keys=True)
 
     @gl.public.view
     def get_bidder_dashboard(self, bidder: str) -> str:
@@ -616,13 +604,10 @@ RESPONDENT EVIDENCE: {respondent_evidence_url}"""
             if record is not None and record.bidder == bidder:
                 feedback.append(self._feedback_to_dict(record))
 
-        return json.dumps(
-            {
-                "applications": applications,
-                "feedback_received": feedback,
-            },
-            sort_keys=True,
-        )
+        return json.dumps({
+            "applications": applications,
+            "feedback_received": feedback,
+        }, sort_keys=True)
 
     @gl.public.view
     def get_marketplace_snapshot(self) -> str:
@@ -632,18 +617,15 @@ RESPONDENT EVIDENCE: {respondent_evidence_url}"""
             if task is not None:
                 tasks.append(self._task_to_dict(task))
 
-        return json.dumps(
-            {
-                "owner": self.owner,
-                "task_count": self.task_count,
-                "application_count": self.application_count,
-                "contract_count": self.contract_count,
-                "feedback_count": self.feedback_count,
-                "platform_fee_bps": self.platform_fee_bps,
-                "tasks": tasks,
-            },
-            sort_keys=True,
-        )
+        return json.dumps({
+            "owner": self.owner,
+            "task_count": self.task_count,
+            "application_count": self.application_count,
+            "contract_count": self.contract_count,
+            "feedback_count": self.feedback_count,
+            "platform_fee_bps": self.platform_fee_bps,
+            "tasks": tasks,
+        }, sort_keys=True)
 
     @gl.public.view
     def get_agent(self, wallet: str) -> str:
@@ -675,3 +657,5 @@ RESPONDENT EVIDENCE: {respondent_evidence_url}"""
     @gl.public.view
     def get_owner(self) -> str:
         return self.owner
+
+
