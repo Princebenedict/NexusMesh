@@ -76,15 +76,22 @@ button,input,textarea,select{font:inherit}
 .empty{color:var(--muted);padding:24px 0;text-align:center}
 .form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
-.field input,.field textarea,.field select{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
-.field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:var(--bg3);color:var(--text)}
-.field select option{background:var(--bg2);color:var(--text)}
+.field input,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
 .field textarea{min-height:96px;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
+.custom-select{position:relative}
+.select-trigger{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-height:46px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.select-trigger::after{content:"▾";color:var(--muted);font-size:12px}
+.select-trigger.open{border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
+.select-menu{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:8px;display:none;z-index:30}
+.custom-select.open .select-menu{display:grid;gap:6px}
+.select-option{background:rgba(255,255,255,.03);border:1px solid transparent;color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer;text-align:left}
+.select-option:hover,.select-option.active{border-color:var(--line2);background:rgba(89,182,255,.10)}
+.select-hidden{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 .grid2,.grid3{display:grid;gap:14px}
 .grid2{grid-template-columns:1fr 1fr}
 .grid3{grid-template-columns:repeat(3,1fr)}
-.error input,.error textarea,.error select{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}
+.error input,.error textarea,.error .select-trigger{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}
 .error-text{display:none;color:#ffb0b0;font-size:12px}
 .error .error-text{display:block}
 .note{border:1px solid rgba(89,182,255,.16);background:rgba(89,182,255,.08);color:#d9f4ff;padding:12px 14px;border-radius:var(--r);line-height:1.7;word-break:break-word}
@@ -219,11 +226,46 @@ button,input,textarea,select{font:inherit}
           <div class="grid3">
             <div class="field" data-field="pt-budget"><label for="pt-budget">Budget in $GEN</label><input id="pt-budget" type="number" min="0.1" step="0.1" placeholder="0.8"><div class="help" id="pt-budget-help">Minimum 0.1 $GEN</div><div class="error-text"></div></div>
             <div class="field" data-field="pt-duration"><label for="pt-duration">Duration Value</label><input id="pt-duration" type="number" min="1" step="1" placeholder="2"><div class="help" id="pt-duration-help">Enter the task duration value.</div><div class="error-text"></div></div>
-            <div class="field" data-field="pt-duration-unit"><label for="pt-duration-unit">Duration Unit</label><select id="pt-duration-unit"><option value="days">Days</option><option value="hours">Hours</option></select><div class="help">Choose whether this task duration uses days or hours.</div><div class="error-text"></div></div>
+            <div class="field" data-field="pt-duration-unit">
+              <label for="pt-duration-unit">Duration Unit</label>
+              <div class="custom-select" data-select>
+                <input class="select-hidden" id="pt-duration-unit" value="days" readonly>
+                <button class="select-trigger" type="button" data-select-trigger>Days</button>
+                <div class="select-menu">
+                  <button class="select-option active" type="button" data-value="days">Days</button>
+                  <button class="select-option" type="button" data-value="hours">Hours</button>
+                </div>
+              </div>
+              <div class="help">Choose whether this task duration uses days or hours.</div>
+              <div class="error-text"></div>
+            </div>
           </div>
           <div class="grid2">
-            <div class="field" data-field="pt-type"><label for="pt-type">Task Type</label><select id="pt-type"><option value="fixed">Fixed Price</option><option value="contest">Contest</option><option value="event">Event Activation</option><option value="bounty">Web3 Bounty</option></select></div>
-            <div class="field" data-field="pt-level"><label for="pt-level">Complexity</label><select id="pt-level"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></div>
+            <div class="field" data-field="pt-type">
+              <label for="pt-type">Task Type</label>
+              <div class="custom-select" data-select>
+                <input class="select-hidden" id="pt-type" value="fixed" readonly>
+                <button class="select-trigger" type="button" data-select-trigger>Fixed Price</button>
+                <div class="select-menu">
+                  <button class="select-option active" type="button" data-value="fixed">Fixed Price</button>
+                  <button class="select-option" type="button" data-value="contest">Contest</button>
+                  <button class="select-option" type="button" data-value="event">Event Activation</button>
+                  <button class="select-option" type="button" data-value="bounty">Web3 Bounty</button>
+                </div>
+              </div>
+            </div>
+            <div class="field" data-field="pt-level">
+              <label for="pt-level">Complexity</label>
+              <div class="custom-select" data-select>
+                <input class="select-hidden" id="pt-level" value="low" readonly>
+                <button class="select-trigger" type="button" data-select-trigger>Low</button>
+                <div class="select-menu">
+                  <button class="select-option active" type="button" data-value="low">Low</button>
+                  <button class="select-option" type="button" data-value="medium">Medium</button>
+                  <button class="select-option" type="button" data-value="high">High</button>
+                </div>
+              </div>
+            </div>
           </div>
           <button class="btn btn-primary" id="post-task-btn" type="submit">Post Task</button>
           <div id="post-task-result"></div>
@@ -530,6 +572,18 @@ function resetForm(id){
   const form=byId(id);
   form.reset();
   form.querySelectorAll(".field").forEach((f)=>f.classList.remove("error"));
+  form.querySelectorAll("[data-select]").forEach((select)=>{
+    const input=select.querySelector(".select-hidden");
+    const trigger=select.querySelector("[data-select-trigger]");
+    const first=select.querySelector(".select-option");
+    if(input && first){
+      input.value=first.dataset.value;
+      trigger.textContent=first.textContent;
+      select.querySelectorAll(".select-option").forEach((opt)=>opt.classList.toggle("active",opt===first));
+    }
+    select.classList.remove("open");
+    trigger?.classList.remove("open");
+  });
 }
 
 async function sendTx(label,message){
@@ -626,6 +680,44 @@ function showTab(tab){
   byId(`page-${tab}`).classList.add("active");
 }
 
+function bindCustomSelects(){
+  document.querySelectorAll("[data-select]").forEach((select)=>{
+    const input=select.querySelector(".select-hidden");
+    const trigger=select.querySelector("[data-select-trigger]");
+    const options=[...select.querySelectorAll(".select-option")];
+
+    trigger.addEventListener("click",(event)=>{
+      event.stopPropagation();
+      document.querySelectorAll("[data-select].open").forEach((node)=>{
+        if(node!==select){
+          node.classList.remove("open");
+          node.querySelector("[data-select-trigger]")?.classList.remove("open");
+        }
+      });
+      const isOpen=select.classList.toggle("open");
+      trigger.classList.toggle("open",isOpen);
+    });
+
+    options.forEach((option)=>{
+      option.addEventListener("click",()=>{
+        input.value=option.dataset.value;
+        trigger.textContent=option.textContent;
+        options.forEach((node)=>node.classList.toggle("active",node===option));
+        select.classList.remove("open");
+        trigger.classList.remove("open");
+        input.dispatchEvent(new Event("change",{bubbles:true}));
+      });
+    });
+  });
+
+  document.addEventListener("click",()=>{
+    document.querySelectorAll("[data-select].open").forEach((select)=>{
+      select.classList.remove("open");
+      select.querySelector("[data-select-trigger]")?.classList.remove("open");
+    });
+  });
+}
+
 function bindValidation(){
   byId("pt-budget").addEventListener("input",()=>{
     byId("pt-budget-help").textContent=Number(byId("pt-budget").value||0)>0?`${Number(byId("pt-budget").value).toFixed(1)} $GEN founder budget`:"Minimum 0.1 $GEN";
@@ -665,17 +757,7 @@ async function handlePostTask(event){
     const durationUnit=byId("pt-duration-unit").value;
     const deadlineHours=durationUnit==="days"?durationValue*24:durationValue;
     const tasks=getTasks();
-    tasks.unshift({
-      id:`task-${Date.now()}`,
-      title:byId("pt-title").value.trim(),
-      description:byId("pt-desc").value.trim(),
-      skills:skillsOf(byId("pt-skills").value),
-      budget:Number(byId("pt-budget").value),
-      deadlineHours,
-      type:byId("pt-type").value,
-      level:byId("pt-level").value,
-      owner:walletState.address||"Founder"
-    });
+    tasks.unshift({id:`task-${Date.now()}`,title:byId("pt-title").value.trim(),description:byId("pt-desc").value.trim(),skills:skillsOf(byId("pt-skills").value),budget:Number(byId("pt-budget").value),deadlineHours,type:byId("pt-type").value,level:byId("pt-level").value,owner:walletState.address||"Founder"});
     saveTasks(tasks);
     byId("post-task-result").innerHTML=`<div class="note">Task posted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
     toast("Task posted","ok",`Transaction hash ${txHash} has been recorded and the task is now live.`);
@@ -797,6 +879,7 @@ function bindActions(){
 
 window.addEventListener("load",async()=>{
   bindActions();
+  bindCustomSelects();
   bindValidation();
   renderContract();
   renderWallet();
@@ -806,4 +889,5 @@ window.addEventListener("load",async()=>{
 </script>
 </body>
 </html>
+
 
