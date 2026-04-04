@@ -5,4 +5,10 @@ deployed.json
 .DS_Store
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 .genlayer/
+=======
+.genlayer/
+.vercel
+.env*.local
+>>>>>>> 1a088c87b907a643f74d1f705e7bf0a880fdc005

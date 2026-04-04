@@ -1,6 +1,7 @@
 {
   "name": "nexusmesh",
   "version": "1.0.0",
+<<<<<<< HEAD
   "private": true,
   "type": "module",
   "description": "NexusMesh GenLayer project",
@@ -26,3 +27,24 @@
     "typescript": "^6.0.2"
   }
 }
+=======
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "deploy:script": "tsx deploy/001_deploy.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "genlayer-js": "^0.28.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
+
+
+
+>>>>>>> 1a088c87b907a643f74d1f705e7bf0a880fdc005
