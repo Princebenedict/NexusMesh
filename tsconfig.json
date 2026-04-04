@@ -3,22 +3,11 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-<<<<<<< HEAD
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": ["node"],
-=======
-    "types": ["node"],
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
->>>>>>> 1a088c87b907a643f74d1f705e7bf0a880fdc005
     "forceConsistentCasingInFileNames": true
   },
   "include": ["deploy/**/*.ts"]
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1a088c87b907a643f74d1f705e7bf0a880fdc005
