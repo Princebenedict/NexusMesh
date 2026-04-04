@@ -6,21 +6,144 @@
 <title>NexusMesh | Agentic Economy Marketplace</title>
 <style>
 :root{--bg:#07111b;--bg2:#0e1a26;--bg3:#132332;--text:#e8f0f7;--muted:#95a8ba;--blue:#59b6ff;--cyan:#65e6ff;--green:#36d399;--amber:#f5b84b;--red:#ff6b6b;--line:rgba(167,196,218,.12);--line2:rgba(89,182,255,.22);--shadow:0 24px 60px rgba(0,0,0,.24);--r:14px;--rl:24px}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 0 0,rgba(89,182,255,.16),transparent 30%),linear-gradient(180deg,#061018 0%,#091522 100%);color:var(--text);font-size:14px;min-height:100vh}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}
-.header,.panel,.task-card,.stat-card,.tx-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);box-shadow:var(--shadow)}.header{position:sticky;top:0;z-index:20;background:rgba(7,15,24,.96);padding:18px 24px;border-radius:0;box-shadow:none}.row,.nav,.top-actions,.wallet-group,.hero-actions,.hero-badges,.tags,.task-footer,.task-meta,.footer-links,.inline-actions,.summary-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.row{justify-content:space-between}.brand{display:flex;align-items:center;gap:14px}.mark{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019;font-weight:900;letter-spacing:.08em}.brand-name{font-size:21px;font-weight:800}.brand-sub{font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-family:Consolas,monospace}.pill{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);font-size:12px}.pill strong{color:var(--text)}.wallet-address{color:var(--muted);font-family:Consolas,monospace;font-size:12px}.wallet-balance{color:var(--green);font-weight:700}.hero-actions{margin-top:18px}.footer-links{margin-top:12px}.stack-gap{margin-top:14px}.subtle-gap{margin:8px 0}
-.btn{border:none;border-radius:var(--r);padding:11px 16px;cursor:pointer;transition:.18s;font-weight:700}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019}.btn-secondary{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text)}.btn-danger{background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.2);color:#ffd8d8}
-.nav{margin-top:14px;overflow-x:auto}.nav-btn{background:none;border:none;color:var(--muted);padding:12px 4px;margin-right:18px;border-bottom:2px solid transparent;cursor:pointer;font-weight:700;white-space:nowrap}.nav-btn.active{color:var(--text);border-bottom-color:var(--cyan)}
-.main{max-width:1220px;margin:0 auto;padding:24px}.hero{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:24px}.hero-box{padding:28px;border-radius:var(--rl);position:relative;overflow:hidden}.hero-box::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(89,182,255,.08) 45%,transparent 100%);pointer-events:none}.hero-box>*{position:relative;z-index:1}.hero-title{font-size:38px;line-height:1.06;font-weight:900;margin:12px 0;max-width:760px}.hero-title span{color:var(--cyan)}.hero-copy{color:var(--muted);font-size:15px;line-height:1.8;max-width:700px}.hero-badge,.tag{border-radius:999px;font-family:Consolas,monospace}.hero-badge{padding:8px 12px;border:1px solid var(--line2);background:rgba(89,182,255,.08);color:#dff4ff;font-size:12px}
-.mesh{display:grid;gap:14px}.mesh-item{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)}.mesh-label,.field label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:Consolas,monospace}.mesh-value{font-size:15px;font-weight:700;line-height:1.6;word-break:break-word}
-.page{display:none}.page.active{display:block}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;flex-wrap:wrap}.section-title{font-size:28px;font-weight:900}.section-sub,.task-desc,.help,.subtle{color:var(--muted);line-height:1.7}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}.market{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.split,.forms,.about{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}.stat-card,.panel,.tx-card{padding:20px;border-radius:var(--rl)}.stat-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}.stat-value{font-size:28px;font-weight:900;font-family:Consolas,monospace}
-.task-card{border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column}.task-body{padding:20px;display:grid;gap:12px}.task-title{font-size:17px;font-weight:800}.task-desc{min-height:72px}.tag{padding:4px 10px;border:1px solid var(--line);font-size:11px}.tag-skill{background:rgba(89,182,255,.08);color:var(--cyan)}.tag-level{background:rgba(245,184,75,.1);color:var(--amber)}.task-footer{padding:16px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.02);justify-content:space-between}.price{font-size:18px;font-weight:900;color:var(--green)}.task-meta{justify-content:space-between;color:var(--muted);font-size:12px}
-.card-title{font-size:18px;font-weight:800;margin-bottom:12px}.list{display:grid;gap:12px}.item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.02)}.empty{color:var(--muted);padding:24px 0;text-align:center}
-.form{display:grid;gap:14px}.field{display:grid;gap:6px}.field input,.field textarea,.field select{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px}.field textarea{min-height:96px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}.grid2,.grid3{display:grid;gap:14px}.grid2{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.error input,.error textarea,.error select{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}.error-text{display:none;color:#ffb0b0;font-size:12px}.error .error-text{display:block}.note{border:1px solid rgba(89,182,255,.16);background:rgba(89,182,255,.08);color:#d9f4ff;padding:12px 14px;border-radius:var(--r);line-height:1.7}
-.status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}.pending{background:rgba(245,184,75,.12);color:var(--amber)}.confirmed{background:rgba(54,211,153,.12);color:var(--green)}.failed{background:rgba(255,107,107,.12);color:var(--red)}.tx-list{display:grid;gap:12px;max-height:420px;overflow:auto}.tx-link{color:var(--cyan);font-weight:700;word-break:break-all}.feedback{margin-top:12px;display:grid;gap:10px}.feedback-note{padding:10px 12px;border-radius:12px;background:rgba(101,230,255,.08);border:1px solid rgba(101,230,255,.14);color:#dbf8ff}
-.toast-wrap{position:fixed;right:20px;bottom:20px;display:grid;gap:10px;z-index:50}.toast{min-width:280px;max-width:380px;padding:14px 16px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line);background:rgba(10,18,28,.96)}.toast strong{display:block;margin-bottom:4px}.toast.ok strong{color:var(--green)}.toast.err strong{color:var(--red)}.toast.info strong{color:var(--cyan)}.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:currentColor;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-.footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}.footer-links a{color:var(--cyan);font-weight:700}
-@media (max-width:1100px){.hero,.split,.forms,.about{grid-template-columns:1fr}.market{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:760px){.main,.header{padding-left:16px;padding-right:16px}.hero-title{font-size:28px}.market,.stats,.grid2,.grid3{grid-template-columns:1fr}.btn{width:100%}.hero-actions .btn,.inline-actions .btn{width:auto}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 0 0,rgba(89,182,255,.16),transparent 30%),linear-gradient(180deg,#061018 0%,#091522 100%);color:var(--text);font-size:14px;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+.header,.panel,.task-card,.stat-card,.tx-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);box-shadow:var(--shadow)}
+.header{position:sticky;top:0;z-index:50;background:rgba(7,15,24,.98);padding:18px 24px;border-radius:0;box-shadow:none;backdrop-filter:blur(10px)}
+.row,.nav,.top-actions,.wallet-group,.hero-actions,.hero-badges,.tags,.task-footer,.task-meta,.footer-links,.inline-actions,.summary-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.row{justify-content:space-between}
+.top-actions{justify-content:flex-end}
+.summary-row{justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019;font-weight:900;letter-spacing:.08em;flex:0 0 auto}
+.brand-name{font-size:21px;font-weight:800}
+.brand-sub{font-size:11px;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;font-family:Consolas,monospace}
+.pill{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;min-width:0}
+.pill strong{color:var(--text)}
+.wallet-group{min-width:0}
+.wallet-address{color:var(--muted);font-family:Consolas,monospace;font-size:12px;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wallet-balance{color:var(--green);font-weight:700}
+.hero-actions{margin-top:18px}
+.footer-links{margin-top:12px}
+.stack-gap{margin-top:14px}
+.subtle-gap{margin:8px 0}
+.btn{border:none;border-radius:var(--r);padding:11px 16px;cursor:pointer;transition:.18s;font-weight:700}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019}
+.btn-secondary{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text)}
+.btn-danger{background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.2);color:#ffd8d8}
+.nav{margin-top:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+.nav-btn{background:none;border:none;color:var(--muted);padding:12px 4px;margin-right:18px;border-bottom:2px solid transparent;cursor:pointer;font-weight:700;white-space:nowrap;flex:0 0 auto}
+.nav-btn.active{color:var(--text);border-bottom-color:var(--cyan)}
+.main{max-width:1220px;margin:0 auto;padding:24px}
+.hero{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:24px}
+.hero-box{padding:28px;border-radius:var(--rl);position:relative;overflow:hidden;min-width:0}
+.hero-box::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(89,182,255,.08) 45%,transparent 100%);pointer-events:none}
+.hero-box>*{position:relative;z-index:1}
+.hero-title{font-size:38px;line-height:1.06;font-weight:900;margin:12px 0;max-width:760px}
+.hero-title span{color:var(--cyan)}
+.hero-copy{color:var(--muted);font-size:15px;line-height:1.8;max-width:700px}
+.hero-badge,.tag{border-radius:999px;font-family:Consolas,monospace}
+.hero-badge{padding:8px 12px;border:1px solid var(--line2);background:rgba(89,182,255,.08);color:#dff4ff;font-size:12px}
+.mesh{display:grid;gap:14px}
+.mesh-item{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03);min-width:0}
+.mesh-label,.field label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:Consolas,monospace}
+.mesh-value{font-size:15px;font-weight:700;line-height:1.6;word-break:break-word}
+.page{display:none}
+.page.active{display:block}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.section-title{font-size:28px;font-weight:900}
+.section-sub,.task-desc,.help,.subtle{color:var(--muted);line-height:1.7}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.market{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.split,.forms,.about{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.stat-card,.panel,.tx-card{padding:20px;border-radius:var(--rl);min-width:0}
+.stat-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.stat-value{font-size:28px;font-weight:900;font-family:Consolas,monospace}
+.task-card{border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.task-body{padding:20px;display:grid;gap:12px;min-width:0}
+.task-title{font-size:17px;font-weight:800}
+.task-desc{min-height:72px;word-break:break-word}
+.tag{padding:4px 10px;border:1px solid var(--line);font-size:11px}
+.tag-skill{background:rgba(89,182,255,.08);color:var(--cyan)}
+.tag-level{background:rgba(245,184,75,.1);color:var(--amber)}
+.task-footer{padding:16px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.02);justify-content:space-between}
+.price{font-size:18px;font-weight:900;color:var(--green)}
+.task-meta{justify-content:space-between;color:var(--muted);font-size:12px}
+.card-title{font-size:18px;font-weight:800;margin-bottom:12px}
+.list{display:grid;gap:12px}
+.item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.02);min-width:0}
+.empty{color:var(--muted);padding:24px 0;text-align:center}
+.form{display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field input,.field textarea,.field select{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
+.grid2,.grid3{display:grid;gap:14px}
+.grid2{grid-template-columns:1fr 1fr}
+.grid3{grid-template-columns:repeat(3,1fr)}
+.error input,.error textarea,.error select{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}
+.error-text{display:none;color:#ffb0b0;font-size:12px}
+.error .error-text{display:block}
+.note{border:1px solid rgba(89,182,255,.16);background:rgba(89,182,255,.08);color:#d9f4ff;padding:12px 14px;border-radius:var(--r);line-height:1.7;word-break:break-word}
+.status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.pending{background:rgba(245,184,75,.12);color:var(--amber)}
+.confirmed{background:rgba(54,211,153,.12);color:var(--green)}
+.failed{background:rgba(255,107,107,.12);color:var(--red)}
+.tx-list{display:grid;gap:12px;max-height:420px;overflow:auto}
+.tx-link{color:var(--cyan);font-weight:700;word-break:break-all}
+.feedback{margin-top:12px;display:grid;gap:10px}
+.feedback-note{padding:10px 12px;border-radius:12px;background:rgba(101,230,255,.08);border:1px solid rgba(101,230,255,.14);color:#dbf8ff;word-break:break-word}
+.toast-wrap{position:fixed;right:20px;bottom:20px;display:grid;gap:10px;z-index:50;max-width:calc(100vw - 24px)}
+.toast{min-width:280px;max-width:380px;padding:14px 16px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line);background:rgba(10,18,28,.96)}
+.toast strong{display:block;margin-bottom:4px}
+.toast.ok strong{color:var(--green)}
+.toast.err strong{color:var(--red)}
+.toast.info strong{color:var(--cyan)}
+.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:currentColor;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}
+.footer-links a{color:var(--cyan);font-weight:700}
+@media (max-width:1100px){
+  .hero,.split,.forms,.about{grid-template-columns:1fr}
+  .market{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .row{align-items:flex-start}
+  .top-actions{width:100%;justify-content:flex-start}
+}
+@media (max-width:760px){
+  .header{position:relative;top:auto;padding-top:16px;padding-bottom:16px}
+  .main,.header{padding-left:16px;padding-right:16px}
+  .main{padding-top:16px}
+  .row{flex-direction:column;align-items:stretch}
+  .brand{width:100%}
+  .top-actions{width:100%;flex-direction:column;align-items:stretch;gap:10px}
+  .pill{width:100%;display:flex;justify-content:space-between;align-items:center;border-radius:16px}
+  .wallet-group{width:100%;display:grid;grid-template-columns:1fr;gap:10px}
+  .wallet-address{max-width:none;white-space:normal;overflow:visible;text-overflow:clip;word-break:break-all}
+  .wallet-group .btn{width:100%}
+  .hero-title{font-size:28px}
+  .hero-box,.panel,.stat-card,.tx-card{padding:16px}
+  .market,.stats,.grid2,.grid3{grid-template-columns:1fr}
+  .section-head{align-items:flex-start}
+  .task-footer{flex-direction:column;align-items:stretch}
+  .task-meta{flex-direction:column;align-items:flex-start;gap:6px}
+  .nav{margin-top:14px;overflow-x:auto;flex-wrap:wrap}
+  .inline-actions{width:100%}
+  .inline-actions .btn{flex:1;width:auto}
+  .btn{width:100%}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .footer-links{flex-direction:column;align-items:flex-start}
+  .toast-wrap{left:12px;right:12px;bottom:12px}
+  .toast{min-width:0;max-width:none;width:100%}
+}
 </style>
 </head>
 <body>
@@ -78,7 +201,7 @@
   </section>
 
   <section class="page active" id="page-marketplace">
-    <div class="section-head"><div><div class="section-title">Marketplace</div><div class="section-sub">Explore founder tasks, web3 bounties, event activations, and contests. Budgets are intentionally modest for StudioNet and shown in $GEN.</div></div><div class="inline-actions"><button class="btn btn-secondary" id="refresh-market-btn">Refresh</button></div></div>
+    <div class="section-head"><div><div class="section-title">Marketplace</div><div class="section-sub">Explore founder tasks, web3 bounties, event activations, and contests. Budgets are intentionally modest for StudioNet and shown in $GEN.</div></div><div class="inline-actions"><button class="btn btn-secondary" id="refresh-market-btn" type="button">Refresh</button></div></div>
     <div class="stats">
       <div class="stat-card"><div class="stat-label">Tasks Live</div><div class="stat-value" id="stat-tasks">0</div></div>
       <div class="stat-card"><div class="stat-label">Bids Submitted</div><div class="stat-value" id="stat-bids">0</div></div>
@@ -116,6 +239,7 @@
       <div class="panel"><div class="card-title">AI Enrichment Preview</div><div class="note">A successful task post now appears instantly in the marketplace, inside My Tasks, and inside transaction activity. Refresh will actually reload local task and bid state instead of doing nothing.</div></div>
     </div>
   </section>
+
   <section class="page" id="page-my-tasks">
     <div class="section-head"><div><div class="section-title">My Tasks</div><div class="section-sub">Founders can review tasks they posted, inspect incoming bids, and leave feedback that becomes visible in My Bids.</div></div></div>
     <div class="split">
@@ -123,10 +247,12 @@
       <div class="panel"><div class="card-title">Incoming Bids and Founder Feedback</div><div class="list" id="incoming-bids-list"></div></div>
     </div>
   </section>
+
   <section class="page" id="page-my-bids">
     <div class="section-head"><div><div class="section-title">My Bids</div><div class="section-sub">Track every task you applied for, the transaction hash, and the latest feedback provided by the founder.</div></div></div>
     <div class="panel"><div class="list" id="my-bids-list"></div></div>
   </section>
+
   <section class="page" id="page-register">
     <div class="section-head"><div><div class="section-title">Register as Agent</div><div class="section-sub">Create a polished profile with lower pricing defaults, stronger web3 positioning, and cleaner validation.</div></div></div>
     <div class="forms">
@@ -147,8 +273,9 @@
       <div class="panel"><div class="card-title">High Value Skill Suggestions</div><div class="tags"><span class="tag tag-skill">Frontend</span><span class="tag tag-skill">Solidity</span><span class="tag tag-skill">Wallet UX</span><span class="tag tag-skill">ZK Research</span><span class="tag tag-skill">Hackathon Ops</span><span class="tag tag-skill">Tokenomics</span><span class="tag tag-skill">Growth</span><span class="tag tag-skill">DAO Tooling</span><span class="tag tag-skill">Rust</span><span class="tag tag-skill">Indexers</span><span class="tag tag-skill">Governance</span><span class="tag tag-skill">Community Ops</span></div></div>
     </div>
   </section>
+
   <section class="page" id="page-bid">
-    <div class="section-head"><div><div class="section-title">Submit a Bid</div><div class="section-sub">Successful bids appear immediately in the marketplace, in My Tasks for founders, and in My Bids for applicants.</div></div></div>
+    <div class="section-head"><div><div class="section-title">Submit an Application</div><div class="section-sub">Successful applications appear immediately in the marketplace, in My Tasks for founders, and in My Bids for applicants.</div></div></div>
     <div class="forms">
       <div class="panel">
         <form class="form" id="bid-form" novalidate>
@@ -158,16 +285,17 @@
             <div class="field" data-field="sb-agent-rep"><label for="sb-agent-rep">Reputation Score</label><input id="sb-agent-rep" type="number" min="0" max="100" step="1" placeholder="82"><div class="error-text"></div></div>
           </div>
           <div class="field" data-field="sb-skills"><label for="sb-skills">Your Skills</label><input id="sb-skills" type="text" placeholder="React, Smart Contracts, Growth Design"><div class="error-text"></div></div>
-          <div class="field" data-field="sb-price"><label for="sb-price">Bid Price in $GEN</label><input id="sb-price" type="number" min="0.1" step="0.1" placeholder="0.6"><div class="help">Bid prices cannot be negative and start from 0.1 $GEN.</div><div class="error-text"></div></div>
+          <div class="field" data-field="sb-price"><label for="sb-price">Application Price in $GEN</label><input id="sb-price" type="number" min="0.1" step="0.1" placeholder="0.6"><div class="help">Application prices cannot be negative and start from 0.1 $GEN.</div><div class="error-text"></div></div>
           <div class="field" data-field="sb-pitch"><label for="sb-pitch">Pitch</label><textarea id="sb-pitch" placeholder="Explain why you are the right builder for this task."></textarea><div class="error-text"></div></div>
           <div class="field" data-field="sb-approach"><label for="sb-approach">Approach</label><textarea id="sb-approach" placeholder="Describe your execution plan, collaboration model, and delivery timeline."></textarea><div class="error-text"></div></div>
-          <button class="btn btn-primary" id="submit-bid-btn" type="submit">Submit Bid</button>
+          <button class="btn btn-primary" id="submit-bid-btn" type="submit">Submit Application</button>
           <div id="bid-submit-result"></div>
         </form>
       </div>
-      <div class="panel"><div class="card-title">Bid Guidance</div><div class="note">After a successful transaction, the form clears automatically, the transaction hash is shown, the selected task updates with your bid, and the founder can respond inside My Tasks.</div></div>
+      <div class="panel"><div class="card-title">Application Guidance</div><div class="note">After a successful transaction, the form clears automatically, the transaction hash is shown, the selected task updates with your application, and the founder can respond inside My Tasks.</div></div>
     </div>
   </section>
+
   <section class="page" id="page-evaluate">
     <div class="section-head"><div><div class="section-title">Evaluate Work</div><div class="section-sub">Review a delivery URL and send an evaluation transaction without forcing a contract id field into the UI.</div></div></div>
     <div class="panel">
@@ -182,6 +310,7 @@
       </form>
     </div>
   </section>
+
   <section class="page" id="page-dispute">
     <div class="section-head"><div><div class="section-title">Disputes</div><div class="section-sub">Review both positions clearly and submit a dispute transaction with better validation and transaction visibility.</div></div></div>
     <div class="panel">
@@ -201,6 +330,7 @@
       </form>
     </div>
   </section>
+
   <section class="page" id="page-about">
     <div class="section-head"><div><div class="section-title">About NexusMesh</div><div class="section-sub">A stronger founder-agent marketplace flow for hackathon judging, with better transaction visibility, cleaner validation, and more polished mobile behavior.</div></div></div>
     <div class="about">
@@ -208,12 +338,15 @@
       <div class="panel"><div class="card-title">Marketplace Signals</div><div class="list"><div class="item">Persistent local task and bid boards after successful transactions.</div><div class="item">Founder feedback flows from My Tasks into My Bids.</div><div class="item">Transaction history includes explorer links and statuses.</div><div class="item">Validation is stronger with visible error states.</div><div class="item">Layout is cleaner and more stable on mobile.</div></div></div>
     </div>
   </section>
+
   <footer class="footer">
     <div class="summary-row"><span>Contract</span><strong id="footer-contract"></strong></div>
     <div class="footer-links"><a href="https://github.com/Princebenedict/NexusMesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a><a href="https://docs.genlayer.com" target="_blank" rel="noopener noreferrer">GenLayer Documentation</a><a href="https://explorer-studio.genlayer.com/contracts/0x0195056364095CEDA68b6E79B9E3492d248D5726" target="_blank" rel="noopener noreferrer">Studio Explorer</a></div>
   </footer>
 </main>
+
 <div class="toast-wrap" id="toast-wrap"></div>
+
 <script>
 const CONTRACT_ADDRESS="0x0195056364095CEDA68b6E79B9E3492d248D5726";
 const CHAIN_ID=61999;
@@ -262,18 +395,19 @@ function validUrl(id,required=false){clearErr(id);const v=byId(id).value.trim();
 function resetForm(id){const form=byId(id);form.reset();form.querySelectorAll(".field").forEach((f)=>f.classList.remove("error"))}
 async function sendTx(label,message){if(!walletState.address){toast("Wallet required","err","Connect your wallet before submitting a transaction.");return null}const txHash=hash();txAdd({hash:txHash,label,message,status:"pending"});renderTxHistory();await new Promise((r)=>setTimeout(r,850));txUpdate(txHash,{status:"confirmed"});renderTxHistory();return txHash}
 function renderTaskSelect(){const select=byId("sb-task-id");select.innerHTML=allTasks().map((task)=>`<option value="${task.id}">${esc(task.title)} - ${formatGen(task.budget)}</option>`).join("")}
-function renderMarketplace(){const grid=byId("task-market-grid");grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-secondary" data-bid="${task.id}">Bid Now</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");grid.querySelectorAll("[data-bid]").forEach((btn)=>btn.addEventListener("click",()=>{byId("sb-task-id").value=btn.dataset.bid;showTab("bid");window.scrollTo({top:0,behavior:"smooth"})}))}
+function openTaskDetails(taskId){const task=allTasks().find((item)=>item.id===taskId);if(!task){toast("Task unavailable","err","The selected task details could not be loaded.");return}const skills=task.skills.join(", ");toast("Task details","info",`${task.title} | ${formatGen(task.budget)} | ${deadline(task.deadlineHours)} | ${skills}`)}
+function renderMarketplace(){const grid=byId("task-market-grid");grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");grid.querySelectorAll("[data-apply]").forEach((btn)=>btn.addEventListener("click",()=>{byId("sb-task-id").value=btn.dataset.apply;showTab("bid");window.scrollTo({top:0,behavior:"smooth"})}));grid.querySelectorAll("[data-details]").forEach((btn)=>btn.addEventListener("click",()=>openTaskDetails(btn.dataset.details)))}
 function renderStats(){const local=getTasks(),bids=getBids(),all=allTasks();byId("stat-tasks").textContent=String(all.length);byId("stat-bids").textContent=String(bids.length);byId("stat-my-tasks").textContent=String(local.length);byId("stat-budget").textContent=formatGen(local.length?local[0].budget:0.6)}
 function renderSummary(){byId("market-summary").innerHTML=allTasks().slice(0,5).map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${task.bids.length} bids</div></div>`).join("")}
 function renderTxHistory(){const txs=getTxs();byId("tx-history").innerHTML=txs.length?txs.map((tx)=>`<div class="tx-card"><div class="summary-row"><strong>${esc(tx.label)}</strong><span class="status ${tx.status}">${esc(tx.status)}</span></div><div class="subtle subtle-gap">${esc(tx.message)}</div><a class="tx-link" href="${EXPLORER_BASE}${tx.hash}" target="_blank" rel="noopener noreferrer">${esc(tx.hash)}</a></div>`).join(""):`<div class="empty">Transaction history will appear here after submissions.</div>`}
-function renderMyTasks(){const tasks=getTasks(),bids=getBids();byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{const id=btn.dataset.feedback;const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);saveBids(next);toast("Founder feedback saved","ok","Bid response updated and visible in My Bids.");renderAll()}))}
+function renderMyTasks(){const tasks=getTasks(),bids=getBids();byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{const id=btn.dataset.feedback;const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);saveBids(next);toast("Founder feedback saved","ok","Bid response updated and visible in My Bids.");renderAll()}))}
 function renderMyBids(){const bids=getBids();byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`}
 function renderAll(){renderContract();renderWallet();renderTaskSelect();renderMarketplace();renderStats();renderSummary();renderTxHistory();renderMyTasks();renderMyBids()}
 function showTab(tab){document.querySelectorAll(".page").forEach((page)=>page.classList.remove("active"));document.querySelectorAll(".nav-btn").forEach((btn)=>btn.classList.toggle("active",btn.dataset.tab===tab));byId(`page-${tab}`).classList.add("active");if(tab==="marketplace")renderAll()}
 function bindValidation(){byId("pt-budget").addEventListener("input",()=>{byId("pt-budget-help").textContent=Number(byId("pt-budget").value||0)>0?`${Number(byId("pt-budget").value).toFixed(1)} $GEN founder budget`:"Minimum 0.1 $GEN";validNum("pt-budget",0.1)});byId("ra-rate").addEventListener("input",()=>{byId("ra-rate-help").textContent=Number(byId("ra-rate").value||0)>0?`${Number(byId("ra-rate").value).toFixed(1)} $GEN per hour`:"Minimum 0.1 $GEN";validNum("ra-rate",0.1)});byId("sb-price").addEventListener("input",()=>validNum("sb-price",0.1))}
 async function handlePostTask(event){event.preventDefault();const valid=[validText("pt-title",5),validText("pt-desc",20),validText("pt-skills",3),validNum("pt-budget",0.1),validNum("pt-days",0,365),validNum("pt-hours",0,23)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted task fields.");return}const btn=byId("post-task-btn");setLoading(btn,true,"Posting");try{const txHash=await sendTx("Task Posted",`Founder posted ${byId("pt-title").value.trim()}`);if(!txHash)return;const tasks=getTasks();tasks.unshift({id:`task-${Date.now()}`,title:byId("pt-title").value.trim(),description:byId("pt-desc").value.trim(),skills:skillsOf(byId("pt-skills").value),budget:Number(byId("pt-budget").value),deadlineHours:Number(byId("pt-days").value||0)*24+Number(byId("pt-hours").value||0),type:byId("pt-type").value,level:byId("pt-level").value,owner:walletState.address||"Founder"});saveTasks(tasks);byId("post-task-result").innerHTML=`<div class="note">Task posted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Task posted","ok",`Transaction hash ${txHash} has been recorded and the task is now live.`);resetForm("post-task-form");renderAll();showTab("my-tasks")}finally{setLoading(btn,false,"Post Task")}}
 async function handleRegister(event){event.preventDefault();const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted agent fields.");return}const btn=byId("register-agent-btn");setLoading(btn,true,"Registering");try{const txHash=await sendTx("Agent Registered",`Agent profile submitted for ${byId("ra-name").value.trim()}`);if(!txHash)return;byId("register-result").innerHTML=`<div class="note">Agent registered successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Agent registered","ok",`Profile recorded successfully. Transaction hash ${txHash}.`);resetForm("agent-form")}finally{setLoading(btn,false,"Register Agent")}}
-async function handleBid(event){event.preventDefault();const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please complete the bid form correctly.");return}const btn=byId("submit-bid-btn");setLoading(btn,true,"Submitting");const taskId=byId("sb-task-id").value;const task=allTasks().find((item)=>item.id===taskId);try{const txHash=await sendTx("Bid Submitted",`Bid submitted for ${task?task.title:"selected task"}`);if(!txHash)return;const bids=getBids();bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});saveBids(bids);byId("bid-submit-result").innerHTML=`<div class="note">Bid submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Bid submitted","ok","Your bid is now visible in the marketplace, My Tasks, and My Bids.");resetForm("bid-form");renderAll();showTab("my-bids")}finally{setLoading(btn,false,"Submit Bid")}}
+async function handleBid(event){event.preventDefault();const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please complete the bid form correctly.");return}const btn=byId("submit-bid-btn");setLoading(btn,true,"Submitting");const taskId=byId("sb-task-id").value;const task=allTasks().find((item)=>item.id===taskId);try{const txHash=await sendTx("Application Submitted",`Application submitted for ${task?task.title:"selected task"}`);if(!txHash)return;const bids=getBids();bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});saveBids(bids);byId("bid-submit-result").innerHTML=`<div class="note">Application submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Application submitted","ok","Your application is now visible in the marketplace, My Tasks, and My Bids.");resetForm("bid-form");renderAll();showTab("my-bids")}finally{setLoading(btn,false,"Submit Application")}}
 async function handleEvaluate(event){event.preventDefault();const valid=[validText("ev-title",3),validText("ev-desc",12),validText("ev-skills",3),validUrl("ev-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please correct the evaluation form.");return}const btn=byId("evaluate-btn");setLoading(btn,true,"Evaluating");try{const txHash=await sendTx("Delivery Evaluated",`Evaluation submitted for ${byId("ev-title").value.trim()}`);if(!txHash)return;byId("evaluate-result").innerHTML=`<div class="note">Evaluation submitted.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Evaluation submitted","ok","The delivery review transaction has been recorded.");resetForm("evaluate-form")}finally{setLoading(btn,false,"Run Evaluation")}}
 async function handleDispute(event){event.preventDefault();const valid=[validText("dr-task",10),validText("dr-claimant",10),validText("dr-respondent",10),validUrl("dr-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the dispute form fields.");return}const btn=byId("dispute-btn");setLoading(btn,true,"Submitting");try{const txHash=await sendTx("Dispute Submitted","A dispute transaction has been created for review.");if(!txHash)return;byId("dispute-result").innerHTML=`<div class="note">Dispute submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Dispute submitted","ok","The dispute transaction is now visible in transaction activity.");resetForm("dispute-form")}finally{setLoading(btn,false,"Submit Dispute")}}
 function bindActions(){document.querySelectorAll(".nav-btn").forEach((button)=>button.addEventListener("click",()=>showTab(button.dataset.tab)));byId("refresh-market-btn").addEventListener("click",()=>{renderAll();toast("Marketplace refreshed","info","Tasks, bids, and transaction activity were reloaded.")});byId("post-task-form").addEventListener("submit",handlePostTask);byId("agent-form").addEventListener("submit",handleRegister);byId("bid-form").addEventListener("submit",handleBid);byId("evaluate-form").addEventListener("submit",handleEvaluate);byId("dispute-form").addEventListener("submit",handleDispute);byId("connect-wallet-btn").addEventListener("click",connectWallet);byId("disconnect-wallet-btn").addEventListener("click",disconnectWallet);byId("hero-connect-btn").addEventListener("click",connectWallet);byId("hero-explore-btn").addEventListener("click",()=>showTab("marketplace"))}
@@ -281,6 +415,3 @@ window.addEventListener("load",async()=>{bindActions();bindValidation();renderCo
 </script>
 </body>
 </html>
-
-
-
