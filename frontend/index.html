@@ -40,7 +40,7 @@ button,input,textarea,select{font:inherit}
 .nav-btn{background:none;border:none;color:var(--muted);padding:12px 4px;margin-right:18px;border-bottom:2px solid transparent;cursor:pointer;font-weight:700;white-space:nowrap;flex:0 0 auto}
 .nav-btn.active{color:var(--text);border-bottom-color:var(--cyan)}
 .main{max-width:1220px;margin:0 auto;padding:24px}
-.hero{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;margin-bottom:24px}
+.hero{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:24px}
 .hero-box{padding:28px;border-radius:var(--rl);position:relative;overflow:hidden;min-width:0}
 .hero-box::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(89,182,255,.08) 45%,transparent 100%);pointer-events:none}
 .hero-box>*{position:relative;z-index:1}
@@ -49,10 +49,6 @@ button,input,textarea,select{font:inherit}
 .hero-copy{color:var(--muted);font-size:15px;line-height:1.8;max-width:700px}
 .hero-badge,.tag{border-radius:999px;font-family:Consolas,monospace}
 .hero-badge{padding:8px 12px;border:1px solid var(--line2);background:rgba(89,182,255,.08);color:#dff4ff;font-size:12px}
-.mesh{display:grid;gap:14px}
-.mesh-item{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03);min-width:0}
-.mesh-label,.field label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:Consolas,monospace}
-.mesh-value{font-size:15px;font-weight:700;line-height:1.6;word-break:break-word}
 .page{display:none}
 .page.active{display:block}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;flex-wrap:wrap}
@@ -109,7 +105,7 @@ button,input,textarea,select{font:inherit}
 .footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}
 .footer-links a{color:var(--cyan);font-weight:700}
 @media (max-width:1100px){
-  .hero,.split,.forms,.about{grid-template-columns:1fr}
+  .split,.forms,.about{grid-template-columns:1fr}
   .market{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:repeat(2,1fr)}
 }
@@ -158,7 +154,6 @@ button,input,textarea,select{font:inherit}
     </div>
     <div class="top-actions">
       <div class="pill">Network <strong>StudioNet</strong></div>
-      <div class="pill">Contract <strong id="contract-inline"></strong></div>
       <div class="pill">Balance <strong class="wallet-balance" id="wallet-balance">0.00 $GEN</strong></div>
       <div class="wallet-group">
         <span class="wallet-address" id="wallet-address">Wallet not connected</span>
@@ -178,29 +173,25 @@ button,input,textarea,select{font:inherit}
     <button class="nav-btn" data-tab="about">About</button>
   </nav>
 </header>
-<main class="main">
-  <section class="hero">
-    <div class="panel hero-box">
-      <div class="hero-badges">
-        <span class="hero-badge">Powered by GenLayer</span>
-        <span class="hero-badge">AI Verified</span>
-        <span class="hero-badge">On Chain Settlement</span>
-      </div>
-      <h1 class="hero-title">Win the future of work with <span>AI-native coordination</span>.</h1>
-      <p class="hero-copy">NexusMesh helps founders post valuable work, agents submit stronger bids, and both sides track outcomes with transparent transaction feedback. It is tuned for a cleaner hackathon submission on desktop and mobile, using your live StudioNet contract from beginning to end.</p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="hero-connect-btn">Connect Wallet</button>
-        <button class="btn btn-secondary" id="hero-explore-btn">Explore Tasks</button>
-      </div>
-    </div>
-    <div class="panel hero-box mesh">
-      <div class="mesh-item"><div class="mesh-label">Live Contract Address</div><div class="mesh-value" id="contract-full"></div></div>
-      <div class="mesh-item"><div class="mesh-label">AI Enrichment Preview</div><div class="mesh-value">Task brief to AI scoring to on-chain execution to marketplace visibility.</div></div>
-      <div class="mesh-item"><div class="mesh-label">Hackathon Links</div><div class="mesh-value"><a class="tx-link" href="https://explorer-studio.genlayer.com/contracts/0x0195056364095CEDA68b6E79B9E3492d248D5726" target="_blank" rel="noopener noreferrer">Studio Explorer</a></div><div class="mesh-value"><a class="tx-link" href="https://github.com/Princebenedict/NexusMesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a></div></div>
-    </div>
-  </section>
 
+<main class="main">
   <section class="page active" id="page-marketplace">
+    <section class="hero">
+      <div class="panel hero-box">
+        <div class="hero-badges">
+          <span class="hero-badge">Powered by GenLayer</span>
+          <span class="hero-badge">AI Verified</span>
+          <span class="hero-badge">On Chain Settlement</span>
+        </div>
+        <h1 class="hero-title">Win the future of work with <span>AI-native coordination</span>.</h1>
+        <p class="hero-copy">NexusMesh helps founders post valuable work, agents submit stronger bids, and both sides track outcomes with transparent transaction feedback. It is tuned for a cleaner hackathon submission on desktop and mobile, using your live StudioNet contract from beginning to end.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="hero-connect-btn">Connect Wallet</button>
+          <button class="btn btn-secondary" id="hero-explore-btn">Explore Tasks</button>
+        </div>
+      </div>
+    </section>
+
     <div class="section-head"><div><div class="section-title">Marketplace</div><div class="section-sub">Explore founder tasks, web3 bounties, event activations, and contests. Budgets are intentionally modest for StudioNet and shown in $GEN.</div></div><div class="inline-actions"><button class="btn btn-secondary" id="refresh-market-btn" type="button">Refresh</button></div></div>
     <div class="stats">
       <div class="stat-card"><div class="stat-label">Tasks Live</div><div class="stat-value" id="stat-tasks">0</div></div>
@@ -340,8 +331,8 @@ button,input,textarea,select{font:inherit}
   </section>
 
   <footer class="footer">
-    <div class="summary-row"><span>Contract</span><strong id="footer-contract"></strong></div>
-    <div class="footer-links"><a href="https://github.com/Princebenedict/NexusMesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a><a href="https://docs.genlayer.com" target="_blank" rel="noopener noreferrer">GenLayer Documentation</a><a href="https://explorer-studio.genlayer.com/contracts/0x0195056364095CEDA68b6E79B9E3492d248D5726" target="_blank" rel="noopener noreferrer">Studio Explorer</a></div>
+    <div class="summary-row"><span>Contract</span><strong>0x0195056364095CEDA68b6E79B9E3492d248D5726</strong></div>
+    <div class="footer-links"><a href="https://github.com/Princebenedict/NexusMesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a><a href="https://docs.genlayer.com" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://explorer-studio.genlayer.com/contracts/0x0195056364095CEDA68b6E79B9E3492d248D5726" target="_blank" rel="noopener noreferrer">Studio Explorer</a></div>
   </footer>
 </main>
 
@@ -380,7 +371,7 @@ function toast(title,type,message){const wrap=byId("toast-wrap");const node=docu
 function setLoading(btn,on,label){if(on){btn.dataset.label=btn.textContent;btn.disabled=true;btn.innerHTML=`<span class="spinner"></span>${label}`}else{btn.disabled=false;btn.textContent=btn.dataset.label||label}}
 function txAdd(item){const current=getTxs();current.unshift(item);saveTxs(current.slice(0,12))}
 function txUpdate(txHash,patch){saveTxs(getTxs().map((item)=>item.hash===txHash?{...item,...patch}:item))}
-function renderContract(){byId("contract-inline").textContent=CONTRACT_ADDRESS;byId("contract-full").textContent=CONTRACT_ADDRESS;byId("footer-contract").textContent=CONTRACT_ADDRESS}
+function renderContract(){}
 function renderWallet(){const connected=Boolean(walletState.address);byId("wallet-address").textContent=connected?short(walletState.address):"Wallet not connected";byId("wallet-balance").textContent=walletState.balance||"0.00 $GEN";byId("connect-wallet-btn").hidden=connected;byId("disconnect-wallet-btn").hidden=!connected;byId("hero-connect-btn").hidden=connected}
 async function ensureStudio(){if(!window.ethereum)return;try{await window.ethereum.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x"+CHAIN_ID.toString(16)}]})}catch(error){console.warn(error)}}
 async function refreshBalance(){if(!window.ethereum||!walletState.address){walletState.balance="0.00 $GEN";renderWallet();return}try{const raw=await window.ethereum.request({method:"eth_getBalance",params:[walletState.address,"latest"]});walletState.balance=`${(Number.parseInt(raw,16)/1e18).toFixed(4)} $GEN`;saveWallet()}catch{walletState.balance="0.00 $GEN"}renderWallet()}
@@ -403,14 +394,14 @@ function renderTxHistory(){const txs=getTxs();byId("tx-history").innerHTML=txs.l
 function renderMyTasks(){const tasks=getTasks(),bids=getBids();byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{const id=btn.dataset.feedback;const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);saveBids(next);toast("Founder feedback saved","ok","Bid response updated and visible in My Bids.");renderAll()}))}
 function renderMyBids(){const bids=getBids();byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`}
 function renderAll(){renderContract();renderWallet();renderTaskSelect();renderMarketplace();renderStats();renderSummary();renderTxHistory();renderMyTasks();renderMyBids()}
-function showTab(tab){document.querySelectorAll(".page").forEach((page)=>page.classList.remove("active"));document.querySelectorAll(".nav-btn").forEach((btn)=>btn.classList.toggle("active",btn.dataset.tab===tab));byId(`page-${tab}`).classList.add("active");if(tab==="marketplace")renderAll()}
+function showTab(tab){document.querySelectorAll(".page").forEach((page)=>page.classList.remove("active"));document.querySelectorAll(".nav-btn").forEach((btn)=>btn.classList.toggle("active",btn.dataset.tab===tab));byId(`page-${tab}`).classList.add("active")}
 function bindValidation(){byId("pt-budget").addEventListener("input",()=>{byId("pt-budget-help").textContent=Number(byId("pt-budget").value||0)>0?`${Number(byId("pt-budget").value).toFixed(1)} $GEN founder budget`:"Minimum 0.1 $GEN";validNum("pt-budget",0.1)});byId("ra-rate").addEventListener("input",()=>{byId("ra-rate-help").textContent=Number(byId("ra-rate").value||0)>0?`${Number(byId("ra-rate").value).toFixed(1)} $GEN per hour`:"Minimum 0.1 $GEN";validNum("ra-rate",0.1)});byId("sb-price").addEventListener("input",()=>validNum("sb-price",0.1))}
 async function handlePostTask(event){event.preventDefault();const valid=[validText("pt-title",5),validText("pt-desc",20),validText("pt-skills",3),validNum("pt-budget",0.1),validNum("pt-days",0,365),validNum("pt-hours",0,23)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted task fields.");return}const btn=byId("post-task-btn");setLoading(btn,true,"Posting");try{const txHash=await sendTx("Task Posted",`Founder posted ${byId("pt-title").value.trim()}`);if(!txHash)return;const tasks=getTasks();tasks.unshift({id:`task-${Date.now()}`,title:byId("pt-title").value.trim(),description:byId("pt-desc").value.trim(),skills:skillsOf(byId("pt-skills").value),budget:Number(byId("pt-budget").value),deadlineHours:Number(byId("pt-days").value||0)*24+Number(byId("pt-hours").value||0),type:byId("pt-type").value,level:byId("pt-level").value,owner:walletState.address||"Founder"});saveTasks(tasks);byId("post-task-result").innerHTML=`<div class="note">Task posted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Task posted","ok",`Transaction hash ${txHash} has been recorded and the task is now live.`);resetForm("post-task-form");renderAll();showTab("my-tasks")}finally{setLoading(btn,false,"Post Task")}}
 async function handleRegister(event){event.preventDefault();const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted agent fields.");return}const btn=byId("register-agent-btn");setLoading(btn,true,"Registering");try{const txHash=await sendTx("Agent Registered",`Agent profile submitted for ${byId("ra-name").value.trim()}`);if(!txHash)return;byId("register-result").innerHTML=`<div class="note">Agent registered successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Agent registered","ok",`Profile recorded successfully. Transaction hash ${txHash}.`);resetForm("agent-form")}finally{setLoading(btn,false,"Register Agent")}}
 async function handleBid(event){event.preventDefault();const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please complete the bid form correctly.");return}const btn=byId("submit-bid-btn");setLoading(btn,true,"Submitting");const taskId=byId("sb-task-id").value;const task=allTasks().find((item)=>item.id===taskId);try{const txHash=await sendTx("Application Submitted",`Application submitted for ${task?task.title:"selected task"}`);if(!txHash)return;const bids=getBids();bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});saveBids(bids);byId("bid-submit-result").innerHTML=`<div class="note">Application submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Application submitted","ok","Your application is now visible in the marketplace, My Tasks, and My Bids.");resetForm("bid-form");renderAll();showTab("my-bids")}finally{setLoading(btn,false,"Submit Application")}}
 async function handleEvaluate(event){event.preventDefault();const valid=[validText("ev-title",3),validText("ev-desc",12),validText("ev-skills",3),validUrl("ev-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please correct the evaluation form.");return}const btn=byId("evaluate-btn");setLoading(btn,true,"Evaluating");try{const txHash=await sendTx("Delivery Evaluated",`Evaluation submitted for ${byId("ev-title").value.trim()}`);if(!txHash)return;byId("evaluate-result").innerHTML=`<div class="note">Evaluation submitted.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Evaluation submitted","ok","The delivery review transaction has been recorded.");resetForm("evaluate-form")}finally{setLoading(btn,false,"Run Evaluation")}}
 async function handleDispute(event){event.preventDefault();const valid=[validText("dr-task",10),validText("dr-claimant",10),validText("dr-respondent",10),validUrl("dr-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the dispute form fields.");return}const btn=byId("dispute-btn");setLoading(btn,true,"Submitting");try{const txHash=await sendTx("Dispute Submitted","A dispute transaction has been created for review.");if(!txHash)return;byId("dispute-result").innerHTML=`<div class="note">Dispute submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Dispute submitted","ok","The dispute transaction is now visible in transaction activity.");resetForm("dispute-form")}finally{setLoading(btn,false,"Submit Dispute")}}
-function bindActions(){document.querySelectorAll(".nav-btn").forEach((button)=>button.addEventListener("click",()=>showTab(button.dataset.tab)));byId("refresh-market-btn").addEventListener("click",()=>{renderAll();toast("Marketplace refreshed","info","Tasks, bids, and transaction activity were reloaded.")});byId("post-task-form").addEventListener("submit",handlePostTask);byId("agent-form").addEventListener("submit",handleRegister);byId("bid-form").addEventListener("submit",handleBid);byId("evaluate-form").addEventListener("submit",handleEvaluate);byId("dispute-form").addEventListener("submit",handleDispute);byId("connect-wallet-btn").addEventListener("click",connectWallet);byId("disconnect-wallet-btn").addEventListener("click",disconnectWallet);byId("hero-connect-btn").addEventListener("click",connectWallet);byId("hero-explore-btn").addEventListener("click",()=>showTab("marketplace"))}
+function bindActions(){document.querySelectorAll(".nav-btn").forEach((button)=>button.addEventListener("click",()=>showTab(button.dataset.tab)));byId("refresh-market-btn").addEventListener("click",()=>{renderAll();toast("Marketplace refreshed","info","Tasks, bids, and transaction activity were reloaded.")});byId("post-task-form").addEventListener("submit",handlePostTask);byId("agent-form").addEventListener("submit",handleRegister);byId("bid-form").addEventListener("submit",handleBid);byId("evaluate-form").addEventListener("submit",handleEvaluate);byId("dispute-form").addEventListener("submit",handleDispute);byId("connect-wallet-btn").addEventListener("click",connectWallet);byId("disconnect-wallet-btn").addEventListener("click",disconnectWallet);byId("hero-connect-btn").addEventListener("click",connectWallet);byId("hero-explore-btn").addEventListener("click",()=>{showTab("marketplace");window.scrollTo({top:0,behavior:"smooth"})})}
 window.addEventListener("load",async()=>{bindActions();bindValidation();renderContract();renderWallet();await refreshBalance();renderAll()});
 </script>
 </body>
