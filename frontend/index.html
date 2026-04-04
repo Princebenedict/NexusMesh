@@ -11,7 +11,6 @@ html,body{max-width:100%;overflow-x:hidden}
 body{font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 0 0,rgba(89,182,255,.16),transparent 30%),linear-gradient(180deg,#061018 0%,#091522 100%);color:var(--text);font-size:14px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 button,input,textarea{font:inherit}
-
 .header,.panel,.task-card,.stat-card,.tx-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);box-shadow:var(--shadow)}
 .header{position:sticky;top:0;z-index:50;background:rgba(7,15,24,.98);padding:18px 24px;border-radius:0;box-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .row,.nav,.top-actions,.wallet-group,.hero-actions,.hero-badges,.tags,.task-footer,.task-meta,.footer-links,.inline-actions,.summary-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -31,18 +30,15 @@ button,input,textarea{font:inherit}
 .footer-links{margin-top:12px}
 .stack-gap{margin-top:14px}
 .subtle-gap{margin:8px 0}
-
 .btn{border:none;border-radius:var(--r);padding:11px 16px;cursor:pointer;transition:.18s;font-weight:700}
 .btn:hover{transform:translateY(-1px)}
 .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
 .btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019}
 .btn-secondary{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text)}
 .btn-danger{background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.2);color:#ffd8d8}
-
 .nav{margin-top:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
 .nav-btn{background:none;border:none;color:var(--muted);padding:12px 4px;margin-right:18px;border-bottom:2px solid transparent;cursor:pointer;font-weight:700;white-space:nowrap;flex:0 0 auto}
 .nav-btn.active{color:var(--text);border-bottom-color:var(--cyan)}
-
 .main{max-width:1220px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:24px}
 .hero-box{padding:28px;border-radius:var(--rl);position:relative;overflow:hidden;min-width:0}
@@ -53,20 +49,17 @@ button,input,textarea{font:inherit}
 .hero-copy{color:var(--muted);font-size:15px;line-height:1.8;max-width:700px}
 .hero-badge,.tag{border-radius:999px;font-family:Consolas,monospace}
 .hero-badge{padding:8px 12px;border:1px solid var(--line2);background:rgba(89,182,255,.08);color:#dff4ff;font-size:12px}
-
 .page{display:none}
 .page.active{display:block}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .section-title{font-size:28px;font-weight:900}
 .section-sub,.task-desc,.help,.subtle{color:var(--muted);line-height:1.7}
-
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .market{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .split,.forms,.about{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
 .stat-card,.panel,.tx-card{padding:20px;border-radius:var(--rl);min-width:0}
 .stat-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .stat-value{font-size:28px;font-weight:900;font-family:Consolas,monospace}
-
 .task-card{border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .task-body{padding:20px;display:grid;gap:12px;min-width:0}
 .task-title{font-size:17px;font-weight:800}
@@ -77,18 +70,16 @@ button,input,textarea{font:inherit}
 .task-footer{padding:16px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.02);justify-content:space-between}
 .price{font-size:18px;font-weight:900;color:var(--green)}
 .task-meta{justify-content:space-between;color:var(--muted);font-size:12px}
-
 .card-title{font-size:18px;font-weight:800;margin-bottom:12px}
 .list{display:grid;gap:12px}
 .item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.02);min-width:0}
 .empty{color:var(--muted);padding:24px 0;text-align:center}
-
 .form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
 .field input,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
+.field input[type="file"]{padding:10px}
 .field textarea{min-height:96px;resize:vertical}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
-
 .custom-select{position:relative}
 .select-hidden{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
 .select-trigger{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-height:46px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left}
@@ -98,15 +89,12 @@ button,input,textarea{font:inherit}
 .custom-select.open .select-menu{display:grid;gap:6px}
 .select-option{background:rgba(255,255,255,.03);border:1px solid transparent;color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer;text-align:left}
 .select-option:hover,.select-option.active{border-color:var(--line2);background:rgba(89,182,255,.10)}
-
 .grid2,.grid3{display:grid;gap:14px}
 .grid2{grid-template-columns:1fr 1fr}
 .grid3{grid-template-columns:repeat(3,1fr)}
-
 .error input,.error textarea,.error .select-trigger{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}
 .error-text{display:none;color:#ffb0b0;font-size:12px}
 .error .error-text{display:block}
-
 .note{border:1px solid rgba(89,182,255,.16);background:rgba(89,182,255,.08);color:#d9f4ff;padding:12px 14px;border-radius:var(--r);line-height:1.7;word-break:break-word}
 .status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
 .pending{background:rgba(245,184,75,.12);color:var(--amber)}
@@ -116,7 +104,15 @@ button,input,textarea{font:inherit}
 .tx-link{color:var(--cyan);font-weight:700;word-break:break-all}
 .feedback{margin-top:12px;display:grid;gap:10px}
 .feedback-note{padding:10px 12px;border-radius:12px;background:rgba(101,230,255,.08);border:1px solid rgba(101,230,255,.14);color:#dbf8ff;word-break:break-word}
-
+.score-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(54,211,153,.12);color:var(--green);font-size:12px;font-weight:700}
+.match-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.match-tag{padding:6px 10px;border-radius:999px;background:rgba(89,182,255,.08);border:1px solid var(--line2);color:var(--cyan);font-size:11px;font-family:Consolas,monospace}
+.link-row{display:grid;gap:6px;margin-top:8px}
+.link-row a{color:var(--cyan);font-weight:700;word-break:break-all}
+.footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}
+.footer-contract{padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03);font-family:Consolas,monospace;color:var(--text);word-break:break-all}
+.footer-contract strong{color:var(--cyan)}
+.footer-links a{color:var(--cyan);font-weight:700}
 .toast-wrap{position:fixed;right:20px;bottom:20px;display:grid;gap:10px;z-index:50;max-width:calc(100vw - 24px)}
 .toast{min-width:280px;max-width:380px;padding:14px 16px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line);background:rgba(10,18,28,.96)}
 .toast strong{display:block;margin-bottom:4px}
@@ -125,12 +121,6 @@ button,input,textarea{font:inherit}
 .toast.info strong{color:var(--cyan)}
 .spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:currentColor;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-.footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}
-.footer-contract{padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03);font-family:Consolas,monospace;color:var(--text);word-break:break-all}
-.footer-contract strong{color:var(--cyan)}
-.footer-links a{color:var(--cyan);font-weight:700}
-
 @media (max-width:1100px){
   .split,.forms,.about{grid-template-columns:1fr}
   .market{grid-template-columns:repeat(2,1fr)}
@@ -307,7 +297,7 @@ button,input,textarea{font:inherit}
   </section>
 
   <section class="page" id="page-register">
-    <div class="section-head"><div><div class="section-title">Register as Agent</div><div class="section-sub">Create a polished profile with lower pricing defaults, stronger web3 positioning, and cleaner validation.</div></div></div>
+    <div class="section-head"><div><div class="section-title">Register as Agent</div><div class="section-sub">Create a polished profile, upload proof links, and get matched to the work categories your skills fit best.</div></div></div>
     <div class="forms">
       <div class="panel">
         <form class="form" id="agent-form" novalidate>
@@ -340,12 +330,25 @@ button,input,textarea{font:inherit}
           </div>
           <div class="field" data-field="ra-skills"><label for="ra-skills">Skills</label><input id="ra-skills" type="text" placeholder="Smart Contracts, Tokenomics, Frontend, Wallet UX"><div class="help">Use simple comma-separated skills.</div><div class="error-text"></div></div>
           <div class="field" data-field="ra-desc"><label for="ra-desc">Description</label><textarea id="ra-desc" placeholder="Describe your strengths across product delivery, AI operations, web3 engineering, events, or community growth."></textarea><div class="error-text"></div></div>
+          <div class="grid2">
+            <div class="field" data-field="ra-x"><label for="ra-x">X Profile</label><input id="ra-x" type="url" placeholder="https://x.com/yourprofile"><div class="error-text"></div></div>
+            <div class="field" data-field="ra-discord"><label for="ra-discord">Discord Profile</label><input id="ra-discord" type="text" placeholder="username or invite link"><div class="error-text"></div></div>
+          </div>
+          <div class="grid2">
+            <div class="field" data-field="ra-github"><label for="ra-github">GitHub Profile</label><input id="ra-github" type="url" placeholder="https://github.com/yourprofile"><div class="error-text"></div></div>
+            <div class="field" data-field="ra-cv"><label for="ra-cv">CV Upload</label><input id="ra-cv" type="file" accept=".pdf,.doc,.docx"><div class="help">Upload a CV or portfolio file for profile scoring.</div><div class="error-text"></div></div>
+          </div>
           <div class="field" data-field="ra-rate"><label for="ra-rate">Hourly Rate in $GEN</label><input id="ra-rate" type="number" min="0.1" step="0.1" placeholder="0.3"><div class="help" id="ra-rate-help">Minimum 0.1 $GEN</div><div class="error-text"></div></div>
           <button class="btn btn-primary" id="register-agent-btn" type="submit">Register Agent</button>
           <div id="register-result"></div>
         </form>
       </div>
-      <div class="panel"><div class="card-title">High Value Skill Suggestions</div><div class="tags"><span class="tag tag-skill">Frontend</span><span class="tag tag-skill">Solidity</span><span class="tag tag-skill">Wallet UX</span><span class="tag tag-skill">ZK Research</span><span class="tag tag-skill">Hackathon Ops</span><span class="tag tag-skill">Tokenomics</span><span class="tag tag-skill">Growth</span><span class="tag tag-skill">DAO Tooling</span><span class="tag tag-skill">Rust</span><span class="tag tag-skill">Indexers</span><span class="tag tag-skill">Governance</span><span class="tag tag-skill">Community Ops</span></div></div>
+      <div class="panel">
+        <div class="card-title">Skill Match Preview</div>
+        <div id="agent-match-preview"></div>
+        <div class="card-title" style="margin-top:18px">Registered Agents</div>
+        <div class="list" id="registered-agents-list"></div>
+      </div>
     </div>
   </section>
 
@@ -368,6 +371,14 @@ button,input,textarea{font:inherit}
             <div class="field" data-field="sb-agent-rep"><label for="sb-agent-rep">Reputation Score</label><input id="sb-agent-rep" type="number" min="0" max="100" step="1" placeholder="82"><div class="error-text"></div></div>
           </div>
           <div class="field" data-field="sb-skills"><label for="sb-skills">Your Skills</label><input id="sb-skills" type="text" placeholder="React, Smart Contracts, Growth Design"><div class="error-text"></div></div>
+          <div class="grid2">
+            <div class="field" data-field="sb-x"><label for="sb-x">X Profile</label><input id="sb-x" type="url" placeholder="https://x.com/yourprofile"><div class="error-text"></div></div>
+            <div class="field" data-field="sb-discord"><label for="sb-discord">Discord Profile</label><input id="sb-discord" type="text" placeholder="username or invite link"><div class="error-text"></div></div>
+          </div>
+          <div class="grid2">
+            <div class="field" data-field="sb-github"><label for="sb-github">GitHub Profile</label><input id="sb-github" type="url" placeholder="https://github.com/yourprofile"><div class="error-text"></div></div>
+            <div class="field" data-field="sb-cv"><label for="sb-cv">CV Upload</label><input id="sb-cv" type="file" accept=".pdf,.doc,.docx"><div class="help">Upload a CV or portfolio file for application scoring.</div><div class="error-text"></div></div>
+          </div>
           <div class="field" data-field="sb-price"><label for="sb-price">Application Price in $GEN</label><input id="sb-price" type="number" min="0.1" step="0.1" placeholder="0.6"><div class="help">Application prices cannot be negative and start from 0.1 $GEN.</div><div class="error-text"></div></div>
           <div class="field" data-field="sb-pitch"><label for="sb-pitch">Pitch</label><textarea id="sb-pitch" placeholder="Explain why you are the right builder for this task."></textarea><div class="error-text"></div></div>
           <div class="field" data-field="sb-approach"><label for="sb-approach">Approach</label><textarea id="sb-approach" placeholder="Describe your execution plan, collaboration model, and delivery timeline."></textarea><div class="error-text"></div></div>
@@ -375,7 +386,7 @@ button,input,textarea{font:inherit}
           <div id="bid-submit-result"></div>
         </form>
       </div>
-      <div class="panel"><div class="card-title">Application Guidance</div><div class="note">After a successful transaction, the form clears automatically, the transaction hash is shown, the selected task updates with your application, and the founder can respond inside My Tasks.</div></div>
+      <div class="panel"><div class="card-title">Application Guidance</div><div class="note">After a successful transaction, the form clears automatically, the transaction hash is shown, the selected task updates with your application, and the founder can respond inside My Tasks. Social links and CV details contribute to profile scoring.</div></div>
     </div>
   </section>
 
@@ -434,7 +445,7 @@ button,input,textarea{font:inherit}
 const CONTRACT_ADDRESS="0x0195056364095CEDA68b6E79B9E3492d248D5726";
 const CHAIN_ID=61999;
 const EXPLORER_BASE="https://explorer-studio.genlayer.com/tx/";
-const STORAGE={tasks:"nm_tasks_v3",bids:"nm_bids_v3",txs:"nm_txs_v3",wallet:"nm_wallet_v3"};
+const STORAGE={tasks:"nm_tasks_v3",bids:"nm_bids_v3",txs:"nm_txs_v3",wallet:"nm_wallet_v3",agents:"nm_agents_v3"};
 const sampleTasks=[
 {id:"sample-1",title:"Design a token gated event landing page",description:"Build a modern landing page for a StudioNet launch event with wallet connect, RSVP flow, and responsive sections.",skills:["Frontend","Wallet UX","Event Design"],budget:0.6,deadlineHours:18,level:"medium",type:"event",owner:"Studio Team"},
 {id:"sample-2",title:"Create a web3 hackathon sponsorship deck",description:"Prepare a polished deck for sponsor outreach with ecosystem traction, event flow, and reward logic.",skills:["Strategy","Design","Ecosystem"],budget:0.4,deadlineHours:24,level:"low",type:"contest",owner:"Community Lead"},
@@ -443,15 +454,18 @@ const sampleTasks=[
 {id:"sample-5",title:"Create a DAO event registration flow",description:"Set up a community event registration and attendance tracking experience for a web3 builder meetup.",skills:["Community","Forms","Frontend"],budget:0.5,deadlineHours:20,level:"medium",type:"event",owner:"DAO Founder"},
 {id:"sample-6",title:"Design a bounty contest submissions board",description:"Build a lightweight board for showing contest entries, judges, and scoring progress.",skills:["Product Design","Frontend","Contest Ops"],budget:0.8,deadlineHours:36,level:"high",type:"contest",owner:"Hackathon Host"}
 ];
+
 let walletState=JSON.parse(localStorage.getItem(STORAGE.wallet)||'{"address":"","balance":"0.00 $GEN"}');
 
 const byId=(id)=>document.getElementById(id);
 const getTasks=()=>JSON.parse(localStorage.getItem(STORAGE.tasks)||"[]");
 const getBids=()=>JSON.parse(localStorage.getItem(STORAGE.bids)||"[]");
 const getTxs=()=>JSON.parse(localStorage.getItem(STORAGE.txs)||"[]");
+const getAgents=()=>JSON.parse(localStorage.getItem(STORAGE.agents)||"[]");
 const saveTasks=(v)=>localStorage.setItem(STORAGE.tasks,JSON.stringify(v));
 const saveBids=(v)=>localStorage.setItem(STORAGE.bids,JSON.stringify(v));
 const saveTxs=(v)=>localStorage.setItem(STORAGE.txs,JSON.stringify(v));
+const saveAgents=(v)=>localStorage.setItem(STORAGE.agents,JSON.stringify(v));
 const saveWallet=()=>localStorage.setItem(STORAGE.wallet,JSON.stringify(walletState));
 const esc=(v)=>String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 const short=(v)=>!v?"":v.slice(0,8)+"..."+v.slice(-4);
@@ -464,6 +478,34 @@ function deadline(hours){
   if(d)p.push(`${d} day${d===1?"":"s"}`);
   if(h||!p.length)p.push(`${h} hour${h===1?"":"s"}`);
   return p.join(" ");
+}
+
+function inferMatches(skills){
+  const text=skills.join(" ").toLowerCase();
+  const lanes=[
+    {name:"Frontend Experience",keys:["frontend","react","vue","ui","ux","design","html","css"]},
+    {name:"Smart Contract Delivery",keys:["solidity","smart contract","web3","evm","rust","tokenomics","wallet"]},
+    {name:"Growth & Community",keys:["growth","community","dao","governance","support","docs","marketing"]},
+    {name:"Event & Contest Ops",keys:["event","contest","hackathon","ops","operations","moderation"]},
+    {name:"AI & Automation",keys:["ai","agent","automation","prompt","llm"]},
+    {name:"Data & Indexing",keys:["analytics","indexer","data","dashboard","sql"]}
+  ];
+  const matches=lanes.filter((lane)=>lane.keys.some((key)=>text.includes(key))).map((lane)=>lane.name);
+  return matches.length?matches:["General Builder"];
+}
+
+function profileScore(profile,task){
+  let score=45;
+  if(profile.x)score+=10;
+  if(profile.discord)score+=8;
+  if(profile.github)score+=12;
+  if(profile.cvFileName)score+=10;
+  if(task && profile.skills?.length){
+    const taskSkills=(task.skills||[]).map((s)=>s.toLowerCase());
+    const overlap=profile.skills.filter((skill)=>taskSkills.some((taskSkill)=>skill.toLowerCase().includes(taskSkill)||taskSkill.includes(skill.toLowerCase()))).length;
+    score+=Math.min(15,overlap*5);
+  }
+  return Math.min(100,score);
 }
 
 function allTasks(){
@@ -675,6 +717,22 @@ function renderTaskSelect(){
   setCustomSelectOptions("sb-task-id",options);
 }
 
+function renderAgentMatchPreview(){
+  const skills=skillsOf(byId("ra-skills").value||"");
+  const x=byId("ra-x").value.trim();
+  const discord=byId("ra-discord").value.trim();
+  const github=byId("ra-github").value.trim();
+  const cvFileName=byId("ra-cv").files[0]?.name||"";
+  const matches=inferMatches(skills);
+  const score=profileScore({skills,x,discord,github,cvFileName});
+  byId("agent-match-preview").innerHTML=`<div class="note">Profile readiness score: <strong>${score}/100</strong><div class="match-tags">${matches.map((match)=>`<span class="match-tag">${esc(match)}</span>`).join("")}</div></div>`;
+}
+
+function renderRegisteredAgents(){
+  const agents=getAgents();
+  byId("registered-agents-list").innerHTML=agents.length?agents.map((agent)=>`<div class="item"><strong>${esc(agent.name)}</strong><div class="subtle">${esc(agent.type)} - ${esc(agent.availability)} - ${formatGen(agent.rate)}/hr</div><div class="score-badge">Profile Score ${agent.profileScore}</div><div class="subtle">Skills: ${esc(agent.skills.join(", "))}</div><div class="match-tags">${agent.matches.map((match)=>`<span class="match-tag">${esc(match)}</span>`).join("")}</div>${agent.cvFileName?`<div class="subtle">CV: ${esc(agent.cvFileName)}</div>`:""}${agent.x||agent.discord||agent.github?`<div class="link-row">${agent.x?`<a href="${esc(agent.x)}" target="_blank" rel="noopener noreferrer">X Profile</a>`:""}${agent.github?`<a href="${esc(agent.github)}" target="_blank" rel="noopener noreferrer">GitHub Profile</a>`:""}${agent.discord?`<div class="subtle">Discord: ${esc(agent.discord)}</div>`:""}</div>`:""}</div>`).join(""):`<div class="empty">Registered agent profiles will appear here.</div>`;
+}
+
 function openTaskDetails(taskId){
   const task=allTasks().find((item)=>item.id===taskId);
   if(!task){
@@ -687,7 +745,7 @@ function openTaskDetails(taskId){
 
 function renderMarketplace(){
   const grid=byId("task-market-grid");
-  grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");
+  grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div><div class="score-badge">Profile Score ${bid.profileScore||0}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");
   grid.querySelectorAll("[data-apply]").forEach((btn)=>btn.addEventListener("click",()=>{
     byId("sb-task-id").value=btn.dataset.apply;
     const task=allTasks().find((item)=>item.id===btn.dataset.apply);
@@ -721,7 +779,7 @@ function renderMyTasks(){
   const tasks=getTasks(),bids=getBids();
   byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;
   const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));
-  byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;
+  byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="score-badge">Profile Score ${bid.profileScore||0}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div>${bid.cvFileName?`<div class="subtle">CV: ${esc(bid.cvFileName)}</div>`:""}${bid.x||bid.discord||bid.github?`<div class="link-row">${bid.x?`<a href="${esc(bid.x)}" target="_blank" rel="noopener noreferrer">X Profile</a>`:""}${bid.github?`<a href="${esc(bid.github)}" target="_blank" rel="noopener noreferrer">GitHub Profile</a>`:""}${bid.discord?`<div class="subtle">Discord: ${esc(bid.discord)}</div>`:""}</div>`:""}<div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;
   byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{
     const id=btn.dataset.feedback;
     const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);
@@ -733,7 +791,7 @@ function renderMyTasks(){
 
 function renderMyBids(){
   const bids=getBids();
-  byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`;
+  byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="score-badge">Profile Score ${bid.profileScore||0}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.cvFileName?`<div class="subtle">CV: ${esc(bid.cvFileName)}</div>`:""}${bid.x||bid.discord||bid.github?`<div class="link-row">${bid.x?`<a href="${esc(bid.x)}" target="_blank" rel="noopener noreferrer">X Profile</a>`:""}${bid.github?`<a href="${esc(bid.github)}" target="_blank" rel="noopener noreferrer">GitHub Profile</a>`:""}${bid.discord?`<div class="subtle">Discord: ${esc(bid.discord)}</div>`:""}</div>`:""}${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`;
 }
 
 function renderAll(){
@@ -746,6 +804,8 @@ function renderAll(){
   renderTxHistory();
   renderMyTasks();
   renderMyBids();
+  renderAgentMatchPreview();
+  renderRegisteredAgents();
 }
 
 function showTab(tab){
@@ -808,6 +868,11 @@ function bindValidation(){
     const unit=byId("pt-duration-unit").value;
     byId("pt-duration-help").textContent=value>0?`Deadline set to ${value} ${unit}.`:"Enter the task duration value.";
   });
+  byId("ra-skills").addEventListener("input",renderAgentMatchPreview);
+  byId("ra-x").addEventListener("input",renderAgentMatchPreview);
+  byId("ra-discord").addEventListener("input",renderAgentMatchPreview);
+  byId("ra-github").addEventListener("input",renderAgentMatchPreview);
+  byId("ra-cv").addEventListener("change",renderAgentMatchPreview);
   byId("ra-rate").addEventListener("input",()=>{
     byId("ra-rate-help").textContent=Number(byId("ra-rate").value||0)>0?`${Number(byId("ra-rate").value).toFixed(1)} $GEN per hour`:"Minimum 0.1 $GEN";
     validNum("ra-rate",0.1);
@@ -846,7 +911,7 @@ async function handlePostTask(event){
 
 async function handleRegister(event){
   event.preventDefault();
-  const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1)].every(Boolean);
+  const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1),validUrl("ra-x",false),validUrl("ra-github",false)].every(Boolean);
   if(!valid){
     toast("Validation needed","err","Please fix the highlighted agent fields.");
     return;
@@ -856,9 +921,29 @@ async function handleRegister(event){
   try{
     const txHash=await sendTx("Agent Registered",`Agent profile submitted for ${byId("ra-name").value.trim()}`);
     if(!txHash)return;
+    const skills=skillsOf(byId("ra-skills").value);
+    const profile={
+      id:`agent-${Date.now()}`,
+      name:byId("ra-name").value.trim(),
+      type:byId("ra-type").value,
+      availability:byId("ra-availability").value,
+      skills,
+      description:byId("ra-desc").value.trim(),
+      rate:Number(byId("ra-rate").value),
+      x:byId("ra-x").value.trim(),
+      discord:byId("ra-discord").value.trim(),
+      github:byId("ra-github").value.trim(),
+      cvFileName:byId("ra-cv").files[0]?.name||"",
+      matches:inferMatches(skills)
+    };
+    profile.profileScore=profileScore(profile);
+    const agents=getAgents();
+    agents.unshift(profile);
+    saveAgents(agents);
     byId("register-result").innerHTML=`<div class="note">Agent registered successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
     toast("Agent registered","ok",`Profile recorded successfully. Transaction hash ${txHash}.`);
     resetForm("agent-form");
+    renderAll();
   }finally{
     setLoading(btn,false,"Register Agent");
   }
@@ -866,7 +951,7 @@ async function handleRegister(event){
 
 async function handleBid(event){
   event.preventDefault();
-  const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);
+  const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1),validUrl("sb-x",false),validUrl("sb-github",false)].every(Boolean);
   if(!valid){
     toast("Validation needed","err","Please complete the bid form correctly.");
     return;
@@ -878,8 +963,16 @@ async function handleBid(event){
   try{
     const txHash=await sendTx("Application Submitted",`Application submitted for ${task?task.title:"selected task"}`);
     if(!txHash)return;
+    const skills=skillsOf(byId("sb-skills").value);
+    const bidProfile={
+      skills,
+      x:byId("sb-x").value.trim(),
+      discord:byId("sb-discord").value.trim(),
+      github:byId("sb-github").value.trim(),
+      cvFileName:byId("sb-cv").files[0]?.name||""
+    };
     const bids=getBids();
-    bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});
+    bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills,reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash,x:bidProfile.x,discord:bidProfile.discord,github:bidProfile.github,cvFileName:bidProfile.cvFileName,profileScore:profileScore(bidProfile,task)});
     saveBids(bids);
     byId("bid-submit-result").innerHTML=`<div class="note">Application submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
     toast("Application submitted","ok","Your application is now visible in the marketplace, My Tasks, and My Bids.");
