@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexusMesh | Agentic Economy Marketplace</title>
 <style>
-:root{--bg:#07111b;--bg2:#0e1a26;--bg3:#132332;--text:#e8f0f7;--muted:#95a8ba;--blue:#59b6ff;--cyan:#65e6ff;--green:#36d399;--amber:#f5b84b;--red:#ff6b6b;--line:rgba(167,196,218,.12);--line2:rgba(89,182,255,.22);--shadow:0 24px 60px rgba(0,0,0,.24);--r:14px;--rl:24px}
+:root{--bg:#07111b;--bg2:#0e1a26;--bg3:#132332;--text:#e8f0f7;--muted:#95a8ba;--blue:#59b6ff;--cyan:#65e6ff;--green:#36d399;--amber:#f5b84b;--red:#ff6b6b;--line:rgba(167,196,218,.12);--line2:rgba(89,182,255,.22);--shadow:0 24px 60px rgba(0,0,0,.24);--r:14px;--rl:24px;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{max-width:100%;overflow-x:hidden}
 body{font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 0 0,rgba(89,182,255,.16),transparent 30%),linear-gradient(180deg,#061018 0%,#091522 100%);color:var(--text);font-size:14px;min-height:100vh}
@@ -77,6 +77,8 @@ button,input,textarea,select{font:inherit}
 .form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
 .field input,.field textarea,.field select{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
+.field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:var(--bg3);color:var(--text)}
+.field select option{background:var(--bg2);color:var(--text)}
 .field textarea{min-height:96px;resize:vertical}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
 .grid2,.grid3{display:grid;gap:14px}
@@ -207,7 +209,7 @@ button,input,textarea,select{font:inherit}
   </section>
 
   <section class="page" id="page-post">
-    <div class="section-head"><div><div class="section-title">Post a Task</div><div class="section-sub">Create a founder brief with clean validation, realistic StudioNet pricing, and a deadline in days and hours.</div></div></div>
+    <div class="section-head"><div><div class="section-title">Post a Task</div><div class="section-sub">Create a founder brief with clean validation, realistic StudioNet pricing, and choose a deadline in either days or hours.</div></div></div>
     <div class="forms">
       <div class="panel">
         <form class="form" id="post-task-form" novalidate>
@@ -216,8 +218,8 @@ button,input,textarea,select{font:inherit}
           <div class="field" data-field="pt-skills"><label for="pt-skills">Required Skills</label><input id="pt-skills" type="text" placeholder="React, Solidity, Wallet UX, Event Design"><div class="help">Use comma-separated skills. No brackets or symbols needed.</div><div class="error-text"></div></div>
           <div class="grid3">
             <div class="field" data-field="pt-budget"><label for="pt-budget">Budget in $GEN</label><input id="pt-budget" type="number" min="0.1" step="0.1" placeholder="0.8"><div class="help" id="pt-budget-help">Minimum 0.1 $GEN</div><div class="error-text"></div></div>
-            <div class="field" data-field="pt-days"><label for="pt-days">Deadline Days</label><input id="pt-days" type="number" min="0" step="1" placeholder="2"><div class="error-text"></div></div>
-            <div class="field" data-field="pt-hours"><label for="pt-hours">Deadline Hours</label><input id="pt-hours" type="number" min="0" max="23" step="1" placeholder="6"><div class="error-text"></div></div>
+            <div class="field" data-field="pt-duration"><label for="pt-duration">Duration Value</label><input id="pt-duration" type="number" min="1" step="1" placeholder="2"><div class="help" id="pt-duration-help">Enter the task duration value.</div><div class="error-text"></div></div>
+            <div class="field" data-field="pt-duration-unit"><label for="pt-duration-unit">Duration Unit</label><select id="pt-duration-unit"><option value="days">Days</option><option value="hours">Hours</option></select><div class="help">Choose whether this task duration uses days or hours.</div><div class="error-text"></div></div>
           </div>
           <div class="grid2">
             <div class="field" data-field="pt-type"><label for="pt-type">Task Type</label><select id="pt-type"><option value="fixed">Fixed Price</option><option value="contest">Contest</option><option value="event">Event Activation</option><option value="bounty">Web3 Bounty</option></select></div>
@@ -365,44 +367,443 @@ const short=(v)=>!v?"":v.slice(0,8)+"..."+v.slice(-4);
 const skillsOf=(v)=>v.split(",").map((s)=>s.trim()).filter(Boolean);
 const formatGen=(v)=>`${Number(v).toFixed(1)} $GEN`;
 const hash=()=>`0x${Math.random().toString(16).slice(2).padEnd(64,"0").slice(0,64)}`;
-function deadline(hours){const d=Math.floor(hours/24),h=hours%24,p=[];if(d)p.push(`${d} day${d===1?"":"s"}`);if(h||!p.length)p.push(`${h} hour${h===1?"":"s"}`);return p.join(" ")}
-function allTasks(){const local=getTasks(),bids=getBids();return [...sampleTasks,...local].map((task)=>({...task,bids:bids.filter((bid)=>bid.taskId===task.id)}))}
-function toast(title,type,message){const wrap=byId("toast-wrap");const node=document.createElement("div");node.className=`toast ${type}`;node.innerHTML=`<strong>${esc(title)}</strong><div>${esc(message)}</div>`;wrap.appendChild(node);setTimeout(()=>node.remove(),4200)}
-function setLoading(btn,on,label){if(on){btn.dataset.label=btn.textContent;btn.disabled=true;btn.innerHTML=`<span class="spinner"></span>${label}`}else{btn.disabled=false;btn.textContent=btn.dataset.label||label}}
-function txAdd(item){const current=getTxs();current.unshift(item);saveTxs(current.slice(0,12))}
-function txUpdate(txHash,patch){saveTxs(getTxs().map((item)=>item.hash===txHash?{...item,...patch}:item))}
+
+function deadline(hours){
+  const d=Math.floor(hours/24),h=hours%24,p=[];
+  if(d)p.push(`${d} day${d===1?"":"s"}`);
+  if(h||!p.length)p.push(`${h} hour${h===1?"":"s"}`);
+  return p.join(" ");
+}
+
+function allTasks(){
+  const local=getTasks(),bids=getBids();
+  return [...sampleTasks,...local].map((task)=>({...task,bids:bids.filter((bid)=>bid.taskId===task.id)}));
+}
+
+function toast(title,type,message){
+  const wrap=byId("toast-wrap");
+  const node=document.createElement("div");
+  node.className=`toast ${type}`;
+  node.innerHTML=`<strong>${esc(title)}</strong><div>${esc(message)}</div>`;
+  wrap.appendChild(node);
+  setTimeout(()=>node.remove(),4200);
+}
+
+function setLoading(btn,on,label){
+  if(on){
+    btn.dataset.label=btn.textContent;
+    btn.disabled=true;
+    btn.innerHTML=`<span class="spinner"></span>${label}`;
+  }else{
+    btn.disabled=false;
+    btn.textContent=btn.dataset.label||label;
+  }
+}
+
+function txAdd(item){
+  const current=getTxs();
+  current.unshift(item);
+  saveTxs(current.slice(0,12));
+}
+
+function txUpdate(txHash,patch){
+  saveTxs(getTxs().map((item)=>item.hash===txHash?{...item,...patch}:item));
+}
+
 function renderContract(){}
-function renderWallet(){const connected=Boolean(walletState.address);byId("wallet-address").textContent=connected?short(walletState.address):"Wallet not connected";byId("wallet-balance").textContent=walletState.balance||"0.00 $GEN";byId("connect-wallet-btn").hidden=connected;byId("disconnect-wallet-btn").hidden=!connected;byId("hero-connect-btn").hidden=connected}
-async function ensureStudio(){if(!window.ethereum)return;try{await window.ethereum.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x"+CHAIN_ID.toString(16)}]})}catch(error){console.warn(error)}}
-async function refreshBalance(){if(!window.ethereum||!walletState.address){walletState.balance="0.00 $GEN";renderWallet();return}try{const raw=await window.ethereum.request({method:"eth_getBalance",params:[walletState.address,"latest"]});walletState.balance=`${(Number.parseInt(raw,16)/1e18).toFixed(4)} $GEN`;saveWallet()}catch{walletState.balance="0.00 $GEN"}renderWallet()}
-async function connectWallet(){if(!window.ethereum){toast("Wallet missing","err","Install MetaMask or a compatible wallet before connecting.");return}const btn=byId("connect-wallet-btn");setLoading(btn,true,"Connecting");try{await ensureStudio();const accounts=await window.ethereum.request({method:"eth_requestAccounts"});walletState.address=accounts[0]||"";saveWallet();renderWallet();await refreshBalance();toast("Wallet connected","ok","StudioNet wallet connection is active.")}catch(error){toast("Connection failed","err",error.message||"The wallet could not be connected.")}finally{setLoading(btn,false,"Connect Wallet")}}
-function disconnectWallet(){walletState={address:"",balance:"0.00 $GEN"};saveWallet();renderWallet();toast("Wallet disconnected","info","The local wallet session has been cleared.")}
+
+function renderWallet(){
+  const connected=Boolean(walletState.address);
+  byId("wallet-address").textContent=connected?short(walletState.address):"Wallet not connected";
+  byId("wallet-balance").textContent=walletState.balance||"0.00 $GEN";
+  byId("connect-wallet-btn").hidden=connected;
+  byId("disconnect-wallet-btn").hidden=!connected;
+  byId("hero-connect-btn").hidden=connected;
+}
+
+async function ensureStudio(){
+  if(!window.ethereum)return;
+  try{
+    await window.ethereum.request({method:"wallet_switchEthereumChain",params:[{chainId:"0x"+CHAIN_ID.toString(16)}]});
+  }catch(error){
+    console.warn(error);
+  }
+}
+
+async function refreshBalance(){
+  if(!window.ethereum||!walletState.address){
+    walletState.balance="0.00 $GEN";
+    renderWallet();
+    return;
+  }
+  try{
+    const raw=await window.ethereum.request({method:"eth_getBalance",params:[walletState.address,"latest"]});
+    walletState.balance=`${(Number.parseInt(raw,16)/1e18).toFixed(4)} $GEN`;
+    saveWallet();
+  }catch{
+    walletState.balance="0.00 $GEN";
+  }
+  renderWallet();
+}
+
+async function connectWallet(){
+  if(!window.ethereum){
+    toast("Wallet missing","err","Install MetaMask or a compatible wallet before connecting.");
+    return;
+  }
+  const btn=byId("connect-wallet-btn");
+  setLoading(btn,true,"Connecting");
+  try{
+    await ensureStudio();
+    const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
+    walletState.address=accounts[0]||"";
+    saveWallet();
+    renderWallet();
+    await refreshBalance();
+    toast("Wallet connected","ok","StudioNet wallet connection is active.");
+  }catch(error){
+    toast("Connection failed","err",error.message||"The wallet could not be connected.");
+  }finally{
+    setLoading(btn,false,"Connect Wallet");
+  }
+}
+
+function disconnectWallet(){
+  walletState={address:"",balance:"0.00 $GEN"};
+  saveWallet();
+  renderWallet();
+  toast("Wallet disconnected","info","The local wallet session has been cleared.");
+}
+
 function fieldWrap(id){return document.querySelector(`[data-field="${id}"]`)}
-function clearErr(id){const f=fieldWrap(id);if(!f)return;f.classList.remove("error");const e=f.querySelector(".error-text");if(e)e.textContent=""}
-function setErr(id,msg){const f=fieldWrap(id);if(!f)return;f.classList.add("error");const e=f.querySelector(".error-text");if(e)e.textContent=msg}
-function validText(id,min=2){clearErr(id);const v=byId(id).value.trim();if(!v||v.length<min){setErr(id,"This field needs a clearer value.");return false}return true}
-function validNum(id,min,max=Infinity){clearErr(id);const v=Number(byId(id).value);if(!Number.isFinite(v)||v<min||v>max){setErr(id,`Enter a number between ${min} and ${max===Infinity?"a valid maximum":max}.`);return false}return true}
-function validUrl(id,required=false){clearErr(id);const v=byId(id).value.trim();if(!v)return !required||!setErr(id,"A URL is required here.");try{new URL(v);return true}catch{setErr(id,"Enter a valid URL.");return false}}
-function resetForm(id){const form=byId(id);form.reset();form.querySelectorAll(".field").forEach((f)=>f.classList.remove("error"))}
-async function sendTx(label,message){if(!walletState.address){toast("Wallet required","err","Connect your wallet before submitting a transaction.");return null}const txHash=hash();txAdd({hash:txHash,label,message,status:"pending"});renderTxHistory();await new Promise((r)=>setTimeout(r,850));txUpdate(txHash,{status:"confirmed"});renderTxHistory();return txHash}
-function renderTaskSelect(){const select=byId("sb-task-id");select.innerHTML=allTasks().map((task)=>`<option value="${task.id}">${esc(task.title)} - ${formatGen(task.budget)}</option>`).join("")}
-function openTaskDetails(taskId){const task=allTasks().find((item)=>item.id===taskId);if(!task){toast("Task unavailable","err","The selected task details could not be loaded.");return}const skills=task.skills.join(", ");toast("Task details","info",`${task.title} | ${formatGen(task.budget)} | ${deadline(task.deadlineHours)} | ${skills}`)}
-function renderMarketplace(){const grid=byId("task-market-grid");grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");grid.querySelectorAll("[data-apply]").forEach((btn)=>btn.addEventListener("click",()=>{byId("sb-task-id").value=btn.dataset.apply;showTab("bid");window.scrollTo({top:0,behavior:"smooth"})}));grid.querySelectorAll("[data-details]").forEach((btn)=>btn.addEventListener("click",()=>openTaskDetails(btn.dataset.details)))}
-function renderStats(){const local=getTasks(),bids=getBids(),all=allTasks();byId("stat-tasks").textContent=String(all.length);byId("stat-bids").textContent=String(bids.length);byId("stat-my-tasks").textContent=String(local.length);byId("stat-budget").textContent=formatGen(local.length?local[0].budget:0.6)}
-function renderSummary(){byId("market-summary").innerHTML=allTasks().slice(0,5).map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${task.bids.length} bids</div></div>`).join("")}
-function renderTxHistory(){const txs=getTxs();byId("tx-history").innerHTML=txs.length?txs.map((tx)=>`<div class="tx-card"><div class="summary-row"><strong>${esc(tx.label)}</strong><span class="status ${tx.status}">${esc(tx.status)}</span></div><div class="subtle subtle-gap">${esc(tx.message)}</div><a class="tx-link" href="${EXPLORER_BASE}${tx.hash}" target="_blank" rel="noopener noreferrer">${esc(tx.hash)}</a></div>`).join(""):`<div class="empty">Transaction history will appear here after submissions.</div>`}
-function renderMyTasks(){const tasks=getTasks(),bids=getBids();byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{const id=btn.dataset.feedback;const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);saveBids(next);toast("Founder feedback saved","ok","Bid response updated and visible in My Bids.");renderAll()}))}
-function renderMyBids(){const bids=getBids();byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`}
-function renderAll(){renderContract();renderWallet();renderTaskSelect();renderMarketplace();renderStats();renderSummary();renderTxHistory();renderMyTasks();renderMyBids()}
-function showTab(tab){document.querySelectorAll(".page").forEach((page)=>page.classList.remove("active"));document.querySelectorAll(".nav-btn").forEach((btn)=>btn.classList.toggle("active",btn.dataset.tab===tab));byId(`page-${tab}`).classList.add("active")}
-function bindValidation(){byId("pt-budget").addEventListener("input",()=>{byId("pt-budget-help").textContent=Number(byId("pt-budget").value||0)>0?`${Number(byId("pt-budget").value).toFixed(1)} $GEN founder budget`:"Minimum 0.1 $GEN";validNum("pt-budget",0.1)});byId("ra-rate").addEventListener("input",()=>{byId("ra-rate-help").textContent=Number(byId("ra-rate").value||0)>0?`${Number(byId("ra-rate").value).toFixed(1)} $GEN per hour`:"Minimum 0.1 $GEN";validNum("ra-rate",0.1)});byId("sb-price").addEventListener("input",()=>validNum("sb-price",0.1))}
-async function handlePostTask(event){event.preventDefault();const valid=[validText("pt-title",5),validText("pt-desc",20),validText("pt-skills",3),validNum("pt-budget",0.1),validNum("pt-days",0,365),validNum("pt-hours",0,23)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted task fields.");return}const btn=byId("post-task-btn");setLoading(btn,true,"Posting");try{const txHash=await sendTx("Task Posted",`Founder posted ${byId("pt-title").value.trim()}`);if(!txHash)return;const tasks=getTasks();tasks.unshift({id:`task-${Date.now()}`,title:byId("pt-title").value.trim(),description:byId("pt-desc").value.trim(),skills:skillsOf(byId("pt-skills").value),budget:Number(byId("pt-budget").value),deadlineHours:Number(byId("pt-days").value||0)*24+Number(byId("pt-hours").value||0),type:byId("pt-type").value,level:byId("pt-level").value,owner:walletState.address||"Founder"});saveTasks(tasks);byId("post-task-result").innerHTML=`<div class="note">Task posted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Task posted","ok",`Transaction hash ${txHash} has been recorded and the task is now live.`);resetForm("post-task-form");renderAll();showTab("my-tasks")}finally{setLoading(btn,false,"Post Task")}}
-async function handleRegister(event){event.preventDefault();const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the highlighted agent fields.");return}const btn=byId("register-agent-btn");setLoading(btn,true,"Registering");try{const txHash=await sendTx("Agent Registered",`Agent profile submitted for ${byId("ra-name").value.trim()}`);if(!txHash)return;byId("register-result").innerHTML=`<div class="note">Agent registered successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Agent registered","ok",`Profile recorded successfully. Transaction hash ${txHash}.`);resetForm("agent-form")}finally{setLoading(btn,false,"Register Agent")}}
-async function handleBid(event){event.preventDefault();const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);if(!valid){toast("Validation needed","err","Please complete the bid form correctly.");return}const btn=byId("submit-bid-btn");setLoading(btn,true,"Submitting");const taskId=byId("sb-task-id").value;const task=allTasks().find((item)=>item.id===taskId);try{const txHash=await sendTx("Application Submitted",`Application submitted for ${task?task.title:"selected task"}`);if(!txHash)return;const bids=getBids();bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});saveBids(bids);byId("bid-submit-result").innerHTML=`<div class="note">Application submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Application submitted","ok","Your application is now visible in the marketplace, My Tasks, and My Bids.");resetForm("bid-form");renderAll();showTab("my-bids")}finally{setLoading(btn,false,"Submit Application")}}
-async function handleEvaluate(event){event.preventDefault();const valid=[validText("ev-title",3),validText("ev-desc",12),validText("ev-skills",3),validUrl("ev-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please correct the evaluation form.");return}const btn=byId("evaluate-btn");setLoading(btn,true,"Evaluating");try{const txHash=await sendTx("Delivery Evaluated",`Evaluation submitted for ${byId("ev-title").value.trim()}`);if(!txHash)return;byId("evaluate-result").innerHTML=`<div class="note">Evaluation submitted.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Evaluation submitted","ok","The delivery review transaction has been recorded.");resetForm("evaluate-form")}finally{setLoading(btn,false,"Run Evaluation")}}
-async function handleDispute(event){event.preventDefault();const valid=[validText("dr-task",10),validText("dr-claimant",10),validText("dr-respondent",10),validUrl("dr-url",true)].every(Boolean);if(!valid){toast("Validation needed","err","Please fix the dispute form fields.");return}const btn=byId("dispute-btn");setLoading(btn,true,"Submitting");try{const txHash=await sendTx("Dispute Submitted","A dispute transaction has been created for review.");if(!txHash)return;byId("dispute-result").innerHTML=`<div class="note">Dispute submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;toast("Dispute submitted","ok","The dispute transaction is now visible in transaction activity.");resetForm("dispute-form")}finally{setLoading(btn,false,"Submit Dispute")}}
-function bindActions(){document.querySelectorAll(".nav-btn").forEach((button)=>button.addEventListener("click",()=>showTab(button.dataset.tab)));byId("refresh-market-btn").addEventListener("click",()=>{renderAll();toast("Marketplace refreshed","info","Tasks, bids, and transaction activity were reloaded.")});byId("post-task-form").addEventListener("submit",handlePostTask);byId("agent-form").addEventListener("submit",handleRegister);byId("bid-form").addEventListener("submit",handleBid);byId("evaluate-form").addEventListener("submit",handleEvaluate);byId("dispute-form").addEventListener("submit",handleDispute);byId("connect-wallet-btn").addEventListener("click",connectWallet);byId("disconnect-wallet-btn").addEventListener("click",disconnectWallet);byId("hero-connect-btn").addEventListener("click",connectWallet);byId("hero-explore-btn").addEventListener("click",()=>{showTab("marketplace");window.scrollTo({top:0,behavior:"smooth"})})}
-window.addEventListener("load",async()=>{bindActions();bindValidation();renderContract();renderWallet();await refreshBalance();renderAll()});
+
+function clearErr(id){
+  const f=fieldWrap(id);
+  if(!f)return;
+  f.classList.remove("error");
+  const e=f.querySelector(".error-text");
+  if(e)e.textContent="";
+}
+
+function setErr(id,msg){
+  const f=fieldWrap(id);
+  if(!f)return;
+  f.classList.add("error");
+  const e=f.querySelector(".error-text");
+  if(e)e.textContent=msg;
+}
+
+function validText(id,min=2){
+  clearErr(id);
+  const v=byId(id).value.trim();
+  if(!v||v.length<min){
+    setErr(id,"This field needs a clearer value.");
+    return false;
+  }
+  return true;
+}
+
+function validNum(id,min,max=Infinity){
+  clearErr(id);
+  const v=Number(byId(id).value);
+  if(!Number.isFinite(v)||v<min||v>max){
+    setErr(id,`Enter a number between ${min} and ${max===Infinity?"a valid maximum":max}.`);
+    return false;
+  }
+  return true;
+}
+
+function validUrl(id,required=false){
+  clearErr(id);
+  const v=byId(id).value.trim();
+  if(!v)return !required||!setErr(id,"A URL is required here.");
+  try{
+    new URL(v);
+    return true;
+  }catch{
+    setErr(id,"Enter a valid URL.");
+    return false;
+  }
+}
+
+function resetForm(id){
+  const form=byId(id);
+  form.reset();
+  form.querySelectorAll(".field").forEach((f)=>f.classList.remove("error"));
+}
+
+async function sendTx(label,message){
+  if(!walletState.address){
+    toast("Wallet required","err","Connect your wallet before submitting a transaction.");
+    return null;
+  }
+  const txHash=hash();
+  txAdd({hash:txHash,label,message,status:"pending"});
+  renderTxHistory();
+  await new Promise((r)=>setTimeout(r,850));
+  txUpdate(txHash,{status:"confirmed"});
+  renderTxHistory();
+  return txHash;
+}
+
+function renderTaskSelect(){
+  const select=byId("sb-task-id");
+  select.innerHTML=allTasks().map((task)=>`<option value="${task.id}">${esc(task.title)} - ${formatGen(task.budget)}</option>`).join("");
+}
+
+function openTaskDetails(taskId){
+  const task=allTasks().find((item)=>item.id===taskId);
+  if(!task){
+    toast("Task unavailable","err","The selected task details could not be loaded.");
+    return;
+  }
+  const skills=task.skills.join(", ");
+  toast("Task details","info",`${task.title} | ${formatGen(task.budget)} | ${deadline(task.deadlineHours)} | ${skills}`);
+}
+
+function renderMarketplace(){
+  const grid=byId("task-market-grid");
+  grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");
+  grid.querySelectorAll("[data-apply]").forEach((btn)=>btn.addEventListener("click",()=>{
+    byId("sb-task-id").value=btn.dataset.apply;
+    showTab("bid");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }));
+  grid.querySelectorAll("[data-details]").forEach((btn)=>btn.addEventListener("click",()=>openTaskDetails(btn.dataset.details)));
+}
+
+function renderStats(){
+  const local=getTasks(),bids=getBids(),all=allTasks();
+  byId("stat-tasks").textContent=String(all.length);
+  byId("stat-bids").textContent=String(bids.length);
+  byId("stat-my-tasks").textContent=String(local.length);
+  byId("stat-budget").textContent=formatGen(local.length?local[0].budget:0.6);
+}
+
+function renderSummary(){
+  byId("market-summary").innerHTML=allTasks().slice(0,5).map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${task.bids.length} bids</div></div>`).join("");
+}
+
+function renderTxHistory(){
+  const txs=getTxs();
+  byId("tx-history").innerHTML=txs.length?txs.map((tx)=>`<div class="tx-card"><div class="summary-row"><strong>${esc(tx.label)}</strong><span class="status ${tx.status}">${esc(tx.status)}</span></div><div class="subtle subtle-gap">${esc(tx.message)}</div><a class="tx-link" href="${EXPLORER_BASE}${tx.hash}" target="_blank" rel="noopener noreferrer">${esc(tx.hash)}</a></div>`).join(""):`<div class="empty">Transaction history will appear here after submissions.</div>`;
+}
+
+function renderMyTasks(){
+  const tasks=getTasks(),bids=getBids();
+  byId("my-tasks-list").innerHTML=tasks.length?tasks.map((task)=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">${formatGen(task.budget)} - ${deadline(task.deadlineHours)} - ${esc(task.type)}</div><div class="subtle">Skills: ${esc(task.skills.join(", "))}</div></div>`).join(""):`<div class="empty">Tasks you post will appear here after transaction success.</div>`;
+  const incoming=tasks.flatMap((task)=>bids.filter((bid)=>bid.taskId===task.id).map((bid)=>({task,bid})));
+  byId("incoming-bids-list").innerHTML=incoming.length?incoming.map(({task,bid})=>`<div class="item"><strong>${esc(task.title)}</strong><div class="subtle">Bid from ${esc(bid.agentName)} - ${formatGen(bid.price)}</div><div class="subtle">Pitch: ${esc(bid.pitch)}</div><div class="feedback"><textarea id="feedback-${bid.id}" placeholder="Leave founder feedback for this bid">${esc(bid.feedback||"")}</textarea><button class="btn btn-secondary" data-feedback="${bid.id}" type="button">Save Feedback</button></div></div>`).join(""):`<div class="empty">Incoming bids and founder feedback controls will appear here.</div>`;
+  byId("incoming-bids-list").querySelectorAll("[data-feedback]").forEach((btn)=>btn.addEventListener("click",()=>{
+    const id=btn.dataset.feedback;
+    const next=getBids().map((item)=>item.id===id?{...item,feedback:byId(`feedback-${id}`).value.trim()}:item);
+    saveBids(next);
+    toast("Founder feedback saved","ok","Bid response updated and visible in My Bids.");
+    renderAll();
+  }));
+}
+
+function renderMyBids(){
+  const bids=getBids();
+  byId("my-bids-list").innerHTML=bids.length?bids.map((bid)=>`<div class="item"><strong>${esc(bid.taskTitle)}</strong><div class="subtle">Bid price ${formatGen(bid.price)} - Reputation ${bid.reputation}</div><div class="subtle">Transaction <a class="tx-link" href="${EXPLORER_BASE}${bid.txHash}" target="_blank" rel="noopener noreferrer">${esc(bid.txHash)}</a></div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join(""):`<div class="empty">Bids you submit will appear here with founder feedback.</div>`;
+}
+
+function renderAll(){
+  renderContract();
+  renderWallet();
+  renderTaskSelect();
+  renderMarketplace();
+  renderStats();
+  renderSummary();
+  renderTxHistory();
+  renderMyTasks();
+  renderMyBids();
+}
+
+function showTab(tab){
+  document.querySelectorAll(".page").forEach((page)=>page.classList.remove("active"));
+  document.querySelectorAll(".nav-btn").forEach((btn)=>btn.classList.toggle("active",btn.dataset.tab===tab));
+  byId(`page-${tab}`).classList.add("active");
+}
+
+function bindValidation(){
+  byId("pt-budget").addEventListener("input",()=>{
+    byId("pt-budget-help").textContent=Number(byId("pt-budget").value||0)>0?`${Number(byId("pt-budget").value).toFixed(1)} $GEN founder budget`:"Minimum 0.1 $GEN";
+    validNum("pt-budget",0.1);
+  });
+  byId("pt-duration").addEventListener("input",()=>{
+    const unit=byId("pt-duration-unit").value;
+    const value=Number(byId("pt-duration").value||0);
+    byId("pt-duration-help").textContent=value>0?`Deadline set to ${value} ${unit}.`:"Enter the task duration value.";
+    validNum("pt-duration",1,365);
+  });
+  byId("pt-duration-unit").addEventListener("change",()=>{
+    const value=Number(byId("pt-duration").value||0);
+    const unit=byId("pt-duration-unit").value;
+    byId("pt-duration-help").textContent=value>0?`Deadline set to ${value} ${unit}.`:"Enter the task duration value.";
+  });
+  byId("ra-rate").addEventListener("input",()=>{
+    byId("ra-rate-help").textContent=Number(byId("ra-rate").value||0)>0?`${Number(byId("ra-rate").value).toFixed(1)} $GEN per hour`:"Minimum 0.1 $GEN";
+    validNum("ra-rate",0.1);
+  });
+  byId("sb-price").addEventListener("input",()=>validNum("sb-price",0.1));
+}
+
+async function handlePostTask(event){
+  event.preventDefault();
+  const valid=[validText("pt-title",5),validText("pt-desc",20),validText("pt-skills",3),validNum("pt-budget",0.1),validNum("pt-duration",1,365)].every(Boolean);
+  if(!valid){
+    toast("Validation needed","err","Please fix the highlighted task fields.");
+    return;
+  }
+  const btn=byId("post-task-btn");
+  setLoading(btn,true,"Posting");
+  try{
+    const txHash=await sendTx("Task Posted",`Founder posted ${byId("pt-title").value.trim()}`);
+    if(!txHash)return;
+    const durationValue=Number(byId("pt-duration").value);
+    const durationUnit=byId("pt-duration-unit").value;
+    const deadlineHours=durationUnit==="days"?durationValue*24:durationValue;
+    const tasks=getTasks();
+    tasks.unshift({
+      id:`task-${Date.now()}`,
+      title:byId("pt-title").value.trim(),
+      description:byId("pt-desc").value.trim(),
+      skills:skillsOf(byId("pt-skills").value),
+      budget:Number(byId("pt-budget").value),
+      deadlineHours,
+      type:byId("pt-type").value,
+      level:byId("pt-level").value,
+      owner:walletState.address||"Founder"
+    });
+    saveTasks(tasks);
+    byId("post-task-result").innerHTML=`<div class="note">Task posted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
+    toast("Task posted","ok",`Transaction hash ${txHash} has been recorded and the task is now live.`);
+    resetForm("post-task-form");
+    byId("pt-duration-help").textContent="Enter the task duration value.";
+    renderAll();
+    showTab("my-tasks");
+  }finally{
+    setLoading(btn,false,"Post Task");
+  }
+}
+
+async function handleRegister(event){
+  event.preventDefault();
+  const valid=[validText("ra-name",3),validText("ra-skills",3),validText("ra-desc",20),validNum("ra-rate",0.1)].every(Boolean);
+  if(!valid){
+    toast("Validation needed","err","Please fix the highlighted agent fields.");
+    return;
+  }
+  const btn=byId("register-agent-btn");
+  setLoading(btn,true,"Registering");
+  try{
+    const txHash=await sendTx("Agent Registered",`Agent profile submitted for ${byId("ra-name").value.trim()}`);
+    if(!txHash)return;
+    byId("register-result").innerHTML=`<div class="note">Agent registered successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
+    toast("Agent registered","ok",`Profile recorded successfully. Transaction hash ${txHash}.`);
+    resetForm("agent-form");
+  }finally{
+    setLoading(btn,false,"Register Agent");
+  }
+}
+
+async function handleBid(event){
+  event.preventDefault();
+  const valid=[validText("sb-agent-name",3),validText("sb-skills",3),validText("sb-pitch",12),validText("sb-approach",18),validNum("sb-agent-rep",0,100),validNum("sb-price",0.1)].every(Boolean);
+  if(!valid){
+    toast("Validation needed","err","Please complete the bid form correctly.");
+    return;
+  }
+  const btn=byId("submit-bid-btn");
+  setLoading(btn,true,"Submitting");
+  const taskId=byId("sb-task-id").value;
+  const task=allTasks().find((item)=>item.id===taskId);
+  try{
+    const txHash=await sendTx("Application Submitted",`Application submitted for ${task?task.title:"selected task"}`);
+    if(!txHash)return;
+    const bids=getBids();
+    bids.unshift({id:`bid-${Date.now()}`,taskId,taskTitle:task?task.title:"Unknown task",agentName:byId("sb-agent-name").value.trim(),skills:skillsOf(byId("sb-skills").value),reputation:Number(byId("sb-agent-rep").value),price:Number(byId("sb-price").value),pitch:byId("sb-pitch").value.trim(),approach:byId("sb-approach").value.trim(),feedback:"",txHash});
+    saveBids(bids);
+    byId("bid-submit-result").innerHTML=`<div class="note">Application submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
+    toast("Application submitted","ok","Your application is now visible in the marketplace, My Tasks, and My Bids.");
+    resetForm("bid-form");
+    renderAll();
+    showTab("my-bids");
+  }finally{
+    setLoading(btn,false,"Submit Application");
+  }
+}
+
+async function handleEvaluate(event){
+  event.preventDefault();
+  const valid=[validText("ev-title",3),validText("ev-desc",12),validText("ev-skills",3),validUrl("ev-url",true)].every(Boolean);
+  if(!valid){
+    toast("Validation needed","err","Please correct the evaluation form.");
+    return;
+  }
+  const btn=byId("evaluate-btn");
+  setLoading(btn,true,"Evaluating");
+  try{
+    const txHash=await sendTx("Delivery Evaluated",`Evaluation submitted for ${byId("ev-title").value.trim()}`);
+    if(!txHash)return;
+    byId("evaluate-result").innerHTML=`<div class="note">Evaluation submitted.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
+    toast("Evaluation submitted","ok","The delivery review transaction has been recorded.");
+    resetForm("evaluate-form");
+  }finally{
+    setLoading(btn,false,"Run Evaluation");
+  }
+}
+
+async function handleDispute(event){
+  event.preventDefault();
+  const valid=[validText("dr-task",10),validText("dr-claimant",10),validText("dr-respondent",10),validUrl("dr-url",true)].every(Boolean);
+  if(!valid){
+    toast("Validation needed","err","Please fix the dispute form fields.");
+    return;
+  }
+  const btn=byId("dispute-btn");
+  setLoading(btn,true,"Submitting");
+  try{
+    const txHash=await sendTx("Dispute Submitted","A dispute transaction has been created for review.");
+    if(!txHash)return;
+    byId("dispute-result").innerHTML=`<div class="note">Dispute submitted successfully.<br>Transaction hash: <a class="tx-link" href="${EXPLORER_BASE}${txHash}" target="_blank" rel="noopener noreferrer">${txHash}</a></div>`;
+    toast("Dispute submitted","ok","The dispute transaction is now visible in transaction activity.");
+    resetForm("dispute-form");
+  }finally{
+    setLoading(btn,false,"Submit Dispute");
+  }
+}
+
+function bindActions(){
+  document.querySelectorAll(".nav-btn").forEach((button)=>button.addEventListener("click",()=>showTab(button.dataset.tab)));
+  byId("refresh-market-btn").addEventListener("click",()=>{
+    renderAll();
+    toast("Marketplace refreshed","info","Tasks, bids, and transaction activity were reloaded.");
+  });
+  byId("post-task-form").addEventListener("submit",handlePostTask);
+  byId("agent-form").addEventListener("submit",handleRegister);
+  byId("bid-form").addEventListener("submit",handleBid);
+  byId("evaluate-form").addEventListener("submit",handleEvaluate);
+  byId("dispute-form").addEventListener("submit",handleDispute);
+  byId("connect-wallet-btn").addEventListener("click",connectWallet);
+  byId("disconnect-wallet-btn").addEventListener("click",disconnectWallet);
+  byId("hero-connect-btn").addEventListener("click",connectWallet);
+  byId("hero-explore-btn").addEventListener("click",()=>{
+    showTab("marketplace");
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+}
+
+window.addEventListener("load",async()=>{
+  bindActions();
+  bindValidation();
+  renderContract();
+  renderWallet();
+  await refreshBalance();
+  renderAll();
+});
 </script>
 </body>
 </html>
+
