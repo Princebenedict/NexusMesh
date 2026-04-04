@@ -10,7 +10,8 @@
 html,body{max-width:100%;overflow-x:hidden}
 body{font-family:"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 0 0,rgba(89,182,255,.16),transparent 30%),linear-gradient(180deg,#061018 0%,#091522 100%);color:var(--text);font-size:14px;min-height:100vh}
 a{color:inherit;text-decoration:none}
-button,input,textarea,select{font:inherit}
+button,input,textarea{font:inherit}
+
 .header,.panel,.task-card,.stat-card,.tx-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));border:1px solid var(--line);box-shadow:var(--shadow)}
 .header{position:sticky;top:0;z-index:50;background:rgba(7,15,24,.98);padding:18px 24px;border-radius:0;box-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .row,.nav,.top-actions,.wallet-group,.hero-actions,.hero-badges,.tags,.task-footer,.task-meta,.footer-links,.inline-actions,.summary-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
@@ -30,15 +31,18 @@ button,input,textarea,select{font:inherit}
 .footer-links{margin-top:12px}
 .stack-gap{margin-top:14px}
 .subtle-gap{margin:8px 0}
+
 .btn{border:none;border-radius:var(--r);padding:11px 16px;cursor:pointer;transition:.18s;font-weight:700}
 .btn:hover{transform:translateY(-1px)}
 .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
 .btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#041019}
 .btn-secondary{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--text)}
 .btn-danger{background:rgba(255,107,107,.14);border:1px solid rgba(255,107,107,.2);color:#ffd8d8}
+
 .nav{margin-top:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
 .nav-btn{background:none;border:none;color:var(--muted);padding:12px 4px;margin-right:18px;border-bottom:2px solid transparent;cursor:pointer;font-weight:700;white-space:nowrap;flex:0 0 auto}
 .nav-btn.active{color:var(--text);border-bottom-color:var(--cyan)}
+
 .main{max-width:1220px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:24px}
 .hero-box{padding:28px;border-radius:var(--rl);position:relative;overflow:hidden;min-width:0}
@@ -49,17 +53,20 @@ button,input,textarea,select{font:inherit}
 .hero-copy{color:var(--muted);font-size:15px;line-height:1.8;max-width:700px}
 .hero-badge,.tag{border-radius:999px;font-family:Consolas,monospace}
 .hero-badge{padding:8px 12px;border:1px solid var(--line2);background:rgba(89,182,255,.08);color:#dff4ff;font-size:12px}
+
 .page{display:none}
 .page.active{display:block}
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .section-title{font-size:28px;font-weight:900}
 .section-sub,.task-desc,.help,.subtle{color:var(--muted);line-height:1.7}
+
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .market{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .split,.forms,.about{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
 .stat-card,.panel,.tx-card{padding:20px;border-radius:var(--rl);min-width:0}
 .stat-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
 .stat-value{font-size:28px;font-weight:900;font-family:Consolas,monospace}
+
 .task-card{border-radius:var(--rl);overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .task-body{padding:20px;display:grid;gap:12px;min-width:0}
 .task-title{font-size:17px;font-weight:800}
@@ -70,30 +77,36 @@ button,input,textarea,select{font:inherit}
 .task-footer{padding:16px 20px;border-top:1px solid var(--line);background:rgba(255,255,255,.02);justify-content:space-between}
 .price{font-size:18px;font-weight:900;color:var(--green)}
 .task-meta{justify-content:space-between;color:var(--muted);font-size:12px}
+
 .card-title{font-size:18px;font-weight:800;margin-bottom:12px}
 .list{display:grid;gap:12px}
 .item{border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.02);min-width:0}
 .empty{color:var(--muted);padding:24px 0;text-align:center}
+
 .form{display:grid;gap:14px}
 .field{display:grid;gap:6px}
 .field input,.field textarea{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-width:0}
 .field textarea{min-height:96px;resize:vertical}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
+
 .custom-select{position:relative}
-.select-trigger{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-height:46px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-.select-trigger::after{content:"▾";color:var(--muted);font-size:12px}
+.select-hidden{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.select-trigger{width:100%;background:var(--bg3);border:1px solid var(--line);color:var(--text);border-radius:var(--r);padding:12px 13px;min-height:46px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left}
+.select-trigger::after{content:"▾";color:var(--muted);font-size:12px;flex:0 0 auto}
 .select-trigger.open{border-color:var(--blue);box-shadow:0 0 0 4px rgba(89,182,255,.08)}
 .select-menu{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:8px;display:none;z-index:30}
 .custom-select.open .select-menu{display:grid;gap:6px}
 .select-option{background:rgba(255,255,255,.03);border:1px solid transparent;color:var(--text);padding:10px 12px;border-radius:12px;cursor:pointer;text-align:left}
 .select-option:hover,.select-option.active{border-color:var(--line2);background:rgba(89,182,255,.10)}
-.select-hidden{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+
 .grid2,.grid3{display:grid;gap:14px}
 .grid2{grid-template-columns:1fr 1fr}
 .grid3{grid-template-columns:repeat(3,1fr)}
+
 .error input,.error textarea,.error .select-trigger{border-color:rgba(255,107,107,.7);box-shadow:0 0 0 4px rgba(255,107,107,.08)}
 .error-text{display:none;color:#ffb0b0;font-size:12px}
 .error .error-text{display:block}
+
 .note{border:1px solid rgba(89,182,255,.16);background:rgba(89,182,255,.08);color:#d9f4ff;padding:12px 14px;border-radius:var(--r);line-height:1.7;word-break:break-word}
 .status{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
 .pending{background:rgba(245,184,75,.12);color:var(--amber)}
@@ -103,6 +116,7 @@ button,input,textarea,select{font:inherit}
 .tx-link{color:var(--cyan);font-weight:700;word-break:break-all}
 .feedback{margin-top:12px;display:grid;gap:10px}
 .feedback-note{padding:10px 12px;border-radius:12px;background:rgba(101,230,255,.08);border:1px solid rgba(101,230,255,.14);color:#dbf8ff;word-break:break-word}
+
 .toast-wrap{position:fixed;right:20px;bottom:20px;display:grid;gap:10px;z-index:50;max-width:calc(100vw - 24px)}
 .toast{min-width:280px;max-width:380px;padding:14px 16px;border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line);background:rgba(10,18,28,.96)}
 .toast strong{display:block;margin-bottom:4px}
@@ -111,8 +125,12 @@ button,input,textarea,select{font:inherit}
 .toast.info strong{color:var(--cyan)}
 .spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:currentColor;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
 .footer{margin-top:32px;padding:24px 0 18px;border-top:1px solid var(--line);color:var(--muted)}
+.footer-contract{padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03);font-family:Consolas,monospace;color:var(--text);word-break:break-all}
+.footer-contract strong{color:var(--cyan)}
 .footer-links a{color:var(--cyan);font-weight:700}
+
 @media (max-width:1100px){
   .split,.forms,.about{grid-template-columns:1fr}
   .market{grid-template-columns:repeat(2,1fr)}
@@ -295,8 +313,30 @@ button,input,textarea,select{font:inherit}
         <form class="form" id="agent-form" novalidate>
           <div class="field" data-field="ra-name"><label for="ra-name">Display Name</label><input id="ra-name" type="text" placeholder="Nova Builder Collective"><div class="error-text"></div></div>
           <div class="grid2">
-            <div class="field" data-field="ra-type"><label for="ra-type">Agent Type</label><select id="ra-type"><option value="ai_agent">AI Agent</option><option value="human">Human Professional</option><option value="hybrid">Hybrid Team</option></select></div>
-            <div class="field" data-field="ra-availability"><label for="ra-availability">Availability</label><select id="ra-availability"><option value="immediate">Immediate</option><option value="scheduled">Scheduled</option><option value="event_only">Event Focused</option></select></div>
+            <div class="field" data-field="ra-type">
+              <label for="ra-type">Agent Type</label>
+              <div class="custom-select" data-select>
+                <input class="select-hidden" id="ra-type" value="ai_agent" readonly>
+                <button class="select-trigger" type="button" data-select-trigger>AI Agent</button>
+                <div class="select-menu">
+                  <button class="select-option active" type="button" data-value="ai_agent">AI Agent</button>
+                  <button class="select-option" type="button" data-value="human">Human Professional</button>
+                  <button class="select-option" type="button" data-value="hybrid">Hybrid Team</button>
+                </div>
+              </div>
+            </div>
+            <div class="field" data-field="ra-availability">
+              <label for="ra-availability">Availability</label>
+              <div class="custom-select" data-select>
+                <input class="select-hidden" id="ra-availability" value="immediate" readonly>
+                <button class="select-trigger" type="button" data-select-trigger>Immediate</button>
+                <div class="select-menu">
+                  <button class="select-option active" type="button" data-value="immediate">Immediate</button>
+                  <button class="select-option" type="button" data-value="scheduled">Scheduled</button>
+                  <button class="select-option" type="button" data-value="event_only">Event Focused</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="field" data-field="ra-skills"><label for="ra-skills">Skills</label><input id="ra-skills" type="text" placeholder="Smart Contracts, Tokenomics, Frontend, Wallet UX"><div class="help">Use simple comma-separated skills.</div><div class="error-text"></div></div>
           <div class="field" data-field="ra-desc"><label for="ra-desc">Description</label><textarea id="ra-desc" placeholder="Describe your strengths across product delivery, AI operations, web3 engineering, events, or community growth."></textarea><div class="error-text"></div></div>
@@ -314,7 +354,15 @@ button,input,textarea,select{font:inherit}
     <div class="forms">
       <div class="panel">
         <form class="form" id="bid-form" novalidate>
-          <div class="field" data-field="sb-task-id"><label for="sb-task-id">Task</label><select id="sb-task-id"></select><div class="error-text"></div></div>
+          <div class="field" data-field="sb-task-id">
+            <label for="sb-task-id">Task</label>
+            <div class="custom-select" data-select>
+              <input class="select-hidden" id="sb-task-id" value="" readonly>
+              <button class="select-trigger" type="button" data-select-trigger>Select a task</button>
+              <div class="select-menu"></div>
+            </div>
+            <div class="error-text"></div>
+          </div>
           <div class="grid2">
             <div class="field" data-field="sb-agent-name"><label for="sb-agent-name">Name</label><input id="sb-agent-name" type="text" placeholder="Nova Builder Collective"><div class="error-text"></div></div>
             <div class="field" data-field="sb-agent-rep"><label for="sb-agent-rep">Reputation Score</label><input id="sb-agent-rep" type="number" min="0" max="100" step="1" placeholder="82"><div class="error-text"></div></div>
@@ -375,7 +423,7 @@ button,input,textarea,select{font:inherit}
   </section>
 
   <footer class="footer">
-    <div class="summary-row"><span>Contract</span><strong>0x0195056364095CEDA68b6E79B9E3492d248D5726</strong></div>
+    <div class="footer-contract"><strong>Contract</strong> - 0x0195056364095CEDA68b6E79B9E3492d248D5726</div>
     <div class="footer-links"><a href="https://github.com/Princebenedict/NexusMesh" target="_blank" rel="noopener noreferrer">GitHub Repository</a><a href="https://docs.genlayer.com" target="_blank" rel="noopener noreferrer">Docs</a><a href="https://explorer-studio.genlayer.com/contracts/0x0195056364095CEDA68b6E79B9E3492d248D5726" target="_blank" rel="noopener noreferrer">Studio Explorer</a></div>
   </footer>
 </main>
@@ -396,6 +444,7 @@ const sampleTasks=[
 {id:"sample-6",title:"Design a bounty contest submissions board",description:"Build a lightweight board for showing contest entries, judges, and scoring progress.",skills:["Product Design","Frontend","Contest Ops"],budget:0.8,deadlineHours:36,level:"high",type:"contest",owner:"Hackathon Host"}
 ];
 let walletState=JSON.parse(localStorage.getItem(STORAGE.wallet)||'{"address":"","balance":"0.00 $GEN"}');
+
 const byId=(id)=>document.getElementById(id);
 const getTasks=()=>JSON.parse(localStorage.getItem(STORAGE.tasks)||"[]");
 const getBids=()=>JSON.parse(localStorage.getItem(STORAGE.bids)||"[]");
@@ -568,22 +617,24 @@ function validUrl(id,required=false){
   }
 }
 
+function resetCustomSelect(select){
+  const input=select.querySelector(".select-hidden");
+  const trigger=select.querySelector("[data-select-trigger]");
+  const first=select.querySelector(".select-option");
+  if(input && trigger && first){
+    input.value=first.dataset.value;
+    trigger.textContent=first.textContent;
+    select.querySelectorAll(".select-option").forEach((opt)=>opt.classList.toggle("active",opt===first));
+  }
+  select.classList.remove("open");
+  trigger?.classList.remove("open");
+}
+
 function resetForm(id){
   const form=byId(id);
   form.reset();
   form.querySelectorAll(".field").forEach((f)=>f.classList.remove("error"));
-  form.querySelectorAll("[data-select]").forEach((select)=>{
-    const input=select.querySelector(".select-hidden");
-    const trigger=select.querySelector("[data-select-trigger]");
-    const first=select.querySelector(".select-option");
-    if(input && first){
-      input.value=first.dataset.value;
-      trigger.textContent=first.textContent;
-      select.querySelectorAll(".select-option").forEach((opt)=>opt.classList.toggle("active",opt===first));
-    }
-    select.classList.remove("open");
-    trigger?.classList.remove("open");
-  });
+  form.querySelectorAll("[data-select]").forEach(resetCustomSelect);
 }
 
 async function sendTx(label,message){
@@ -600,9 +651,28 @@ async function sendTx(label,message){
   return txHash;
 }
 
+function setCustomSelectOptions(inputId,options){
+  const input=byId(inputId);
+  if(!input)return;
+  const select=input.closest("[data-select]");
+  const menu=select.querySelector(".select-menu");
+  const trigger=select.querySelector("[data-select-trigger]");
+  const current=input.value;
+  menu.innerHTML=options.map((option)=>`<button class="select-option" type="button" data-value="${esc(option.value)}">${esc(option.label)}</button>`).join("");
+  const next=options.find((option)=>option.value===current)||options[0];
+  if(next){
+    input.value=next.value;
+    trigger.textContent=next.label;
+    menu.querySelectorAll(".select-option").forEach((node)=>node.classList.toggle("active",node.dataset.value===next.value));
+  }else{
+    input.value="";
+    trigger.textContent="Select a task";
+  }
+}
+
 function renderTaskSelect(){
-  const select=byId("sb-task-id");
-  select.innerHTML=allTasks().map((task)=>`<option value="${task.id}">${esc(task.title)} - ${formatGen(task.budget)}</option>`).join("");
+  const options=allTasks().map((task)=>({value:task.id,label:`${task.title} - ${formatGen(task.budget)}`}));
+  setCustomSelectOptions("sb-task-id",options);
 }
 
 function openTaskDetails(taskId){
@@ -620,6 +690,10 @@ function renderMarketplace(){
   grid.innerHTML=allTasks().map((task)=>`<article class="task-card"><div class="task-body"><div class="task-title">${esc(task.title)}</div><div class="task-desc">${esc(task.description)}</div><div class="tags">${task.skills.map((s)=>`<span class="tag tag-skill">${esc(s)}</span>`).join("")}<span class="tag tag-level">${esc(task.level)}</span><span class="tag tag-level">${esc(task.type)}</span></div><div class="task-meta"><span>Deadline: ${deadline(task.deadlineHours)}</span><span>Bids: ${task.bids.length}</span></div></div><div class="task-footer"><div class="price">${formatGen(task.budget)}</div><div class="inline-actions"><button class="btn btn-primary" data-apply="${task.id}" type="button">Apply</button><button class="btn btn-secondary" data-details="${task.id}" type="button">Details</button></div>${task.bids.length?`<div class="list stack-gap">${task.bids.slice(-2).map((bid)=>`<div class="item"><strong>${esc(bid.agentName)}</strong><div class="subtle">Bid ${formatGen(bid.price)} - ${esc(bid.skills.join(", "))}</div>${bid.feedback?`<div class="feedback-note">${esc(bid.feedback)}</div>`:`<div class="subtle">Founder feedback pending</div>`}</div>`).join("")}</div>`:""}</div></article>`).join("");
   grid.querySelectorAll("[data-apply]").forEach((btn)=>btn.addEventListener("click",()=>{
     byId("sb-task-id").value=btn.dataset.apply;
+    const task=allTasks().find((item)=>item.id===btn.dataset.apply);
+    const trigger=byId("sb-task-id").closest("[data-select]").querySelector("[data-select-trigger]");
+    if(task) trigger.textContent=`${task.title} - ${formatGen(task.budget)}`;
+    byId("sb-task-id").closest("[data-select]").querySelectorAll(".select-option").forEach((node)=>node.classList.toggle("active",node.dataset.value===btn.dataset.apply));
     showTab("bid");
     window.scrollTo({top:0,behavior:"smooth"});
   }));
@@ -681,12 +755,24 @@ function showTab(tab){
 }
 
 function bindCustomSelects(){
-  document.querySelectorAll("[data-select]").forEach((select)=>{
-    const input=select.querySelector(".select-hidden");
-    const trigger=select.querySelector("[data-select-trigger]");
-    const options=[...select.querySelectorAll(".select-option")];
+  document.addEventListener("click",(event)=>{
+    const option=event.target.closest(".select-option");
+    const trigger=event.target.closest("[data-select-trigger]");
+    const select=event.target.closest("[data-select]");
 
-    trigger.addEventListener("click",(event)=>{
+    if(option && select){
+      const input=select.querySelector(".select-hidden");
+      const btn=select.querySelector("[data-select-trigger]");
+      input.value=option.dataset.value;
+      btn.textContent=option.textContent;
+      select.querySelectorAll(".select-option").forEach((node)=>node.classList.toggle("active",node===option));
+      select.classList.remove("open");
+      btn.classList.remove("open");
+      input.dispatchEvent(new Event("change",{bubbles:true}));
+      return;
+    }
+
+    if(trigger && select){
       event.stopPropagation();
       document.querySelectorAll("[data-select].open").forEach((node)=>{
         if(node!==select){
@@ -696,24 +782,12 @@ function bindCustomSelects(){
       });
       const isOpen=select.classList.toggle("open");
       trigger.classList.toggle("open",isOpen);
-    });
+      return;
+    }
 
-    options.forEach((option)=>{
-      option.addEventListener("click",()=>{
-        input.value=option.dataset.value;
-        trigger.textContent=option.textContent;
-        options.forEach((node)=>node.classList.toggle("active",node===option));
-        select.classList.remove("open");
-        trigger.classList.remove("open");
-        input.dispatchEvent(new Event("change",{bubbles:true}));
-      });
-    });
-  });
-
-  document.addEventListener("click",()=>{
-    document.querySelectorAll("[data-select].open").forEach((select)=>{
-      select.classList.remove("open");
-      select.querySelector("[data-select-trigger]")?.classList.remove("open");
+    document.querySelectorAll("[data-select].open").forEach((node)=>{
+      node.classList.remove("open");
+      node.querySelector("[data-select-trigger]")?.classList.remove("open");
     });
   });
 }
@@ -889,5 +963,3 @@ window.addEventListener("load",async()=>{
 </script>
 </body>
 </html>
-
-
