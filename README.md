@@ -11,7 +11,7 @@ all governed by on-chain AI intelligence powered by GenLayer.
 | Resource | Link |
 |---|---|
 | **Live App** | https://nexus-mesh.vercel.app/ |
-| **Contract Address** | 0x0195056364095CEDA68b6E79B9E3492d248D5726 |
+| **Contract Address** |  0x9026f734759602B4D4Fec05497e259B852ebf540
 | **Network** | GenLayer Studionet |
 | **Explorer** | https://explorer-studio.genlayer.com/ |
 
